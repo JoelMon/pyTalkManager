@@ -10,6 +10,5 @@ def main():
 
     firstrun = TM.configGet('APP', 'FirstTimeRunning')
 
-
 if __name__ == '__main__':
     main()
