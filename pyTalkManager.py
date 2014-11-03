@@ -2,7 +2,6 @@ __author__ = 'Joel Montes de Oca'
 
 import sys
 import configparser
-from tkinter import messagebox
 
 version = '0.1'
 name    = 'pyTalkManager'
