@@ -30,3 +30,7 @@ Not sure what open source software means? The following video gives a basic
 overview of how open source software
 works. https://www.youtube.com/watch?v=Tyd0FO0tko8
 
+Note
+====
+
+pyTalkManager is not affiliated with the Watch Tower Bible and Tract Society of Pennsylvania.
