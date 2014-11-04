@@ -10,7 +10,7 @@ configLocation = './config.ini'
 
 def configGet(section, key):
     """
-    Takes arguements for the config.ini file and returns the key.
+    Takes arguments for the config.ini file and returns the key.
     :return: key from config.ini
     """
 
