@@ -2,23 +2,23 @@
 
 __author__ = 'Joel Montes de Oca'
 
+from PySide.QtCore import *
+from PySide.QtGui import *
 import sys
-from PySide import QtGui
+
+# Importation of custom mods
 import pyTalkManagerDatabase as DB
 import pyTalkManager as TM
+
+# Importation of GUIs
+import main
 
 
 def main():
 
     firstrun = TM.configGet('APP', 'FirstTimeRunning')
-    app = QtGui.QApplication(sys.argv)
 
-    wid = QtGui.QWidget()
-    wid.resize(250, 150)
-    wid.setWindowTitle('pyTalkManager')
-    wid.show()
 
-    sys.exit(app.exec_())
 
 
 
