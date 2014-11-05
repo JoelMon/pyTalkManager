@@ -1,5 +1,5 @@
 pyTalkManager
-============= 
+=============
 
 pyTalkManager is a program to aid public talk coordinators in the
 congregations of Jehovah's Witness. It is written in Python3 and uses
