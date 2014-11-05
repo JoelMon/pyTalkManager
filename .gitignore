@@ -54,3 +54,8 @@ docs/_build/
 target/
 /.idea/scopes/scope_settings.xml
 /.idea/workspace.xml
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/pyTalkManager.iml
+/.idea/vcs.xml
