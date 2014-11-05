@@ -8,30 +8,9 @@ name    = 'pyTalkManager'
 configLocation = './config.ini'
 
 
-def initsave():
-    messagebox.showinfo('Information Saved', 'The information you entered have been saved. Please restart the program.')
-    config = configparser.ConfigParser()
-    config.read(configLocation)
-    config.set('APP', 'FirstTimeRunning', 'False')
-    file = open(configLocation, 'w')
-    config.write(file)
-    file.close()
-
-    quit()
-
-
-def WinSize(size, padding):
-    """
-    Takes a window size in the format 'LENGTHxHIGHT' and padding.
-    :return: Outputs a new LENGTH that takes into account padding.
-    """
-
-    size = size.split('x')
-
-
 def configGet(section, key):
     """
-    Takes arguements for the config.ini file and returns the key.
+    Takes arguments for the config.ini file and returns the key.
     :return: key from config.ini
     """
 

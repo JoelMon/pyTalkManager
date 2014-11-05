@@ -1,4 +1,4 @@
-pyTalkManager 
+pyTalkManager
 ============= 
 
 pyTalkManager is a program to aid public talk coordinators in the
