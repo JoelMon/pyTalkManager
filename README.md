@@ -1,5 +1,5 @@
 pyTalkManager
-============= 
+=============
 
 pyTalkManager is a program to aid public talk coordinators in the
 congregations of Jehovah's Witness. It is written in Python3 and uses
@@ -29,6 +29,17 @@ productive and beneficial for the end user.
 Not sure what open source software means? The following video gives a basic
 overview of how open source software
 works. https://www.youtube.com/watch?v=Tyd0FO0tko8
+
+Dependencies
+============
+
+There is only one dependency that is not included in the Python3.X
+Standard Library which must be installed.
+
+* (pySide http://qt-project.org/wiki/PySide) - pySide is used as the
+  user interface framework and must be installed on your system for
+  pyTalkmanager to run. pySide can be downloaded from (here
+  http://qt-project.org/wiki/Category:LanguageBindings::PySide::Downloads).
 
 Note
 ====
