@@ -2,7 +2,6 @@
 
 __author__ = 'Joel Montes de Oca'
 
-import pyTalkManagerDatabase as DB
 import pyTalkManager as TM
 from PySide import QtCore, QtGui
 import sys
