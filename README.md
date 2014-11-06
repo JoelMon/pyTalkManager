@@ -28,12 +28,12 @@ productive and beneficial for the end user.
 
 Not sure what open source software means? The following video gives a basic
 overview of how open source software
-works. https://www.youtube.com/watch?v=Tyd0FO0tko8
+works. [Open Source Basics](https://www.youtube.com/watch?v=Tyd0FO0tko8)
 
 Dependencies
 ============
 
-There is only one dependency that is not included in the Python3.X
+There is only one dependency that is not included in the Python3.x
 Standard Library which must be installed.
 
 * [pySide](http://qt-project.org/wiki/PySide) - pySide is used as the
