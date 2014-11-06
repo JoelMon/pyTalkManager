@@ -28,7 +28,7 @@ productive and beneficial for the end user.
 
 Not sure what open source software means? The following video gives a basic
 overview of how open source software
-works. https://www.youtube.com/watch?v=Tyd0FO0tko8
+works. [Open Source Basics](https://www.youtube.com/watch?v=Tyd0FO0tko8)
 
 Dependencies
 ============
