@@ -41,6 +41,14 @@ Standard Library which must be installed.
   pyTalkmanager to run. pySide can be downloaded from [here]
   (http://qt-project.org/wiki/Category:LanguageBindings::PySide::Downloads).
 
+
+More Information
+================
+
+Reference the project's
+[wiki](https://github.com/TheoDevelopers/pyTalkManager/wiki) for more
+information.
+
 Note
 ====
 
