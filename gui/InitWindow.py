@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './gui/InitWindow.ui'
 #
-# Created: Thu Nov  6 21:08:18 2014
+# Created: Thu Nov  6 21:29:18 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 246)
+        Dialog.resize(399, 246)
         self.verticalLayout = QtGui.QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtGui.QLabel(Dialog)
