@@ -8,6 +8,7 @@ import sys
 
 # Importation of GUIs
 import gui.MainWindow
+import gui.InitWindow
 
 
 def main():
@@ -26,8 +27,19 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.setupUi(self)
 
 
+class InitWindow(QtGui.QMainWindow):
+
+    """The init window of pyTalkManager."""
+
+    def __init__(self, parent=None):
+        super(InitWindow, self).__init__(parent)
+        self.ui = gui.InitWindow.Ui_Dialog()
+        self.ui.setupUi(self)
+
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
-    myapp = MainWindow()
-    myapp.show()
+    #myapp = MainWindow()
+    #myapp.show()
+    otherwin = InitWindow()
+    otherwin.show()
     sys.exit(app.exec_())
