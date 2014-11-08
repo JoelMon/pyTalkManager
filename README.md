@@ -7,7 +7,9 @@ congregations of Jehovah's Witness. It is written in
 [Qt](http://qt-project.org/) GUI framework
 ([PySide](http://qt-project.org/wiki/PySide)) and
 [SQLite](https://www.sqlite.org/) for its database, all of which are
-open source and cross platform technologies.
+open source and cross platform technologies. Visit the project's
+[wiki](https://github.com/TheoDevelopers/pyTalkManager/wiki) for more
+information.
 
 Development
 ===========
@@ -45,13 +47,6 @@ Standard Library which must be installed.
   pyTalkmanager to run. pySide can be downloaded from [here]
   (http://qt-project.org/wiki/Category:LanguageBindings::PySide::Downloads).
 
-
-More Information
-================
-
-Visit the project's
-[wiki](https://github.com/TheoDevelopers/pyTalkManager/wiki) for more
-information.
 
 Note
 ====
