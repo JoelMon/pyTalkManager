@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Tue Nov  4 21:09:04 2014
+# Created: Fri Nov  7 17:48:34 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,7 +42,6 @@ class Ui_MainWindow(object):
         self.toolBar.setFloatable(True)
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
-        MainWindow.insertToolBarBreak(self.toolBar)
         self.actionDatabase = QtGui.QAction(MainWindow)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/MainWindow/database.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
