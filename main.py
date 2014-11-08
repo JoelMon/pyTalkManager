@@ -1,33 +1,43 @@
 #!/usr/bin/env python3
 
-__author__ = 'Joel Montes de Oca'
-
 import pyTalkManager as TM
 from PySide import QtCore, QtGui
 import sys
 
 # Importation of GUIs
 import gui.MainWindow
+import gui.DatabaseWindow
 
 
 def main():
 
-    firstrun = TM.configGet('APP', 'FirstTimeRunning')
+    first_run = TM.configGet('APP', 'FirstTimeRunning')
 
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
-
-    """The main window of pyTalkManager."""
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.ui = gui.MainWindow.Ui_MainWindow()
-        self.ui.setupUi(self)
+        self.setupUi(self)
+
+        # Tool bar actions
+        self.actionDatabase.triggered.connect(self.show_database_dialog)
+
+
+    def show_database_dialog(self):
+        self.dbwindow = DatabaseWindow()
+        self.dbwindow.show()
+
+
+class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
+  def __init__(self, parent=None):
+    super(DatabaseWindow, self).__init__(parent)
+    self.setupUi(self)
 
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
-    myapp = MainWindow()
-    myapp.show()
+    my_app = MainWindow()
+    my_app.show()
     sys.exit(app.exec_())
