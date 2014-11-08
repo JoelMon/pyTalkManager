@@ -3,7 +3,8 @@ pyTalkManager
 
 pyTalkManager is a program to aid public talk coordinators in the
 congregations of Jehovah's Witness. It is written in
-[Python3](https://www.python.org/) and uses the QT GUI framework
+[Python3](https://www.python.org/) and uses the
+[Qt](http://qt-project.org/) GUI framework
 ([PySide](http://qt-project.org/wiki/PySide)) and
 [SQLite](https://www.sqlite.org/) for its database, all of which are
 open source and cross platform technologies.
