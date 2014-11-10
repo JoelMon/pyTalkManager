@@ -12,7 +12,7 @@ open source and cross platform technologies. Visit the project's
 information.
 
 Development
-===========
+-----------
 
 pyTalkManager is only now starting to be developed. At the moment I am
 in the designing phase and do not expect to have pyTalkManager ready
@@ -20,7 +20,7 @@ for quite some time. Check back every few weeks to keep an eye on the
 progress.
 
 Open Source
-===========
+-----------
 
 I have decided to create pyTalkManager as an open source project. By
 using an [open source](https://en.wikipedia.org/wiki/Open_source)
@@ -37,7 +37,7 @@ basic overview of the open source
 model. [Open Source Basics](https://www.youtube.com/watch?v=Tyd0FO0tko8)
 
 Dependencies
-============
+------------
 
 There is only one dependency that is not included in the Python's
 Standard Library which must be installed.
@@ -49,6 +49,6 @@ Standard Library which must be installed.
 
 
 Note
-====
+----
 
 pyTalkManager is not affiliated with the [Watch Tower Bible and Tract Society of Pennsylvania](http://www.JW.org).
