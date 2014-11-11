@@ -11,15 +11,6 @@ import gui.DatabaseWindow
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
-    first_run = tm.configGet('APP', 'FirstTimeRunning')
-    if first_run == 'True':
-        print(first_run)
-        print('This is the first time pyTalkManager runs.')
-    else:
-        print(first_run)
-        print('This is not the first time pyTalkmanager runs.')
-
-
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
