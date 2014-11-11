@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import pyTalkManager as TM
+import pyTalkManager as tm
 from PySide import QtCore, QtGui
 import sys
 
@@ -9,17 +9,14 @@ import gui.MainWindow
 import gui.DatabaseWindow
 
 
-def main():
-
-    first_run = TM.configGet('APP', 'FirstTimeRunning')
-
-
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+
+        tm.firstRunCheck() # See if it's the first time running.
 
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_dialog)
