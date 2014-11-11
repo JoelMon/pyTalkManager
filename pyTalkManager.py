@@ -18,7 +18,7 @@ class db:
         new SQLite database with all the needed tables and fields used by PyTalkManager.
         """
 
-        connection = sqlite3.connect('database.db')
+        connection = sqlite3.connect('database.db') # hardcoded for now
         c = connection.cursor()
 
         c.execute('''CREATE TABLE Assignment (
@@ -28,7 +28,12 @@ class db:
                                               congregation INTEGER NOT NULL,
                                               chairman INTEGER NOT NULL,
                                               hospitality INTEGER NOT NULL,
-                                              date DATETIME NOT NULL
+                                              date DATETIME NOT NULL,
+                                              FOREIGN KEY(speaker) REFERENCES Brother(id),
+                                              FOREIGN KEY(talk) REFERENCES Talk(id),
+                                              FOREIGN KEY(congregation) REFERENCES Congregation(id),
+                                              FOREIGN KEY(chairman) REFERENCES Brother(id),
+                                              FOREIGN KEY(hospitality) REFERENCES Hospitality(id)
                                               )''')
 
         c.execute('''CREATE TABLE Brother (
@@ -43,7 +48,8 @@ class db:
                                            speaker BOOL NOT NULL DEFAULT 0,
                                            chairman BOOL NOT NULL DEFAULT 0,
                                            coordinator BOOL NOT NULL DEFAULT 0,
-                                           note BLOB
+                                           note BLOB,
+                                           FOREIGN KEY(congregation) REFERENCES Congregation(id)
                                            )''')
 
         c.execute('''CREATE TABLE Congregation (
@@ -69,7 +75,9 @@ class db:
         c.execute('''CREATE TABLE SpeakerTalk (
                                                id INTEGER PRIMARY KEY NOT NULL UNIQUE,
                                                title INTEGER NOT NULL,
-                                               speaker INTEGER NOT NULL
+                                               speaker INTEGER NOT NULL,
+                                               FOREIGN KEY(title) REFERENCES Talk(id)
+                                               FOREIGN KEY(speaker) REFERENCES Brother(id)
                                                )''')
 
         c.execute('''CREATE TABLE Talk (
