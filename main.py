@@ -11,9 +11,12 @@ import gui.DatabaseWindow
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
+
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+
+        tm.firstRunCheck() # See if it's the first time running.
 
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_dialog)
