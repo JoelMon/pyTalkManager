@@ -63,3 +63,6 @@ target/
 # SQLite3 Database
 *.db
 *.tdb
+
+# ini file
+config.ini
