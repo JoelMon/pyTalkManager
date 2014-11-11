@@ -123,3 +123,21 @@ def buttonTest():
     :return: 'The command worked.'
     """
     print('The command worked.')
+
+def firstRunCheck():
+    """Checks to see if it's pyTalkManager first time running.
+
+    If it is pyTalkManager's first time running then initialize
+    a SQLite database.
+
+    TODO: Have to add exception encase the config.ini file is
+    not found.
+    """
+
+    first_run = configGet('APP', 'FirstTimeRunning')
+    if first_run == 'True':
+        print(first_run)
+        print('This is the first time pyTalkManager runs.')
+    else:
+        print(first_run)
+        print('This is not the first time pyTalkmanager runs.')
