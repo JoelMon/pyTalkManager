@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import pyTalkManager as TM
+import pyTalkManager as tm
 from PySide import QtCore, QtGui
 import sys
 
@@ -9,12 +9,15 @@ import gui.MainWindow
 import gui.DatabaseWindow
 
 
-def main():
-
-    first_run = TM.configGet('APP', 'FirstTimeRunning')
-
-
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
+
+    first_run = tm.configGet('APP', 'FirstTimeRunning')
+    if first_run == 'True':
+        print(first_run)
+        print('This is the first time pyTalkManager runs.')
+    else:
+        print(first_run)
+        print('This is not the first time pyTalkmanager runs.')
 
 
     def __init__(self, parent=None):
