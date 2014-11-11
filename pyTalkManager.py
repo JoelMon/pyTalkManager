@@ -8,19 +8,28 @@ version = '0.1'
 name    = 'pyTalkManager'
 configLocation = './config.ini'
 
-
 class db:
-    
+
     def dbinit():
         """Initialize SQLite database
 
         This method runs when the user is running pyTalkManager for the first time
-        or when the user wants to initialize a new database. The method crates a 
+        or when the user wants to initialize a new database. The method crates a
         new SQLite database with all the needed tables and fields used by PyTalkManager.
         """
 
         connection = sqlite3.connect('database.db')
         c = connection.cursor()
+
+        c.execute('''CREATE TABLE Assignment (
+                                              id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                              speaker INTEGER NOT NULL,
+                                              talk INTEGER NOT NULL,
+                                              congregation INTEGER NOT NULL,
+                                              chairman INTEGER NOT NULL,
+                                              hospitality INTEGER NOT NULL,
+                                              date DATETIME NOT NULL
+                                              )''')
 
         c.execute('''CREATE TABLE Brother (
                                            id INTEGER PRIMARY KEY NOT NULL UNIQUE,
@@ -51,16 +60,6 @@ class db:
                                            note BLOB
                                            )''')
 
-        c.execute('''CREATE TABLE Assignment (
-                                              id INTEGER PRIMARY KEY NOT NULL UNIQUE,
-                                              speaker INTEGER NOT NULL, 
-                                              talk INTEGER NOT NULL, 
-                                              congregation INTEGER NOT NULL,
-                                              chairman INTEGER NOT NULL, 
-                                              hospitality INTEGER NOT NULL, 
-                                              date DATETIME NOT NULL 
-                                              )''')
-
         c.execute('''CREATE TABLE Hospitality (
                                                id INTEGER PRIMARY KEY NOT NULL UNIQUE,
                                                name TEXT NOT NULL,
@@ -79,12 +78,7 @@ class db:
                                         subject TEXT
                                         )''')
 
-
         connection.close()
-
-
-
-
 
 
 def configGet(section, key):
