@@ -170,7 +170,7 @@ def firstRunCheck():
     not found.
     """
 
-    first_run = configGet('APP', 'FirstTimeRunning')
+    first_run = configGet('APP', 'first_time_running')
 
     if first_run == 'True':
 
@@ -196,5 +196,5 @@ def firstRunCheck():
         else:
             db.path = file_name[0]
             db.dbinit()
-            configSet('APP', 'firsttimerunning', 'False')
+            configSet('APP', 'first_time_running', 'False')
             configSet('DB', 'location', db.path)
