@@ -16,7 +16,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
 
-        tm.firstRunCheck() # See if it's the first time running.
+        tm.firstRunCheck()
 
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_dialog)
