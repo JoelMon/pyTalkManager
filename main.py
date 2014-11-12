@@ -11,7 +11,6 @@ import gui.DatabaseWindow
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
-
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
@@ -21,16 +20,16 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_dialog)
 
-
     def show_database_dialog(self):
         self.dbwindow = DatabaseWindow()
         self.dbwindow.show()
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
-  def __init__(self, parent=None):
-    super(DatabaseWindow, self).__init__(parent)
-    self.setupUi(self)
+
+    def __init__(self, parent=None):
+        super(DatabaseWindow, self).__init__(parent)
+        self.setupUi(self)
 
 
 if __name__ == '__main__':
