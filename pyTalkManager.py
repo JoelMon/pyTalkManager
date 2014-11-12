@@ -114,7 +114,7 @@ def configGet(section, key):
         print('The config.ini file was not found.')
         quit()
     except PermissionError:
-        messagebox.showerror('Permission problem.',
+        messagebox.showerror("Permission problem.",
                              "You do not have sufficient permission for the config.ini file. "
                              "Fix the problem then run %s again." % name)
 
