@@ -7,8 +7,9 @@ from PySide import QtGui
 
 
 version = '0.1'
-name    = 'pyTalkManager'
+name = 'pyTalkManager'
 configLocation = './config.ini'
+
 
 class db:
 
@@ -158,6 +159,7 @@ def buttonTest():
     """
     print('The command worked.')
 
+
 def firstRunCheck():
     """Checks to see if it's pyTalkManager first time running.
 
@@ -175,12 +177,13 @@ def firstRunCheck():
         message_box = QtGui.QMessageBox()
         message_box.setWindowTitle("First time running pyTalkManager")
         message_box.setText("This is the first time you run pyTalkManager.\n\n"
-                                "The next window you will be asked to choose\n"
-                                "a location where you would like to save\n"
-                                "pyTalkManager's database.")
+                            "The next window you will be asked to choose\n"
+                            "a location where you would like to save\n"
+                            "pyTalkManager's database.")
         message_box.exec_()
-        file_name = QtGui.QFileDialog.getSaveFileName(None, "Save New Database", "New_Database.tdb",
-                                                      "pyTalkManager Database *.tdb")
+        file_name = QtGui.QFileDialog.getSaveFileName(
+            None, "Save New Database", "New_Database.tdb",
+            "pyTalkManager Database *.tdb")
         if file_name[0] == '':
             message_box = QtGui.QMessageBox()
             message_box.setWindowTitle("Warning")
