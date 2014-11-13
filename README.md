@@ -65,11 +65,11 @@ to you, the end user.
 
 ####The Project
 
-It allows many people to take a part in its development by using an
-open source model for pyTalkManager. Perhaps one person can help by
-fixing a bug in the software, another person may help in the design of
-the GUI, Graphical User Interface, while someone else may assist with
-improving the database used by pyTalkManager.
+It allows many people to take a part in pyTalkManager's development by
+using an open source model. Perhaps one person can help by fixing a
+bug in the software, another person may help in the design of the GUI,
+Graphical User Interface, while someone else may assist with improving
+the database used by pyTalkManager.
 
 The responsibility to build and maintain the project doesn't fall on
 the shoulders of one or two individuals. By having many eyes reviewing
@@ -77,10 +77,38 @@ and contributing to the project we can all have a hand in the building
 of pyTalkManager.
 
 
+####The End-User (You)
 
+The benefits of using an open source model isn't only for the project
+but for its users as well.
+
+More often than not, when you use closed source software, your data
+gets locked into the program you are using. For example, say you use a
+popular Talk Manager for your congregation but then would like to
+migrate the data to another program. You will not be able to because
+the author of said program hasn't disclosed how the data is
+stored. Further more, the data may not be user accessible.
+
+With open software everything is documented. Data is not stored in a
+way that locks it into the application.
+
+Also, say you have a feature that you would like to see implemented
+but the developer of the project doesn't know how or doesn't want to
+spend the time in implementing it. In an open source project, anyone
+can implement your feature without relaying on the project's
+manager(s) having to do the work. This means the open source project
+have the penitential of gaining features faster than closed sourced
+projects.
+
+It is also important to consider the fact that the developers of a
+project disappear and stop developing the program. In an open source
+project if that were to happen, anyone can take the source code and
+continue to develop the project under a new name. This is called
+forking.
 
 
 
 ##Note
 
-pyTalkManager is not affiliated with the [Watch Tower Bible and Tract Society of Pennsylvania](http://www.JW.org).
+pyTalkManager is not affiliated with the
+[Watch Tower Bible and Tract Society of Pennsylvania](http://www.JW.org).
