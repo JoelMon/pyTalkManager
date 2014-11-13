@@ -21,7 +21,7 @@ progress.
 ##Installation
 
 Visit the
-[installation section](https://github.com/TheoDevelopers/pyTalkManager/wiki/installation0)
+[installation section](https://github.com/TheoDevelopers/pyTalkManager/wiki/installation)
 at our wiki for installation instructions.
 
 
