@@ -18,6 +18,23 @@ for quite some time. Check back every few weeks to keep an eye on the
 progress.
 
 
+##Benefits Being Open Source
+
+pyTalkManager is being developed under an open source/free software
+model. I would like to take the time to explain what exactly that means
+and how it benefits you as a user.
+
+###Open Source and Free Software
+
+Computer applications are made with something called a *source
+code*. The source code is the recipe the application  uses to run on
+your computer. An analogy can be made with baking. If a cake
+were to be baked, the baker would have to follow a set of
+instructions, a recipe, in order to arrive at the end product, a
+delicious cake.
+
+
+
 ##Installation
 
 Visit the
