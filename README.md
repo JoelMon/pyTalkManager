@@ -28,11 +28,31 @@ it benefits you as a user.
 ###Open Source and Free Software
 
 Computer applications are made with something called a *source
-code*. The source code is the recipe the application  uses to run on
-your computer. An analogy can be made with baking. If a cake
-were to be baked, the baker would have to follow a set of
+code*. The source code are the written instructions the application
+uses to run on your computer. An analogy can be made with baking. If a
+cake were to be baked, the baker would have to follow a set of
 instructions, a recipe, in order to arrive at the end product, a
-delicious cake.
+delicious cake. It can be said that the *recipe* is the cake's source
+code.
+
+Say you loved the cake but you had a few ideas to improve upon on it,
+say you want to add raisins, or perhaps bake a smaller version of the
+cake to fit in your lunch box. Maybe you are allergic to nuts and need
+to know if the cake contains nuts. Well, if the baker keeps his recipe
+secret then you are unable to bake the cake your self or check how it
+was made.
+
+[Open source software](http://opensource.org/)/[Free software](https://www.gnu.org/philosophy/free-sw.html)
+refers to software in which its source code, or *recipe*, is made
+public for anyone to view. Also, anyone has the right to download the
+source code and make or modify the application. Perhaps you would like
+to add a new feature or fix a bug. These are all properties of a open
+and free model.
+
+####Benefits
+
+
+
 
 
 
