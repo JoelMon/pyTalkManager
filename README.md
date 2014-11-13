@@ -63,23 +63,6 @@ Visit the
 in our wiki for installation instructions.
 
 
-##Open Source
-
-I have decided to create pyTalkManager as an open source project. By
-using an [open source](https://en.wikipedia.org/wiki/Open_source)
-model, features and bug fixes can be submitted by anyone who is
-willing to help. Furthermore, if the project becomes stagnate, others
-may take the source code of pyTalkManager and continue its
-development. This is in stark contrast to how programs for talk
-coordinators have been developed in the past and it is my opinion that
-developing these important programs with an open source model is both
-productive and beneficial for the end user.
-
-Not sure what open source software means? The following video gives a
-basic overview of the open source
-model. [Open Source Basics](https://www.youtube.com/watch?v=Tyd0FO0tko8)
-
-
 ##Note
 
 pyTalkManager is not affiliated with the [Watch Tower Bible and Tract Society of Pennsylvania](http://www.JW.org).
