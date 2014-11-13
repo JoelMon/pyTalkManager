@@ -119,6 +119,11 @@ database so that your data can be used.
 This and more is all possible with open source software.
 
 
+##License
+
+pyTalkManager is released under the
+[GLP v.3 license](https://www.gnu.org/copyleft/gpl.html).
+
 ##Note
 
 pyTalkManager is not affiliated with the
