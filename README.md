@@ -102,9 +102,9 @@ project may disappear and stop developing the program you rely on. In
 an open source project if that were to happen, anyone can take the
 source code and continue to develop the project under a new name. This
 is called forking. This is what happened to the
-[OpenOffice.org](OpenOffice.org) project. Many people felt the project
-wasn't moving in the right direction and were unhappy with the state
-of OpenOffice.org. They took action and forked project.
+[OpenOffice.org](http://www.OpenOffice.org) project. Many people felt
+the project wasn't moving in the right direction and were unhappy with
+the state of OpenOffice.org. They took action and forked project.
 [LibreOffice](https://www.libreoffice.org/) is now a much better
 office suite than OpenOffice.org has ever been.
 
