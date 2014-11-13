@@ -18,6 +18,13 @@ for quite some time. Check back every few weeks to keep an eye on the
 progress.
 
 
+##Installation
+
+Visit the
+[installation section](https://github.com/TheoDevelopers/pyTalkManager/wiki/installation)
+in our wiki for installation instructions.
+
+
 ##Open Source
 
 pyTalkManager is being developed under an free software model. I would
@@ -49,18 +56,29 @@ source code and make or modify the application. Perhaps you would like
 to add a new feature or fix a bug. These are all properties of a open
 and free model.
 
+
 ###Benefits
 
+Using an open source model has many benefits to the project and also
+to you, the end user.
+
+
+####The Project
+
+It allows many people to take a part in its development by using an
+open source model for pyTalkManager. Perhaps one person can help by
+fixing a bug in the software, another person may help in the design of
+the GUI, Graphical User Interface, while someone else may assist with
+improving the database used by pyTalkManager.
+
+The responsibility to build and maintain the project doesn't fall on
+the shoulders of one or two individuals. By having many eyes reviewing
+and contributing to the project we can all have a hand in the building
+of pyTalkManager.
 
 
 
 
-
-##Installation
-
-Visit the
-[installation section](https://github.com/TheoDevelopers/pyTalkManager/wiki/installation)
-in our wiki for installation instructions.
 
 
 ##Note
