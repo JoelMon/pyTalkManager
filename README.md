@@ -18,11 +18,12 @@ for quite some time. Check back every few weeks to keep an eye on the
 progress.
 
 
-##Benefits Being Open Source
+##Benefits of Being Open Source
 
-pyTalkManager is being developed under an open source/free software
-model. I would like to take the time to explain what exactly that means
-and how it benefits you as a user.
+pyTalkManager is being developed under an free software model. I would
+like to take the time to explain what exactly does that means and how
+it benefits you as a user.
+
 
 ###Open Source and Free Software
 
