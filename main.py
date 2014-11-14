@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import pyTalkManager as tm
-from PySide import QtCore, QtGui
+from PySide import QtGui, QtSql
+import db
 import sys
 
 # Importation of GUIs
@@ -50,17 +51,38 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         super(BrotherWindow, self).__init__(parent)
         self.setupUi(self)
 
+        self.show_table()
         self.button_add.clicked.connect(self.show_add_brother_window)
+
+    def show_table(self):
+
+        db_file = QtSql.QSqlDatabase.addDatabase("QSQLITE")
+        db_file.setDatabaseName('New_Database.tdb')
+        db_file.open()
+
+        db_model = QtSql.QSqlTableModel(None, db_file)
+        db_model.setTable('Brother')
+        db_model.select()
+
+        view_table = self.tableView
+        view_table.setModel(db_model)
+        view_table.setColumnHidden(0, True)  # Hide the table's id
+
+
 
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
         self.add_bro_window.show()
 
+
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """Window for the end user to add brothers to the database."""
+
+
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
