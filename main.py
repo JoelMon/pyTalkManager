@@ -2,7 +2,7 @@
 
 import pyTalkManager as tm
 from PySide import QtGui
-import db
+from db import DB
 import sys
 
 # Importation of GUIs
