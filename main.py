@@ -12,7 +12,10 @@ import gui.AddBrotherWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
+    """The main window of pyTalkManager.
 
+    From MainWindow all functions of pyTalkManager is accessed by the end user.
+    """
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
@@ -33,6 +36,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
+    """Window for end user to manage pyTalkManager's database"""
 
     def __init__(self, parent=None):
         super(DatabaseWindow, self).__init__(parent)
@@ -40,6 +44,7 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 
 
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
+    """Window for the end user to manage the list of brothers in the database."""
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
@@ -52,7 +57,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.add_bro_window.show()
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
-
+    """Window for the end user to add brothers to the database."""
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
