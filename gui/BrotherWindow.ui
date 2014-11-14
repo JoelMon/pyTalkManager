@@ -14,8 +14,6 @@
    <string>Brothers</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="6" column="0" alignment="Qt::AlignHCenter">
-    <widget class="QFrame" name="frame_2">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -47,8 +45,11 @@
      </layout>
     </widget>
    </item>
-   <item row="7" column="0" alignment="Qt::AlignBottom">
-    <widget class="QFrame" name="frame">
+   <item row="0" column="1" rowspan="2" colspan="2">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="6" column="1" alignment="Qt::AlignHCenter">
+    <widget class="QFrame" name="frame_2">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -57,20 +58,14 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <widget class="QPushButton" name="button_delete">
+        <property name="text">
+         <string>Delete</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+       </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_close">
+       <widget class="QPushButton" name="button_add">
         <property name="text">
          <string>Close</string>
         </property>
@@ -85,9 +80,6 @@
       </item>
      </layout>
     </widget>
-   </item>
-   <item row="0" column="0" rowspan="2" colspan="2">
-    <widget class="QTableView" name="tableView"/>
    </item>
   </layout>
  </widget>
