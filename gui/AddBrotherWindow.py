@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'AddBrotherWindow.ui'
+# Form implementation generated from reading ui file './gui/AddBrother.ui'
 #
-# Created: Fri Nov 14 01:35:26 2014
+# Created: Fri Nov 14 01:51:09 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
