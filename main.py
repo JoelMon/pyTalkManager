@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import pyTalkManager as tm
-from PySide import QtCore, QtGui
+from PySide import QtGui
+from db import DB
 import sys
 
 # Importation of GUIs
@@ -52,15 +53,20 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
         self.button_add.clicked.connect(self.show_add_brother_window)
 
+
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
         self.add_bro_window.show()
 
+
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """Window for the end user to add brothers to the database."""
+
+
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

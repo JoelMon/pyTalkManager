@@ -14,50 +14,6 @@
    <string>Brothers</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="7" column="1" alignment="Qt::AlignBottom">
-    <widget class="QFrame" name="frame">
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_close">
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_ok">
-        <property name="text">
-         <string>Ok</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="2" colspan="2">
-    <widget class="QTableView" name="tableView"/>
-   </item>
-   <item row="6" column="1" alignment="Qt::AlignHCenter">
-    <widget class="QFrame" name="frame_2">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -83,6 +39,42 @@
        <widget class="QPushButton" name="button_edit">
         <property name="text">
          <string>Edit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2" colspan="2">
+    <widget class="QTableView" name="tableView"/>
+   </item>
+   <item row="6" column="1" alignment="Qt::AlignHCenter">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="button_delete">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_add">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_ok">
+        <property name="text">
+         <string>Ok</string>
         </property>
        </widget>
       </item>
