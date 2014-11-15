@@ -74,7 +74,7 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignTop">
+   <item row="2" column="1" alignment="Qt::AlignTop">
     <widget class="QFrame" name="frame_2">
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
@@ -102,6 +102,19 @@
        <number>6</number>
       </property>
       <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="button_delete">
         <property name="text">
          <string>Delete</string>
@@ -121,6 +134,19 @@
          <string>Edit</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
