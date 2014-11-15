@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/BrotherWindow.ui'
 #
-# Created: Fri Nov 14 19:04:57 2014
+# Created: Fri Nov 14 19:13:45 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,6 +47,8 @@ class Ui_BrotherWindow(object):
         self.horizontalLayout.setSpacing(6)
         self.horizontalLayout.setContentsMargins(6, 6, -1, 6)
         self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
         self.button_delete = QtGui.QPushButton(self.frame_2)
         self.button_delete.setObjectName("button_delete")
         self.horizontalLayout.addWidget(self.button_delete)
@@ -56,6 +58,8 @@ class Ui_BrotherWindow(object):
         self.button_edit = QtGui.QPushButton(self.frame_2)
         self.button_edit.setObjectName("button_edit")
         self.horizontalLayout.addWidget(self.button_edit)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
         self.gridLayout.addWidget(self.frame_2, 2, 1, 1, 1)
         self.tableWidget = QtGui.QTableWidget(BrotherWindow)
         self.tableWidget.setObjectName("tableWidget")
