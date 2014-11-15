@@ -86,10 +86,24 @@ class DB:
         connection.close()
 
 
-    def add_item(self):
+    def add_item(self, table, column=[], value=[]):
         """Takes an item and adds it to the database."""
 
-        pass
+    def add_item(self, table, column, value):
+        """Takes an item and adds it to the database."""
+
+        list_column = ''
+        list_value = ''
+
+        for each_column in column:
+            list_column = list_column + each_column + ', '
+
+        for each_value in value:
+            list_value = list_value + each_value + ', '
+
+        #Debugging
+        print("INSERT INTO " + table + " (" + list_column[:-2] +
+              ") VALUES(" + list_value[:-2] + ")")
 
 
     def delete_data(self):
