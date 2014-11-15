@@ -85,3 +85,22 @@ class DB:
 
         connection.close()
 
+
+    def add_item(self):
+        """Takes an item and adds it to the database."""
+
+        pass
+
+
+    def delete_data(self):
+        """ Deletes data from the database
+        :return:
+        """
+        pass
+
+
+    def edit_data(self):
+        """ Edits data in the database
+        :return:
+        """
+        pass
