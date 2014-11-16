@@ -90,7 +90,14 @@ class DB:
         """Takes an item and adds it to the database."""
 
     def add_item(self, table, column, value):
-        """Takes an item and adds it to the database."""
+        """Takes an item and adds it to the database.
+
+        :arguments
+        table - a string with the table that will be written to
+        column - a list with the the column(s) that will be written in
+        value - a list with the value(s) that will be written.
+
+        """
 
         list_column = ''
         list_value = ''
