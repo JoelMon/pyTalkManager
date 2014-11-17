@@ -96,6 +96,11 @@ class DB:
     def add_item(self, table, column, value):
         """Takes an item and adds it to the database.
 
+        Known Problems:
+            The value list that is passed into the method is automatically
+            converted into a string regardless if it's another data type
+            such as an int, float, or bool.
+
         :arguments
         table - a string with the table that will be written to
         column - a list with the the column(s) that will be written in
@@ -104,11 +109,11 @@ class DB:
         """
 
         list_column = ', '.join(column)
-        list_value = "', '".join(value)
+        list_value = "', '".join(value) #  Converts each value into a string.
 
-        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,
-                                                                          column=list_column,
-                                                                          values=list_value)
+        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,  #  adds ' ' to values.
+                                                                            column=list_column,
+                                                                            values=list_value)
         comm = sqlite3.connect(DB.get_path())
         c = comm.cursor()
 
