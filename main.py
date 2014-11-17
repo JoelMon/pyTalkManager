@@ -87,9 +87,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         values = [first_name, middle_name, last_name, phone, email,
                   congregation, responsibility, chairman, speaker,
                   coordinator, note]
-        table = 'Brother'
 
-        DB.add_item(None,table, coloumns, values) # Debugging
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
