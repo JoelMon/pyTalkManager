@@ -109,7 +109,6 @@ class DB:
         command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,
                                                                           column=list_column,
                                                                           values=list_value)
-        print(command)
         comm = sqlite3.connect(DB.get_path())
         c = comm.cursor()
 
