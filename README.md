@@ -12,10 +12,8 @@ information.
 
 ##Development
 
-pyTalkManager is only now starting to be developed. At the moment I am
-in the designing phase and do not expect to have pyTalkManager ready
-for quite some time. Check back every few weeks to keep an eye on the
-progress.
+pyTalkManager is being actively developed and is still in its early
+stages. Check back every few weeks to keep an eye on the progress.
 
 
 ##Installation
