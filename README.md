@@ -26,7 +26,7 @@ in our wiki for installation instructions.
 ##License
 
 pyTalkManager is released under the
-[GLP v.3 license](https://www.gnu.org/copyleft/gpl.html).
+[GPL v.3 license](https://www.gnu.org/copyleft/gpl.html).
 
 
 ##Note
