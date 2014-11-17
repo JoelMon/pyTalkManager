@@ -1,11 +1,15 @@
 import sqlite3
+import pyTalkManager as tm
 
 
 class DB:
     """Class that interfaces the database to the project."""
 
 
-    path = ''  # Path to the SQLite database on the user's system.
+    def get_path():
+        """Returns the path of the database located in config.ini"""
+        return tm.configGet('DB', 'location')
+
 
     def DbInit():
         """Initialize SQLite database
@@ -15,8 +19,8 @@ class DB:
         new SQLite database with all the needed tables and fields used by PyTalkManager.
         """
 
-        connection = sqlite3.connect(DB.path)
-        c = connection.cursor()
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
 
         c.execute('''CREATE TABLE Assignment (
                                               id INTEGER PRIMARY KEY NOT NULL UNIQUE,
@@ -83,7 +87,7 @@ class DB:
                                         subject TEXT
                                         )''')
 
-        connection.close()
+        conn.close()
 
 
     def add_item(self, table, column=[], value=[]):
@@ -108,9 +112,17 @@ class DB:
         for each_value in value:
             list_value = list_value + each_value + ', '
 
-        #Debugging
-        print("INSERT INTO " + table + " (" + list_column[:-2] +
-              ") VALUES(" + list_value[:-2] + ")")
+
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
+
+        #print("INSERT INTO " + table + " (" + list_column[:-2] +
+              #") VALUES(" + list_value[:-2] + ")")
+
+        c.execute("INSERT INTO Congregation(name, street) VALUES('Joel', 123)")
+        c.close()
+
 
 
     def delete_data(self):
