@@ -103,26 +103,21 @@ class DB:
 
         """
 
-        list_column = ''
-        list_value = ''
+        list_column = ', '.join(column)
+        list_value = "', '".join(value)
 
-        for each_column in column:
-            list_column = list_column + each_column + ', '
+        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,
+                                                                          column=list_column,
+                                                                          values=list_value)
+        print(command)
+        comm = sqlite3.connect(DB.get_path())
+        c = comm.cursor()
 
-        for each_value in value:
-            list_value = list_value + each_value + ', '
-
-
-        conn = sqlite3.connect(DB.get_path())
-        c = conn.cursor()
         c.execute("PRAGMA foreign_keys = ON")
+        c.execute(command)
 
-        #print("INSERT INTO " + table + " (" + list_column[:-2] +
-              #") VALUES(" + list_value[:-2] + ")")
-
-        c.execute("INSERT INTO Congregation(name, street) VALUES('Joel', 123)")
+        comm.commit()
         c.close()
-
 
 
     def delete_data(self):
