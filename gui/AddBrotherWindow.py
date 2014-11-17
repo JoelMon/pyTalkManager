@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './gui/AddBrotherWindow.ui'
+# Form implementation generated from reading ui file 'AddBrotherWindow.ui'
 #
-# Created: Fri Nov 14 23:15:16 2014
+# Created: Sun Nov 16 20:08:00 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -174,7 +174,7 @@ class Ui_AddBrotherWindow(object):
         self.gridLayout_2.addWidget(self.frame, 1, 0, 1, 1)
 
         self.retranslateUi(AddBrotherWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.button_close, QtCore.SIGNAL("clicked()"), AddBrotherWindow.close)
         QtCore.QMetaObject.connectSlotsByName(AddBrotherWindow)
         AddBrotherWindow.setTabOrder(self.tabWidget, self.line_f_name)
