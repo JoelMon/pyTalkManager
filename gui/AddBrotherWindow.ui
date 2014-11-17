@@ -150,7 +150,7 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QComboBox" name="comboBox">
+              <widget class="QComboBox" name="combo_congregation">
                <item>
                 <property name="text">
                  <string>Cong 1</string>
@@ -176,7 +176,7 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QComboBox" name="comboBox_2">
+              <widget class="QComboBox" name="combo_publisher">
                <item>
                 <property name="text">
                  <string>Publisher</string>
@@ -224,21 +224,21 @@
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QCheckBox" name="checkBox_2">
+              <widget class="QCheckBox" name="check_chairman">
                <property name="text">
                 <string>Chairman</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QCheckBox" name="checkBox">
+              <widget class="QCheckBox" name="check_speaker">
                <property name="text">
                 <string>Speaker</string>
                </property>
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QCheckBox" name="checkBox_3">
+              <widget class="QCheckBox" name="check_talkC">
                <property name="text">
                 <string>Talk Coordinator</string>
                </property>
@@ -264,7 +264,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_6">
              <item row="0" column="0">
-              <widget class="QTextEdit" name="textEdit"/>
+              <widget class="QTextEdit" name="text_note"/>
              </item>
             </layout>
            </widget>
@@ -334,12 +334,12 @@
   <tabstop>line_l_name</tabstop>
   <tabstop>line_phone</tabstop>
   <tabstop>line_email</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>comboBox_2</tabstop>
-  <tabstop>checkBox_2</tabstop>
-  <tabstop>checkBox</tabstop>
-  <tabstop>checkBox_3</tabstop>
-  <tabstop>textEdit</tabstop>
+  <tabstop>combo_congregation</tabstop>
+  <tabstop>combo_publisher</tabstop>
+  <tabstop>check_chairman</tabstop>
+  <tabstop>check_speaker</tabstop>
+  <tabstop>check_talkC</tabstop>
+  <tabstop>text_note</tabstop>
   <tabstop>button_close</tabstop>
   <tabstop>button_add</tabstop>
  </tabstops>

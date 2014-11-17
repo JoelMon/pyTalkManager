@@ -117,7 +117,6 @@ def firstRunCheck():
             quit()
 
         else:
-            DB.path = file_name[0]
-            DB.DbInit()
             configSet('APP', 'first_time_running', 'False')
-            configSet('DB', 'location', DB.path)
+            configSet('DB', 'location', file_name[0])
+            DB.DbInit()

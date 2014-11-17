@@ -1,11 +1,15 @@
 import sqlite3
+import pyTalkManager as tm
 
 
 class DB:
     """Class that interfaces the database to the project."""
 
 
-    path = ''  # Path to the SQLite database on the user's system.
+    def get_path():
+        """Returns the path of the database located in config.ini"""
+        return tm.configGet('DB', 'location')
+
 
     def DbInit():
         """Initialize SQLite database
@@ -15,8 +19,8 @@ class DB:
         new SQLite database with all the needed tables and fields used by PyTalkManager.
         """
 
-        connection = sqlite3.connect(DB.path)
-        c = connection.cursor()
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
 
         c.execute('''CREATE TABLE Assignment (
                                               id INTEGER PRIMARY KEY NOT NULL UNIQUE,
@@ -83,5 +87,48 @@ class DB:
                                         subject TEXT
                                         )''')
 
-        connection.close()
+        conn.close()
 
+
+    def add_item(self, table, column=[], value=[]):
+        """Takes an item and adds it to the database."""
+
+    def add_item(self, table, column, value):
+        """Takes an item and adds it to the database.
+
+        :arguments
+        table - a string with the table that will be written to
+        column - a list with the the column(s) that will be written in
+        value - a list with the value(s) that will be written.
+
+        """
+
+        list_column = ', '.join(column)
+        list_value = "', '".join(value)
+
+        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,
+                                                                          column=list_column,
+                                                                          values=list_value)
+        print(command)
+        comm = sqlite3.connect(DB.get_path())
+        c = comm.cursor()
+
+        c.execute("PRAGMA foreign_keys = ON")
+        c.execute(command)
+
+        comm.commit()
+        c.close()
+
+
+    def delete_data(self):
+        """ Deletes data from the database
+        :return:
+        """
+        pass
+
+
+    def edit_data(self):
+        """ Edits data in the database
+        :return:
+        """
+        pass

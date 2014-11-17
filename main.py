@@ -62,10 +62,31 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """Window for the end user to add brothers to the database."""
 
-
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
+        self.button_add.clicked.connect(self.add_item)
+
+    def add_item(self):
+
+        first_name = self.line_f_name.displayText()
+        middle_name = self.line_m_name.displayText()
+        last_name = self.line_l_name.displayText()
+        phone = self.line_phone.displayText()
+        email = self.line_email.displayText()
+        congregation = 'Congregation combo box'
+        responsibility = 'Responsibility combo box'
+        chairman = 'Chairman check box'
+        speaker = 'Speaker check box'
+        coordinator = 'Coordinator check box'
+        note = 'Note text box'
+
+        coloumns = ['first_name', 'middle_name', 'last_name', 'phone','email',
+                    'congregation', 'responsibility', 'chairman', 'speaker',
+                    'coordinator', 'note']
+        values = [first_name, middle_name, last_name, phone, email,
+                  congregation, responsibility, chairman, speaker,
+                  coordinator, note]
 
 
 if __name__ == '__main__':
