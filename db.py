@@ -3,7 +3,7 @@ import pyTalkManager as tm
 
 
 class DB:
-    """Class that interfaces the database to the project."""
+    """The DB module provides an interface to the project's SQLite3 database."""
 
 
     def get_path():
