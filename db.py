@@ -121,7 +121,22 @@ class DB:
 
         """
 
-        pass
+        command = "SELECT * FROM Congregation"
+
+        data = DB.return_sql(None, command)
+
+        print(data)
+        print("-"*202)
+        print("*"*202)
+        print("-"*202)
+
+        for row in data:
+            print (row)
+            for item in row:
+                print(item)
+
+        c.close()
+
 
     def delete_data(self):
         """Deletes data from the database"""
@@ -149,3 +164,21 @@ class DB:
             c.execute(sql)
             comm.commit()
             c.close()
+
+    def return_sql(self, sql):
+        """
+        Returns data from the SQLite database.
+
+        :param sql: the SQL command to pass to SQLite
+        :return : returns a list with each row in a tuple.
+
+        """
+
+        comm = sqlite3.connect(DB.get_path())
+        c = comm.cursor()
+
+        c.execute("PRAGMA foreign_keys = ON")
+        c.execute(sql)
+        data = c.fetchall()
+
+        return data
