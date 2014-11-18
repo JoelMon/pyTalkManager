@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'CongregationWindow.ui'
+# Form implementation generated from reading ui file 'gui/CongregationWindow.ui'
 #
-# Created: Sun Nov 16 20:08:17 2014
+# Created: Tue Nov 18 11:59:15 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -61,11 +61,33 @@ class Ui_CongregationWindow(object):
         spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.gridLayout.addWidget(self.frame_2, 2, 1, 1, 1)
-        self.tableWidget = QtGui.QTableWidget(CongregationWindow)
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
-        self.gridLayout.addWidget(self.tableWidget, 0, 1, 1, 1)
+        self.table_congregation = QtGui.QTableWidget(CongregationWindow)
+        self.table_congregation.setObjectName("table_congregation")
+        self.table_congregation.setColumnCount(11)
+        self.table_congregation.setRowCount(0)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(2, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(3, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(4, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(5, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(6, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(7, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(8, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(9, item)
+        item = QtGui.QTableWidgetItem()
+        self.table_congregation.setHorizontalHeaderItem(10, item)
+        self.gridLayout.addWidget(self.table_congregation, 0, 1, 1, 1)
 
         self.retranslateUi(CongregationWindow)
         QtCore.QObject.connect(self.button_close, QtCore.SIGNAL("clicked()"), CongregationWindow.close)
@@ -78,4 +100,15 @@ class Ui_CongregationWindow(object):
         self.button_delete.setText(QtGui.QApplication.translate("CongregationWindow", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.button_add.setText(QtGui.QApplication.translate("CongregationWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.button_edit.setText(QtGui.QApplication.translate("CongregationWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("CongregationWindow", "ID", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("CongregationWindow", "Name", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(2).setText(QtGui.QApplication.translate("CongregationWindow", "Phone", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(3).setText(QtGui.QApplication.translate("CongregationWindow", "New Column", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(4).setText(QtGui.QApplication.translate("CongregationWindow", "Email", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(5).setText(QtGui.QApplication.translate("CongregationWindow", "Address", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(6).setText(QtGui.QApplication.translate("CongregationWindow", "City", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(7).setText(QtGui.QApplication.translate("CongregationWindow", "State", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(8).setText(QtGui.QApplication.translate("CongregationWindow", "Zip code", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(9).setText(QtGui.QApplication.translate("CongregationWindow", "Long", None, QtGui.QApplication.UnicodeUTF8))
+        self.table_congregation.horizontalHeaderItem(10).setText(QtGui.QApplication.translate("CongregationWindow", "Note", None, QtGui.QApplication.UnicodeUTF8))
 
