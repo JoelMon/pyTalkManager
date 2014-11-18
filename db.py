@@ -120,7 +120,8 @@ class DB:
         Returns the item the user requested.
 
         """
-
+        #  The code below is only for debugging.
+        #  It will be removed.
         command = "SELECT * FROM Congregation"
 
         data = DB.return_sql(None, command)

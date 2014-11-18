@@ -38,7 +38,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
     def show_brother_window(self):
         """Method that calls the Brother Window"""
-        
+
         self.bro_window = BrotherWindow()
         self.bro_window.show()
 
@@ -106,8 +106,18 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
         self.setupUi(self)
+        self.pop_table()
 
+    # Populate the congregation table
 
+    def pop_table(self):
+
+        # Check to see why the table isn't populated
+        self.table_congregation.setColumnCount(2)
+        self.table_congregation.insertRow(5)
+        item = 'Hello'
+        self.table_congregation.setItem(1, 0, QtGui.QTableWidgetItem(item))
+        self.table_congregation.show()
 
 
 if __name__ == '__main__':
