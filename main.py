@@ -17,6 +17,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     """The main window of pyTalkManager.
 
     From MainWindow all functions of pyTalkManager is accessed by the end user.
+
     """
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -30,14 +31,20 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.actionCongregation.triggered.connect(self.show_congregation_window)
 
     def show_database_window(self):
+        """Method that calls the Database Window"""
+
         self.db_window = DatabaseWindow()
         self.db_window.show()
 
     def show_brother_window(self):
+        """Method that calls the Brother Window"""
+        
         self.bro_window = BrotherWindow()
         self.bro_window.show()
 
     def show_congregation_window(self):
+        """Method that calls the Congregation Window"""
+
         self.congregation_window = CongregationWindow()
         self.congregation_window.show()
 
