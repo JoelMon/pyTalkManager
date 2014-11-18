@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file './gui/MainWindow.ui'
 #
-# Created: Fri Nov  7 17:48:34 2014
+# Created: Tue Nov 18 11:08:31 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,6 +21,13 @@ class Ui_MainWindow(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
+        self.gridLayout = QtGui.QGridLayout(self.tab)
+        self.gridLayout.setObjectName("gridLayout")
+        self.table_upcoming_talks = QtGui.QTableWidget(self.tab)
+        self.table_upcoming_talks.setObjectName("table_upcoming_talks")
+        self.table_upcoming_talks.setColumnCount(0)
+        self.table_upcoming_talks.setRowCount(0)
+        self.gridLayout.addWidget(self.table_upcoming_talks, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
