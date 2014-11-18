@@ -10,6 +10,7 @@ import gui.MainWindow
 import gui.DatabaseWindow
 import gui.BrotherWindow
 import gui.AddBrotherWindow
+import gui.CongregationWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -26,6 +27,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_window)
         self.actionBrothers.triggered.connect(self.show_brother_window)
+        self.actionCongregation.triggered.connect(self.show_congregation_window)
 
     def show_database_window(self):
         self.db_window = DatabaseWindow()
@@ -34,6 +36,10 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     def show_brother_window(self):
         self.bro_window = BrotherWindow()
         self.bro_window.show()
+
+    def show_congregation_window(self):
+        self.congregation_window = CongregationWindow()
+        self.congregation_window.show()
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
@@ -87,6 +93,14 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         values = [first_name, middle_name, last_name, phone, email,
                   congregation, responsibility, chairman, speaker,
                   coordinator, note]
+
+class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
+
+    def __init__(self, parent=None):
+        super(CongregationWindow, self).__init__(parent)
+        self.setupUi(self)
+
+
 
 
 if __name__ == '__main__':
