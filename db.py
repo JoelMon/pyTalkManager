@@ -90,9 +90,6 @@ class DB:
         conn.close()
 
 
-    def add_item(self, table, column=[], value=[]):
-        """Takes an item and adds it to the database."""
-
     def add_item(self, table, column, value):
         """Takes an item and adds it to the database.
 
@@ -116,6 +113,15 @@ class DB:
                                                                             values=list_value)
 
         DB.commit_sql(None, command)
+
+
+    def get_item(self):
+        """
+        Returns the item the user requested.
+
+        """
+
+        pass
 
     def delete_data(self):
         """Deletes data from the database"""
