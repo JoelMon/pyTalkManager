@@ -115,8 +115,9 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         # Check to see why the table isn't populated
         self.table_congregation.setColumnCount(2)
         self.table_congregation.insertRow(5)
-        item = 'Hello'
-        self.table_congregation.setItem(1, 0, QtGui.QTableWidgetItem(item))
+        item = QtGui.QTableWidgetItem('Hello')
+        self.table_congregation.setItem(1, 0, item)
+
         self.table_congregation.show()
 
 
