@@ -114,25 +114,32 @@ class DB:
         command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,  #  adds ' ' to values.
                                                                             column=list_column,
                                                                             values=list_value)
-        comm = sqlite3.connect(DB.get_path())
-        c = comm.cursor()
 
-        c.execute("PRAGMA foreign_keys = ON")
-        c.execute(command)
-
-        comm.commit()
-        c.close()
-
+        DB.commit_sql(None, command)
 
     def delete_data(self):
-        """ Deletes data from the database
-        :return:
-        """
+        """Deletes data from the database"""
         pass
 
 
     def edit_data(self):
-        """ Edits data in the database
-        :return:
-        """
+        """Edits data in the database"""
         pass
+
+
+    def commit_sql(self, sql):
+            """Takes the SQL commands and commits it to SQLite
+
+            :argument
+                sql - the SQL command that needs to be passed
+                      to SQLite.
+
+            """
+
+            comm = sqlite3.connect(DB.get_path())
+            c = comm.cursor()
+
+            c.execute("PRAGMA foreign_keys = ON")
+            c.execute(sql)
+            comm.commit()
+            c.close()
