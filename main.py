@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-import pyTalkManager as tm
-from PySide import QtGui
-from db import DB
-from congregation import Congregation
 import sys
+from PySide import QtGui
+import pyTalkManager as tm
+from congregation import Congregation
 
 # Importation of GUIs
 import gui.MainWindow
@@ -21,6 +20,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     From MainWindow all functions of pyTalkManager is accessed by the end user.
 
     """
+
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
@@ -83,7 +83,6 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         self.button_add.clicked.connect(self.add_item)
 
     def add_item(self):
-
         first_name = self.line_f_name.displayText()
         middle_name = self.line_m_name.displayText()
         last_name = self.line_l_name.displayText()
@@ -96,12 +95,13 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         coordinator = 'Coordinator check box'
         note = self.text_note.toPlainText()
 
-        coloumns = ['first_name', 'middle_name', 'last_name', 'phone','email',
-                    'congregation', 'responsibility', 'chairman', 'speaker',
-                    'coordinator', 'note']
+        columns = ['first_name', 'middle_name', 'last_name', 'phone', 'email',
+                   'congregation', 'responsibility', 'chairman', 'speaker',
+                   'coordinator', 'note']
         values = [first_name, middle_name, last_name, phone, email,
                   congregation, responsibility, chairman, speaker,
                   coordinator, note]
+
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
     """Window that allows the user to add, edit, and delete congregations to the database"""
@@ -115,7 +115,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     # Populate the congregation table
     def populate_table(self):
-
         list = Congregation.get_list(None)
 
         for x in list:
@@ -160,10 +159,10 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         notes = self.text_note.toPlainText()
 
         columns = ['name', 'phone', 'email', 'street', 'city',
-                 'state', 'zip', 'long', 'lat', 'note']
+                   'state', 'zip', 'long', 'lat', 'note']
 
         values = [name, phone, email, address, city,
-                 state, zipcode, longitude, latitude, notes]
+                  state, zipcode, longitude, latitude, notes]
 
 
         # Passes the columns and values needed for adding a new
@@ -171,10 +170,12 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         # takes care of checking if all required fields have been
         # entered. If not, then it returns False otherwise it returns
         # True.
+
+
         if Congregation.add_congregation(None, columns, values):
             pass
         else:
-            print("Something went wrong.") # Debugging
+            print("Something went wrong.")  # Debugging
 
 
 if __name__ == '__main__':

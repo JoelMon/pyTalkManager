@@ -1,4 +1,5 @@
 import sqlite3
+
 import pyTalkManager as tm
 
 
@@ -106,9 +107,9 @@ class DB:
         """
 
         list_column = ', '.join(column)
-        list_value = "', '".join(value) #  Converts each value into a string.
+        list_value = "', '".join(value)  # Converts each value into a string.
 
-        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,  #  adds ' ' to values.
+        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,  # adds ' ' to values.
                                                                             column=list_column,
                                                                             values=list_value)
 
@@ -138,20 +139,20 @@ class DB:
 
 
     def commit_sql(self, sql):
-            """Takes the SQL commands and commits it to SQLite
+        """Takes the SQL commands and commits it to SQLite
 
-            :param sql: the SQL command that needs to be passed
-                           to SQLite.
+        :param sql: the SQL command that needs to be passed
+                       to SQLite.
 
-            """
+        """
 
-            conn = sqlite3.connect(DB.get_path())
-            c = conn.cursor()
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
 
-            c.execute("PRAGMA foreign_keys = ON")
-            c.execute(sql)
-            conn.commit()
-            conn.close()
+        c.execute("PRAGMA foreign_keys = ON")
+        c.execute(sql)
+        conn.commit()
+        conn.close()
 
     def return_sql(self, sql):
         """
