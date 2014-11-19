@@ -3,6 +3,7 @@
 import pyTalkManager as tm
 from PySide import QtGui
 from db import DB
+from congregation import Congregation
 import sys
 
 # Importation of GUIs
@@ -106,19 +107,16 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
         self.setupUi(self)
-        self.pop_table()
+        self.populate_table()
+
 
     # Populate the congregation table
+    def populate_table(self):
 
-    def pop_table(self):
-
-        # Check to see why the table isn't populated
-        self.table_congregation.setColumnCount(2)
-        self.table_congregation.insertRow(5)
-        item = QtGui.QTableWidgetItem('Hello')
-        self.table_congregation.setItem(1, 0, item)
-
-        self.table_congregation.show()
+        list = Congregation.get_list(None)
+return list
+        for x in list:
+            self.list_congregation.addItem("{}".format(x[0]))
 
 
 if __name__ == '__main__':
