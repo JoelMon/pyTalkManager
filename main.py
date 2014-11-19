@@ -104,6 +104,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
                   coordinator, note]
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
+    """Window that allows the user to add, edit, and delete congregations to the database"""
 
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
@@ -128,6 +129,9 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
 
 class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+    """Window to allow the user to enter information on a new congregation"""
+
+
     def __init__(self, parent=None):
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
@@ -136,6 +140,11 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
     def add_item(self):
+        """
+        Method to add information of a new congregation to
+        the database.
+
+        """
 
         # Takes the values entered by the user and
         # adds it to variables.
@@ -156,6 +165,12 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         values = [name, phone, email, address, city,
                  state, zipcode, longitude, latitude, notes]
 
+
+        # Passes the columns and values needed for adding a new
+        # congregation to the database. the add_congregation method
+        # takes care of checking if all required fields have been
+        # entered. If not, then it returns False otherwise it returns
+        # True.
         if Congregation.add_congregation(None, columns, values):
             pass
         else:
