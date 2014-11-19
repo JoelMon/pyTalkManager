@@ -174,7 +174,7 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         if Congregation.add_congregation(None, columns, values):
             pass
         else:
-            print("Something went wrong.")
+            print("Something went wrong.") # Debugging
 
 
 if __name__ == '__main__':
