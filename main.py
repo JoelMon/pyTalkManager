@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
 import sys
+
 from PySide import QtGui
+
 import pyTalkManager as tm
 from congregation import Congregation
+
 
 # Importation of GUIs
 import gui.MainWindow
@@ -116,7 +119,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     # Populate the congregation table
     def populate_table(self):
-
         list = Congregation.get_list(None)
 
         for item in list:
@@ -124,22 +126,28 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
 
     def edit_item(self):
-        """
-        name = self.line_name
-        phone = self.line_phone
-        email = self.line_email
-        address = self.line_address
-        city = self.line_city
-        state = self.line_state
-        zipcode = self.line_zipcode
-        latitude = self.line_latitude
-        longitude = self.line_longitude
-        notes = self.text_note
 
-        name
-        """
-        Congregation.get_item_info(None)  # For debugging
+        congregation_list = Congregation.get_item_info(None)  # For debugging
+        selection = self.list_congregation.currentRow()
 
+
+        print(congregation_list[selection][1])
+
+        self.show_edit = AddCongregationWindow()
+        self.show_edit.show()
+
+        # Need to fix error when setText() is called on an int.
+        self.show_edit.setWindowTitle("Edit Congregation")
+        self.show_edit.line_name.setText(congregation_list[selection][1])
+        self.show_edit.line_phone.setText(congregation_list[selection][2])
+        self.show_edit.line_email.setText(congregation_list[selection][3])
+        self.show_edit.line_address.setText(congregation_list[selection][4])
+        self.show_edit.line_city.setText(congregation_list[selection][5])
+        self.show_edit.line_state.setText(congregation_list[selection][6])
+        self.show_edit.line_zipcode.setText(congregation_list[selection][7])
+        self.show_edit.line_longitude.setText(congregation_list[selection][8])
+        self.show_edit.line_latitude.setText(congregation_list[selection][9])
+        self.show_edit.text_note.setText(congregation_list[selection][10])
 
 
     def show_add_congregation_window(self):
@@ -153,10 +161,17 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
     def __init__(self, parent=None):
+        self.edit_mode = False
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
         self.button_add.clicked.connect(self.add_item)
+
+        # Debugging code - Passing values from another class.
+        if self.edit_mode:
+            print("edit mode is on.")
+        else:
+            print("edit mode is off")
 
 
     def add_item(self):
@@ -201,7 +216,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
                 print(submission[2])  # debugging
             elif submission[1] == "Error: Fields":
                 print(submission[2])  # debugging
-
 
 
 if __name__ == '__main__':
