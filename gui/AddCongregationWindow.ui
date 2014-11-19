@@ -63,7 +63,7 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="line_f_name"/>
+              <widget class="QLineEdit" name="line_name"/>
              </item>
             </layout>
            </widget>
@@ -124,7 +124,7 @@
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QLineEdit" name="lineEdit_5"/>
+              <widget class="QLineEdit" name="line_latitude"/>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_9">
@@ -134,14 +134,9 @@
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QLineEdit" name="lineEdit_6"/>
+              <widget class="QLineEdit" name="line_longitude"/>
              </item>
             </layout>
-            <zorder>frame_4</zorder>
-            <zorder>label_8</zorder>
-            <zorder>lineEdit_5</zorder>
-            <zorder>label_9</zorder>
-            <zorder>lineEdit_6</zorder>
            </widget>
           </item>
           <item row="0" column="0">
@@ -182,16 +177,16 @@
               </widget>
              </item>
              <item row="6" column="1">
-              <widget class="QLineEdit" name="lineEdit_3"/>
+              <widget class="QLineEdit" name="line_state"/>
              </item>
              <item row="8" column="1">
-              <widget class="QLineEdit" name="lineEdit_4"/>
+              <widget class="QLineEdit" name="line_zipcode"/>
              </item>
              <item row="4" column="1">
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="line_city"/>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="lineEdit"/>
+              <widget class="QLineEdit" name="line_address"/>
              </item>
             </layout>
            </widget>
@@ -284,15 +279,15 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>line_f_name</tabstop>
+  <tabstop>line_name</tabstop>
   <tabstop>line_phone</tabstop>
   <tabstop>line_email</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_6</tabstop>
+  <tabstop>line_address</tabstop>
+  <tabstop>line_city</tabstop>
+  <tabstop>line_state</tabstop>
+  <tabstop>line_zipcode</tabstop>
+  <tabstop>line_latitude</tabstop>
+  <tabstop>line_longitude</tabstop>
   <tabstop>text_note</tabstop>
   <tabstop>button_add</tabstop>
   <tabstop>button_close</tabstop>
