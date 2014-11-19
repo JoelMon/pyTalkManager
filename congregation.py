@@ -4,6 +4,15 @@ from db import DB
 
 
 class Congregation:
+
+    def get_item_info(self):
+
+        sql = "SELECT * FROM Congregation"
+        items = DB.return_pass_sql(None, sql)
+
+        print(items)
+
+
     def get_list(self):
         """
         Get's all the names of congregations already in the database
@@ -16,6 +25,7 @@ class Congregation:
 
         sql = "SELECT name from Congregation"
         return DB.return_pass_sql(None, sql)
+
 
     def add_congregation(self, columns, values):
         """Method that adds a new congregation to the database.
