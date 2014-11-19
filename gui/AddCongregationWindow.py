@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/AddCongregationWindow.ui'
 #
-# Created: Tue Nov 18 21:32:04 2014
+# Created: Wed Nov 19 10:38:11 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -183,7 +183,7 @@ class Ui_AddCongregationWindow(object):
         AddCongregationWindow.setTabOrder(self.tabWidget, self.checkBox_4)
 
     def retranslateUi(self, AddCongregationWindow):
-        AddCongregationWindow.setWindowTitle(QtGui.QApplication.translate("AddCongregationWindow", "Add Brother", None, QtGui.QApplication.UnicodeUTF8))
+        AddCongregationWindow.setWindowTitle(QtGui.QApplication.translate("AddCongregationWindow", "Add Congregation", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("AddCongregationWindow", "Name", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("AddCongregationWindow", "Phone", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("AddCongregationWindow", "Email", None, QtGui.QApplication.UnicodeUTF8))
