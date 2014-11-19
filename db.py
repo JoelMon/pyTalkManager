@@ -140,9 +140,8 @@ class DB:
     def commit_sql(self, sql):
             """Takes the SQL commands and commits it to SQLite
 
-            :argument
-                sql - the SQL command that needs to be passed
-                      to SQLite.
+            :param sql: the SQL command that needs to be passed
+                           to SQLite.
 
             """
 
@@ -159,7 +158,7 @@ class DB:
         Returns data from the SQLite database.
 
         :param sql: the SQL command to pass to SQLite
-        :return : returns a list with each row in a tuple.
+        :return data: returns a list with each row in a tuple.
 
         """
 
