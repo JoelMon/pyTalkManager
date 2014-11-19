@@ -12,6 +12,7 @@ import gui.DatabaseWindow
 import gui.BrotherWindow
 import gui.AddBrotherWindow
 import gui.CongregationWindow
+import gui.AddCongregationWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -109,6 +110,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.setupUi(self)
         self.populate_table()
 
+        self.button_add.clicked.connect(self.show_add_congregation_window)
 
     # Populate the congregation table
     def populate_table(self):
@@ -117,6 +119,19 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         for x in list:
             self.list_congregation.addItem("{}".format(x[0]))
+
+
+    def show_add_congregation_window(self):
+        """Window that allows the user enter a new congregation into the database"""
+        self.add_cong_window = AddCongregationWindow()
+        self.add_cong_window.show()
+
+
+class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+    def __init__(self, parent=None):
+        super(AddCongregationWindow, self).__init__(parent)
+        self.setupUi(self)
+
 
 
 if __name__ == '__main__':
