@@ -20,6 +20,8 @@ class Congregation:
 
          :var required_fields: a list of required fields
          :var missing_fields: a list of required fields found to be empty
+         :var combine: combines lists columns and values together to make
+                       it easy to iterate over both lists.
         :param columns: a list of all columns in the Congregation table
         :param values: a list of user entered data for each column
         :return: Return True if all required fields were entered
@@ -28,13 +30,17 @@ class Congregation:
         """
 
         required_fields = ['name', 'street', 'city', 'state', 'zip']
-
         combine = zip(columns, values)
 
+        # Check user entered data against required_fields to see if user
+        # has left any required fields empty. If required fields are empty,
+        # then return False along with a list of the required fields left
+        # empty.
+
         missing_fields = []
-        for x in combine:
-            if x[0] in required_fields and x[1] == '':
-                missing_fields.append(x[0])
+        for item in combine:
+            if item[0] in required_fields and item[1] == '':
+                missing_fields.append(item[0])
 
         if missing_fields == []:
             DB.add_item(None, 'Congregation', columns, values)
