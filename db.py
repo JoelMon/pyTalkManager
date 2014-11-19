@@ -121,12 +121,10 @@ class DB:
 
         """
 
-
         command = "{}".format(sql)
 
         data = DB.return_sql(None, command)
         return data
-        c.close()
 
 
     def delete_data(self):
@@ -148,13 +146,13 @@ class DB:
 
             """
 
-            comm = sqlite3.connect(DB.get_path())
-            c = comm.cursor()
+            conn = sqlite3.connect(DB.get_path())
+            c = conn.cursor()
 
             c.execute("PRAGMA foreign_keys = ON")
             c.execute(sql)
-            comm.commit()
-            c.close()
+            conn.commit()
+            conn.close()
 
     def return_sql(self, sql):
         """
@@ -171,5 +169,6 @@ class DB:
         c.execute("PRAGMA foreign_keys = ON")
         c.execute(sql)
         data = c.fetchall()
+        c.close()
 
         return data
