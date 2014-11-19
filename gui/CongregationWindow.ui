@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>565</width>
+    <width>342</width>
     <height>347</height>
    </rect>
   </property>
@@ -23,58 +23,10 @@
    <bool>false</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
-   </property>
-   <property name="horizontalSpacing">
-    <number>6</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>3</number>
-   </property>
-   <item row="3" column="1" alignment="Qt::AlignBottom">
-    <widget class="QFrame" name="frame">
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_close">
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_ok">
-        <property name="text">
-         <string>Ok</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+   <item row="0" column="0">
+    <widget class="QListWidget" name="list_congregation"/>
    </item>
-   <item row="2" column="1" alignment="Qt::AlignTop">
+   <item row="1" column="0">
     <widget class="QFrame" name="frame_2">
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
@@ -89,9 +41,6 @@
       <enum>QFrame::Plain</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>6</number>
-      </property>
       <property name="leftMargin">
        <number>6</number>
       </property>
@@ -151,63 +100,46 @@
      </layout>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QTableWidget" name="table_congregation">
-     <column>
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Phone</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>New Column</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Email</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Address</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>City</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>State</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Zip code</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Long</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Note</string>
-      </property>
-     </column>
+   <item row="2" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_close">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_ok">
+        <property name="text">
+         <string>Ok</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
