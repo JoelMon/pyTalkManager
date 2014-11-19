@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/CongregationWindow.ui'
 #
-# Created: Tue Nov 18 20:45:08 2014
+# Created: Tue Nov 18 21:06:45 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -56,9 +56,6 @@ class Ui_CongregationWindow(object):
         self.button_close = QtGui.QPushButton(self.frame)
         self.button_close.setObjectName("button_close")
         self.horizontalLayout_2.addWidget(self.button_close)
-        self.button_ok = QtGui.QPushButton(self.frame)
-        self.button_ok.setObjectName("button_ok")
-        self.horizontalLayout_2.addWidget(self.button_ok)
         self.gridLayout.addWidget(self.frame, 2, 0, 1, 1)
 
         self.retranslateUi(CongregationWindow)
@@ -71,5 +68,4 @@ class Ui_CongregationWindow(object):
         self.button_add.setText(QtGui.QApplication.translate("CongregationWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.button_edit.setText(QtGui.QApplication.translate("CongregationWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("CongregationWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
-        self.button_ok.setText(QtGui.QApplication.translate("CongregationWindow", "Ok", None, QtGui.QApplication.UnicodeUTF8))
 

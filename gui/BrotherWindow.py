@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/BrotherWindow.ui'
 #
-# Created: Fri Nov 14 19:13:45 2014
+# Created: Tue Nov 18 21:09:13 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -33,9 +33,6 @@ class Ui_BrotherWindow(object):
         self.button_close = QtGui.QPushButton(self.frame)
         self.button_close.setObjectName("button_close")
         self.horizontalLayout_2.addWidget(self.button_close)
-        self.button_ok = QtGui.QPushButton(self.frame)
-        self.button_ok.setObjectName("button_ok")
-        self.horizontalLayout_2.addWidget(self.button_ok)
         self.gridLayout.addWidget(self.frame, 3, 1, 1, 1)
         self.frame_2 = QtGui.QFrame(BrotherWindow)
         self.frame_2.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -74,7 +71,6 @@ class Ui_BrotherWindow(object):
     def retranslateUi(self, BrotherWindow):
         BrotherWindow.setWindowTitle(QtGui.QApplication.translate("BrotherWindow", "Brothers", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("BrotherWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
-        self.button_ok.setText(QtGui.QApplication.translate("BrotherWindow", "Ok", None, QtGui.QApplication.UnicodeUTF8))
         self.button_delete.setText(QtGui.QApplication.translate("BrotherWindow", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.button_add.setText(QtGui.QApplication.translate("BrotherWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.button_edit.setText(QtGui.QApplication.translate("BrotherWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
