@@ -10,6 +10,4 @@ class Congregation:
 
         sql = "SELECT name from Congregation"
 
-        list = DB.return_pass_sql(None, sql)
-
-        return list
+        return DB.return_pass_sql(None, sql)
