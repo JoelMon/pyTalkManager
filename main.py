@@ -112,6 +112,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.populate_table()
 
         self.button_add.clicked.connect(self.show_add_congregation_window)
+        self.button_edit.clicked.connect(self.edit_item)
 
     # Populate the congregation table
     def populate_table(self):
@@ -120,6 +121,25 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
+
+
+    def edit_item(self):
+        """
+        name = self.line_name
+        phone = self.line_phone
+        email = self.line_email
+        address = self.line_address
+        city = self.line_city
+        state = self.line_state
+        zipcode = self.line_zipcode
+        latitude = self.line_latitude
+        longitude = self.line_longitude
+        notes = self.text_note
+
+        name
+        """
+        Congregation.get_item_info(None)  # For debugging
+
 
 
     def show_add_congregation_window(self):
@@ -182,9 +202,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
             elif submission[1] == "Error: Fields":
                 print(submission[2])  # debugging
 
-
-    def edit_item(self):
-        pass
 
 
 if __name__ == '__main__':
