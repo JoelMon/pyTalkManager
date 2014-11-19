@@ -46,7 +46,7 @@ class Congregation:
             item, value = str(item[0]), str(values[0])
             if item.lower() == value.lower():
                 # The return[1] needs to be translated
-                return "Error: duplicate", "The congregation {} has already been entered into the database.".format(item)
+                return False, "Error: duplicate", "Congregation '{}' has already been entered into the database.".format(item)
 
 
         # Check user entered data against required_fields to see if user
@@ -68,5 +68,4 @@ class Congregation:
             DB.add_item(None, 'Congregation', columns, values)
             return True
         else:
-            print(missing_fields)
-            return "Error: Fields", missing_fields
+            return False, "Error: Fields", missing_fields
