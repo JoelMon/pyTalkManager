@@ -114,7 +114,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
     def populate_table(self):
 
         list = Congregation.get_list(None)
-return list
+
         for x in list:
             self.list_congregation.addItem("{}".format(x[0]))
 
