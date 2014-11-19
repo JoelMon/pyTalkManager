@@ -24,6 +24,11 @@
        <attribute name="title">
         <string>Upcoming talks</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="table_upcoming_talks"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -77,7 +82,7 @@
    <addaction name="actionDatabase"/>
    <addaction name="separator"/>
    <addaction name="actionBrothers"/>
-   <addaction name="actionKingdom_halls"/>
+   <addaction name="actionCongregation"/>
    <addaction name="separator"/>
    <addaction name="actionReports"/>
    <addaction name="actionSettings"/>
@@ -132,16 +137,16 @@
     <string>Settings for pyTalkManager.</string>
    </property>
   </action>
-  <action name="actionKingdom_halls">
+  <action name="actionCongregation">
    <property name="icon">
     <iconset resource="resource/icons.qrc">
      <normaloff>:/MainWindow/go-home.png</normaloff>:/MainWindow/go-home.png</iconset>
    </property>
    <property name="text">
-    <string>Kingdom halls</string>
+    <string>Congregations</string>
    </property>
    <property name="toolTip">
-    <string>List of Kingdom halls</string>
+    <string>List of congregations</string>
    </property>
   </action>
   <action name="actionExit">

@@ -90,9 +90,6 @@ class DB:
         conn.close()
 
 
-    def add_item(self, table, column=[], value=[]):
-        """Takes an item and adds it to the database."""
-
     def add_item(self, table, column, value):
         """Takes an item and adds it to the database.
 
@@ -117,6 +114,19 @@ class DB:
 
         DB.commit_sql(None, command)
 
+
+    def return_pass_sql(self, sql):
+        """
+        Returns the item the user requested.
+
+        """
+
+        command = "{}".format(sql)
+
+        data = DB.return_sql(None, command)
+        return data
+
+
     def delete_data(self):
         """Deletes data from the database"""
         pass
@@ -130,16 +140,34 @@ class DB:
     def commit_sql(self, sql):
             """Takes the SQL commands and commits it to SQLite
 
-            :argument
-                sql - the SQL command that needs to be passed
-                      to SQLite.
+            :param sql: the SQL command that needs to be passed
+                           to SQLite.
 
             """
 
-            comm = sqlite3.connect(DB.get_path())
-            c = comm.cursor()
+            conn = sqlite3.connect(DB.get_path())
+            c = conn.cursor()
 
             c.execute("PRAGMA foreign_keys = ON")
             c.execute(sql)
-            comm.commit()
-            c.close()
+            conn.commit()
+            conn.close()
+
+    def return_sql(self, sql):
+        """
+        Returns data from the SQLite database.
+
+        :param sql: the SQL command to pass to SQLite
+        :return data: returns a list with each row in a tuple.
+
+        """
+
+        comm = sqlite3.connect(DB.get_path())
+        c = comm.cursor()
+
+        c.execute("PRAGMA foreign_keys = ON")
+        c.execute(sql)
+        data = c.fetchall()
+        c.close()
+
+        return data

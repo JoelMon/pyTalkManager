@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file './gui/MainWindow.ui'
 #
-# Created: Fri Nov  7 17:48:34 2014
+# Created: Tue Nov 18 11:55:10 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,6 +21,13 @@ class Ui_MainWindow(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
+        self.gridLayout = QtGui.QGridLayout(self.tab)
+        self.gridLayout.setObjectName("gridLayout")
+        self.table_upcoming_talks = QtGui.QTableWidget(self.tab)
+        self.table_upcoming_talks.setObjectName("table_upcoming_talks")
+        self.table_upcoming_talks.setColumnCount(0)
+        self.table_upcoming_talks.setRowCount(0)
+        self.gridLayout.addWidget(self.table_upcoming_talks, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -62,11 +69,11 @@ class Ui_MainWindow(object):
         icon3.addPixmap(QtGui.QPixmap(":/MainWindow/preferences-system.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSettings.setIcon(icon3)
         self.actionSettings.setObjectName("actionSettings")
-        self.actionKingdom_halls = QtGui.QAction(MainWindow)
+        self.actionCongregation = QtGui.QAction(MainWindow)
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(":/MainWindow/go-home.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionKingdom_halls.setIcon(icon4)
-        self.actionKingdom_halls.setObjectName("actionKingdom_halls")
+        self.actionCongregation.setIcon(icon4)
+        self.actionCongregation.setObjectName("actionCongregation")
         self.actionExit = QtGui.QAction(MainWindow)
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/MainWindow/system-log-out.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -75,7 +82,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionDatabase)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionBrothers)
-        self.toolBar.addAction(self.actionKingdom_halls)
+        self.toolBar.addAction(self.actionCongregation)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionReports)
         self.toolBar.addAction(self.actionSettings)
@@ -101,8 +108,8 @@ class Ui_MainWindow(object):
         self.actionReports.setToolTip(QtGui.QApplication.translate("MainWindow", "Produce reports.", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSettings.setText(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSettings.setToolTip(QtGui.QApplication.translate("MainWindow", "Settings for pyTalkManager.", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionKingdom_halls.setText(QtGui.QApplication.translate("MainWindow", "Kingdom halls", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionKingdom_halls.setToolTip(QtGui.QApplication.translate("MainWindow", "List of Kingdom halls", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionCongregation.setText(QtGui.QApplication.translate("MainWindow", "Congregations", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionCongregation.setToolTip(QtGui.QApplication.translate("MainWindow", "List of congregations", None, QtGui.QApplication.UnicodeUTF8))
         self.actionExit.setText(QtGui.QApplication.translate("MainWindow", "Exit", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
