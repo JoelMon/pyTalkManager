@@ -115,10 +115,11 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     # Populate the congregation table
     def populate_table(self):
+
         list = Congregation.get_list(None)
 
-        for x in list:
-            self.list_congregation.addItem("{}".format(x[0]))
+        for item in list:
+            self.list_congregation.addItem("{}".format(item[0]))
 
 
     def show_add_congregation_window(self):
