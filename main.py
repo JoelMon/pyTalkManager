@@ -115,10 +115,11 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     # Populate the congregation table
     def populate_table(self):
+
         list = Congregation.get_list(None)
 
-        for x in list:
-            self.list_congregation.addItem("{}".format(x[0]))
+        for item in list:
+            self.list_congregation.addItem("{}".format(item[0]))
 
 
     def show_add_congregation_window(self):
@@ -166,16 +167,20 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
         # Passes the columns and values needed for adding a new
-        # congregation to the database. the add_congregation method
+        # congregation to add_congregation. The add_congregation method
         # takes care of checking if all required fields have been
-        # entered. If not, then it returns False otherwise it returns
-        # True.
+        # entered. If not, then it returns False with the error
+        # otherwise it returns True.
 
+        submission = Congregation.add_congregation(None, columns, values)
 
-        if Congregation.add_congregation(None, columns, values):
+        if submission is True:
             pass
         else:
-            print("Something went wrong.")  # Debugging
+            if submission[1] == "Error: duplicate":
+                print(submission[2])  # debugging
+            elif submission[1] == "Error: Fields":
+                print(submission[2])  # debugging
 
 
 if __name__ == '__main__':
