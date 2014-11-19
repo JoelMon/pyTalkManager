@@ -183,6 +183,10 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
                 print(submission[2])  # debugging
 
 
+    def edit_item(self):
+        pass
+
+
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     my_app = MainWindow()
