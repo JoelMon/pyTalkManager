@@ -35,14 +35,6 @@ class Congregation:
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(columns, values)
 
-        # Check user entered data against required_fields to see if user
-        # has left any required fields empty. If required fields are empty,
-        # then add the offending field to missing_fields list.
-
-        missing_fields = []
-        for item in combine:
-            if item[0] in required_fields and item[1] == '':
-                missing_fields.append(item[0])
 
         # Check if user entered data repeats. This section checks if the
         # name field of the congregation repeats with congregations already
@@ -55,11 +47,22 @@ class Congregation:
             if item.lower() == value.lower():
                 return False
 
+
+        # Check user entered data against required_fields to see if user
+        # has left any required fields empty. If required fields are empty,
+        # then add the offending field to missing_fields list.
+
+        missing_fields = []
+        for item in combine:
+            if item[0] in required_fields and item[1] == '':
+                missing_fields.append(item[0])
+
+
         # If missing_fields list the data entered by the user is
         # submitted to the database. If missing_fields list is not
         # empty then return False and the list of missing_fields so
         # that the information can be relayed to the end user.
-        
+
         if missing_fields == []:
             DB.add_item(None, 'Congregation', columns, values)
             return True
