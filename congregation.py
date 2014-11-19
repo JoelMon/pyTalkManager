@@ -8,10 +8,7 @@ class Congregation:
     def get_item_info(self):
 
         sql = "SELECT * FROM Congregation"
-        items = DB.return_pass_sql(None, sql)
-
-        print(items)
-
+        return DB.return_pass_sql(None, sql)
 
     def get_list(self):
         """
