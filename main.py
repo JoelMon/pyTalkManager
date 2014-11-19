@@ -94,7 +94,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         chairman = 'Chairman check box'
         speaker = 'Speaker check box'
         coordinator = 'Coordinator check box'
-        note = 'Note text box'
+        note = self.text_note.toPlainText()
 
         coloumns = ['first_name', 'middle_name', 'last_name', 'phone','email',
                     'congregation', 'responsibility', 'chairman', 'speaker',
@@ -132,6 +132,34 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
+        self.button_add.clicked.connect(self.add_item)
+
+
+    def add_item(self):
+
+        # Takes the values entered by the user and
+        # adds it to variables.
+        name = self.line_name.displayText()
+        phone = self.line_phone.displayText()
+        email = self.line_email.displayText()
+        address = self.line_address.displayText()
+        city = self.line_city.displayText()
+        state = self.line_state.displayText()
+        zipcode = self.line_zipcode.displayText()
+        latitude = self.line_latitude.displayText()
+        longitude = self.line_longitude.displayText()
+        notes = self.text_note.toPlainText()
+
+        columns = ['name', 'phone', 'email', 'street', 'city',
+                 'state', 'zip', 'long', 'lat', 'note']
+
+        values = [name, phone, email, address, city,
+                 state, zipcode, longitude, latitude, notes]
+
+        if Congregation.add_congregation(None, columns, values):
+            pass
+        else:
+            print("Something went wrong.")
 
 
 if __name__ == '__main__':
