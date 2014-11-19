@@ -1,13 +1,16 @@
 __author__ = 'Joel Montes de Oca'
 
-from db import DB
 import configparser
+
 from PySide import QtGui
+
+from db import DB
 
 
 version = '0.1'
 name = 'pyTalkManager'
 configLocation = './config.ini'
+
 
 def configGet(section, key):
     """
