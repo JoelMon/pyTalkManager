@@ -38,14 +38,15 @@ class Congregation:
 
         # Check if user entered data repeats. This section checks if the
         # name field of the congregation repeats with congregations already
-        # in the database. If so, return False with reason.
+        # in the database. If so, return error with reason.
 
         congregation_names = Congregation.get_list(None)
 
         for item in congregation_names:
             item, value = str(item[0]), str(values[0])
             if item.lower() == value.lower():
-                return False
+                # The return[1] needs to be translated
+                return "Error: duplicate", "The congregation {} has already been entered into the database.".format(item)
 
 
         # Check user entered data against required_fields to see if user
@@ -68,4 +69,4 @@ class Congregation:
             return True
         else:
             print(missing_fields)
-            return False
+            return "Error: Fields", missing_fields
