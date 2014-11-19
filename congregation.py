@@ -11,3 +11,10 @@ class Congregation:
         sql = "SELECT name from Congregation"
 
         return DB.return_pass_sql(None, sql)
+
+    def add_congregation(self, columns, values):
+
+
+        DB.add_item(None, 'Congregation', columns, values)
+
+        return True
