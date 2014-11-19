@@ -115,27 +115,17 @@ class DB:
         DB.commit_sql(None, command)
 
 
-    def get_item(self):
+    def return_pass_sql(self, sql):
         """
         Returns the item the user requested.
 
         """
-        #  The code below is only for debugging.
-        #  It will be removed.
-        command = "SELECT * FROM Congregation"
+
+
+        command = "{}".format(sql)
 
         data = DB.return_sql(None, command)
-
-        print(data)
-        print("-"*202)
-        print("*"*202)
-        print("-"*202)
-
-        for row in data:
-            print (row)
-            for item in row:
-                print(item)
-
+        return data
         c.close()
 
 
