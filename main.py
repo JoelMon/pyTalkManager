@@ -126,28 +126,35 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
 
     def edit_item(self):
+        """Opens the AddCongregationWindow, changes the title to
+        'Edit Congregation', and populates the fields with data from
+        the database. The user can edit any field and save it to the
+        database.
 
-        congregation_list = Congregation.get_item_info(None)  # For debugging
+        """
+
+        all_congregations = Congregation.get_item_info(None)
         selection = self.list_congregation.currentRow()
 
 
-        print(congregation_list[selection][1])
+        print(all_congregations[selection][1])
 
         self.show_edit = AddCongregationWindow()
         self.show_edit.show()
 
+        # Fill all of the fields with the values from the database.
         # Need to fix error when setText() is called on an int.
         self.show_edit.setWindowTitle("Edit Congregation")
-        self.show_edit.line_name.setText(congregation_list[selection][1])
-        self.show_edit.line_phone.setText(congregation_list[selection][2])
-        self.show_edit.line_email.setText(congregation_list[selection][3])
-        self.show_edit.line_address.setText(congregation_list[selection][4])
-        self.show_edit.line_city.setText(congregation_list[selection][5])
-        self.show_edit.line_state.setText(congregation_list[selection][6])
-        self.show_edit.line_zipcode.setText(congregation_list[selection][7])
-        self.show_edit.line_longitude.setText(congregation_list[selection][8])
-        self.show_edit.line_latitude.setText(congregation_list[selection][9])
-        self.show_edit.text_note.setText(congregation_list[selection][10])
+        self.show_edit.line_name.setText(all_congregations[selection][1])
+        self.show_edit.line_phone.setText(all_congregations[selection][2])
+        self.show_edit.line_email.setText(all_congregations[selection][3])
+        self.show_edit.line_address.setText(all_congregations[selection][4])
+        self.show_edit.line_city.setText(all_congregations[selection][5])
+        self.show_edit.line_state.setText(all_congregations[selection][6])
+        self.show_edit.line_zipcode.setText(all_congregations[selection][7])
+        self.show_edit.line_longitude.setText(all_congregations[selection][8])
+        self.show_edit.line_latitude.setText(all_congregations[selection][9])
+        self.show_edit.text_note.setText(all_congregations[selection][10])
 
 
     def show_add_congregation_window(self):
