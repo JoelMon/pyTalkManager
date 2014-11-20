@@ -5,7 +5,7 @@ from db import DB
 
 class Congregation:
 
-
+    # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
                    'state', 'zip', 'long', 'lat', 'note']
 
@@ -17,6 +17,7 @@ class Congregation:
             """
         sql = "SELECT * FROM Congregation"
         return DB.return_pass_sql(None, sql)
+
 
     def get_list(self):
         """
