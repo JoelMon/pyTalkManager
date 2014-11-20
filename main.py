@@ -7,7 +7,6 @@ from PySide import QtGui
 import pyTalkManager as tm
 from congregation import Congregation
 
-
 # Importation of GUIs
 import gui.MainWindow
 import gui.DatabaseWindow
