@@ -15,7 +15,7 @@ class Congregation:
         Retrieves all the entries for the Congregation table.
 
             :rtype : list
-        
+
         """
         sql = "SELECT * FROM Congregation"
         return DB.return_pass_sql(None, sql)
