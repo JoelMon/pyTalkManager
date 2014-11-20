@@ -10,7 +10,7 @@ class Congregation:
                    'state', 'zip', 'long', 'lat', 'note']
 
 
-    def get_item_info(self):
+    def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
 

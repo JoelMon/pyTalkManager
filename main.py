@@ -133,7 +133,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         """
 
-        all_congregations = Congregation.get_item_info(None)
+        all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
 
         self.show_edit = AddCongregationWindow()
