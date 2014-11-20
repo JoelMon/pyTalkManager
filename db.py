@@ -133,7 +133,7 @@ class DB:
         pass
 
 
-    def edit_data(self):
+    def edit_item(self, table, item):
         """Edits data in the database"""
         pass
 
