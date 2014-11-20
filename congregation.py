@@ -12,9 +12,11 @@ class Congregation:
 
     def get_item_info(self):
         """
+        Retrieves all the entries for the Congregation table.
 
             :rtype : list
-            """
+        
+        """
         sql = "SELECT * FROM Congregation"
         return DB.return_pass_sql(None, sql)
 
