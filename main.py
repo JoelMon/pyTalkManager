@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
+
 from PySide import QtGui
+
 import pyTalkManager as tm
 from congregation import Congregation
 
@@ -112,14 +114,68 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.populate_table()
 
         self.button_add.clicked.connect(self.show_add_congregation_window)
+        self.button_edit.clicked.connect(self.edit_congregation_window)
 
     # Populate the congregation table
     def populate_table(self):
-
         list = Congregation.get_list(None)
 
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
+
+
+    def edit_congregation_window(self):
+        """
+        Opens the AddCongregationWindow, changes the title to
+        'Edit Congregation', and populates the fields with data from
+        the database. The user can edit any field and save it to the
+        database.
+
+        """
+
+        all_congregations = Congregation.get_entries(None)
+        selection = self.list_congregation.currentRow()
+
+        self.show_edit = AddCongregationWindow()
+        self.show_edit.show()
+        self.show_edit.setWindowTitle("Edit Congregation")
+        self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
+        self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(selection))
+
+        # Fill all of the fields with the values from the database.
+        # All the fields must be converted to string.
+        self.show_edit.line_name.setText(str(all_congregations[selection][1]))
+        self.show_edit.line_phone.setText(str(all_congregations[selection][2]))
+        self.show_edit.line_email.setText(str(all_congregations[selection][3]))
+        self.show_edit.line_address.setText(str(all_congregations[selection][4]))
+        self.show_edit.line_city.setText(str(all_congregations[selection][5]))
+        self.show_edit.line_state.setText(str(all_congregations[selection][6]))
+        self.show_edit.line_zipcode.setText(str(all_congregations[selection][6]))
+        self.show_edit.line_longitude.setText(str(all_congregations[selection][8]))
+        self.show_edit.line_latitude.setText(str(all_congregations[selection][9]))
+        self.show_edit.text_note.setText(str(all_congregations[selection][10]))
+
+
+    def load_congregation_data(self, row):
+
+        # Takes the values entered by the user and
+        # adds it to variables.
+        name = self.show_edit.line_name.displayText()
+        phone = self.show_edit.line_phone.displayText()
+        email = self.show_edit.line_email.displayText()
+        address = self.show_edit.line_address.displayText()
+        city = self.show_edit.line_city.displayText()
+        state = self.show_edit.line_state.displayText()
+        zipcode = self.show_edit.line_zipcode.displayText()
+        latitude = self.show_edit.line_latitude.displayText()
+        longitude = self.show_edit.line_longitude.displayText()
+        notes = self.show_edit.text_note.toPlainText()
+
+        values = [name, phone, email, address, city,
+                  state, zipcode, longitude, latitude, notes]
+
+        Congregation.edit_congregation(None, values, row)
+        self.show_edit.close()
 
 
     def show_add_congregation_window(self):
@@ -133,6 +189,7 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
     def __init__(self, parent=None):
+        self.edit_mode = False
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
@@ -159,9 +216,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
 
-        columns = ['name', 'phone', 'email', 'street', 'city',
-                   'state', 'zip', 'long', 'lat', 'note']
-
         values = [name, phone, email, address, city,
                   state, zipcode, longitude, latitude, notes]
 
@@ -172,15 +226,15 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         # entered. If not, then it returns False with the error
         # otherwise it returns True.
 
-        submission = Congregation.add_congregation(None, columns, values)
+        submission = Congregation.add_congregation(None, values)
 
         if submission is True:
             pass
         else:
             if submission[1] == "Error: duplicate":
-                print(submission[2])  # debugging
+                print(submission[2])  # debugging - Will replace with GUI
             elif submission[1] == "Error: Fields":
-                print(submission[2])  # debugging
+                print(submission[2])  # debugging - Will replace with GUI
 
 
 if __name__ == '__main__':
