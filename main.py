@@ -114,7 +114,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.populate_table()
 
         self.button_add.clicked.connect(self.show_add_congregation_window)
-        self.button_edit.clicked.connect(self.edit_item)
+        self.button_edit.clicked.connect(self.edit_congregation_window)
 
     # Populate the congregation table
     def populate_table(self):
@@ -124,7 +124,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
             self.list_congregation.addItem("{}".format(item[0]))
 
 
-    def edit_item(self):
+    def edit_congregation_window(self):
         """Opens the AddCongregationWindow, changes the title to
         'Edit Congregation', and populates the fields with data from
         the database. The user can edit any field and save it to the
@@ -139,7 +139,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.show()
         self.show_edit.setWindowTitle("Edit Congregation")
         self.show_edit.button_add.setText('Save')
-        self.show_edit.button_add.clicked.connect(self.edit_congregation)
+        self.show_edit.button_add.clicked.connect(self.load_congregation_data)
 
         # Fill all of the fields with the values from the database.
         # All the fields must be converted to string.
@@ -155,7 +155,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.text_note.setText(str(all_congregations[selection][10]))
 
 
-    def edit_congregation(self):
+    def load_congregation_data(self):
 
         # Takes the values entered by the user and
         # adds it to variables.
