@@ -22,21 +22,22 @@ def configGet(section, key):
     # Source: https://docs.python.org/3.4/library/os.html#os.X_OK
     try:
         open(configLocation)
+
     except FileNotFoundError:
-        messagebox.showerror("File config.ini was not found.",
-                             "The config.ini file was not found. "
-                             "Something may have gone wrong with the installation. "
-                             "Make sure the config.ini file is located in the "
-                             "application's root directory.")
-
-        print('The config.ini file was not found.')
+        print("-"*80)
+        print("The config.ini file was not found.")
+        print("-"*80)
+        print("Something may have gone wrong with the installation.\n"
+              "Make sure the config.ini file is located in the "
+              "application's root directory.")
         quit()
-    except PermissionError:
-        messagebox.showerror("Permission problem.",
-                             "You do not have sufficient permission for the config.ini file. "
-                             "Fix the problem then run %s again." % name)
 
-        print('You do not have permission to read the config.ini file.')
+    except PermissionError:
+        print("-"*80)
+        print("Permission problem.")
+        print("-"*80)
+        print("You do not have sufficient permission for the config.ini file.")
+        print("Fix the problem then run {} again.".format(name))
         quit()
 
     config = configparser.ConfigParser()
