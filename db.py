@@ -116,6 +116,21 @@ class DB:
         DB.commit_sql(None, command)
 
 
+    def modify_item(self, table, column, value, row):
+        """Modifies an item in the database"""
+
+
+        combine = list(zip(column, value))
+
+        for item in combine:
+            command = "UPDATE {table} SET {column} = '{value}' WHERE id = {row}".format(table=table,
+                                                                                      column=item[0],
+                                                                                      value=item[1],
+                                                                                      row=row+1)
+
+            DB.commit_sql(None, command)
+
+
     def return_pass_sql(self, sql):
         """
         Returns the item the user requested.

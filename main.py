@@ -125,7 +125,8 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
 
     def edit_congregation_window(self):
-        """Opens the AddCongregationWindow, changes the title to
+        """
+        Opens the AddCongregationWindow, changes the title to
         'Edit Congregation', and populates the fields with data from
         the database. The user can edit any field and save it to the
         database.
@@ -138,8 +139,8 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit = AddCongregationWindow()
         self.show_edit.show()
         self.show_edit.setWindowTitle("Edit Congregation")
-        self.show_edit.button_add.setText('Save')
-        self.show_edit.button_add.clicked.connect(self.load_congregation_data)
+        self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
+        self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(selection))
 
         # Fill all of the fields with the values from the database.
         # All the fields must be converted to string.
@@ -155,7 +156,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.text_note.setText(str(all_congregations[selection][10]))
 
 
-    def load_congregation_data(self):
+    def load_congregation_data(self, row):
 
         # Takes the values entered by the user and
         # adds it to variables.
@@ -173,7 +174,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         values = [name, phone, email, address, city,
                   state, zipcode, longitude, latitude, notes]
 
-        Congregation.edit_congregation(None, values)
+        Congregation.edit_congregation(None, values, row)
         self.show_edit.close()
 
 

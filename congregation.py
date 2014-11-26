@@ -90,7 +90,7 @@ class Congregation:
 
 
 
-    def edit_congregation(self, values):
+    def edit_congregation(self, values, row):
         """Method that edits congregation that was entered into the database.
 
          First checks to make sure all required
@@ -104,7 +104,8 @@ class Congregation:
                  otherwise return False.
 
         """
-        print("edit_congregation is running")
+
+
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(Congregation.columns, values)
 
@@ -124,7 +125,7 @@ class Congregation:
         # that the information can be relayed to the end user.
 
         if missing_fields == []:
-            DB.add_item(None, 'Congregation', Congregation.columns, values)
+            DB.modify_item(None, 'Congregation', Congregation.columns, values, row)
             return True
         else:
             return False, "Error: Fields", missing_fields
