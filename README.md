@@ -34,6 +34,7 @@ in our wiki for installation instructions.
 ##Screenshots
 ![Screenshot of the main window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2014-11-26.png)
 
+![Screenshot of the Congregation Edit Window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2014-11-27.png)
 
 ##License
 
