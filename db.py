@@ -138,6 +138,8 @@ class DB:
         """
         Returns the item the user requested.
 
+        WARNING: This method seems to be obsolete
+ 
         """
 
         command = "{}".format(sql)
@@ -166,6 +168,7 @@ class DB:
         c.execute(sql)
         conn.commit()
         conn.close()
+
 
     def return_sql(self, sql):
         """
