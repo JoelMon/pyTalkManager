@@ -202,14 +202,14 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
     Method that submits user made edits to be committed to the database.
 
     All the fields are submitted to the Congregation.edit_congregation method
-    which will do various checks such as make sure all required fields are 
-    entered. Then from there it is passed off to the db module that will 
+    which will do various checks such as make sure all required fields are
+    entered. Then from there it is passed off to the db module that will
     cause the database to be modified.
 
     Variables:
       values - a list of all the values that can be edited by the user in
                order.
-      
+
     """
 
 
@@ -233,13 +233,22 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     def show_add_congregation_window(self):
         """Window that allows the user enter a new congregation into the database"""
-        
+
         self.add_cong_window = AddCongregationWindow()
         self.add_cong_window.show()
 
 
 class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
-    """Window to allow the user to enter information on a new congregation"""
+    """
+    Window to allow the user to enter a new congregation into the database.
+
+    Methods:
+      add_item - Takes care of collecting user entered information and submitting
+                 it to Congregation.add_congregation where it will be checked for
+                 various things before being sent to the db module for inserting
+                 into the database.
+
+    """
 
 
     def __init__(self, parent=None):
@@ -257,8 +266,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
         """
 
-        # Takes the values entered by the user and
-        # adds it to variables.
         name = self.line_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
@@ -272,7 +279,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
         values = [name, phone, email, address, city,
                   state, zipcode, longitude, latitude, notes]
-
 
         # Passes the columns and values needed for adding a new
         # congregation to add_congregation. The add_congregation method
