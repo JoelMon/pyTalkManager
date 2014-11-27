@@ -126,7 +126,7 @@ class DB:
             command = "UPDATE {table} SET {column} = '{value}' WHERE id = {row}".format(table=table,
                                                                                       column=item[0],
                                                                                       value=item[1],
-                                                                                      row=row+1)
+                                                                                      row=row)
 
             DB.commit_sql(None, command)
 
