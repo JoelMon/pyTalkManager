@@ -12,8 +12,10 @@ configLocation = './config.ini'
 
 def configGet(section, key):
     """
-    Takes arguments for the config.ini file and returns the key.
+    Takes arguments for the config.ini file and return the key.
+
     :return: key from config.ini
+
     """
 
     # Testing the file with exceptions rather than os.access() due to security risk.
@@ -45,8 +47,12 @@ def configGet(section, key):
 
 
 def configSet(section, key, value):
-    """
-    Takes arguments for the config.ini file and writes to file.
+    """Takes arguments for the config.ini file and writes to file.
+
+    NOTE: The exceptions must be changed to print to avoid
+    errors. This is code left behind from the time that pyTalkmanager
+    was using the Tkinter framework.
+
     """
 
     # Testing the file with exceptions rather than os.access() due to security risk.
@@ -81,7 +87,9 @@ def buttonTest():
     """
     Test if a command works by printing a confirmation.
     :return: 'The command worked.'
+    
     """
+
     print('The command worked.')
 
 
@@ -91,8 +99,10 @@ def firstRunCheck():
     If it is pyTalkManager's first time running then initialize
     a SQLite database.
 
-    TODO: Have to add exception encase the config.ini file is
-    not found.
+    NOTE: The messages must be converted to print(). The current code
+    uses message_box which is old code left begind from the time that
+    Tkinter was being used for the GUI framework.
+
     """
 
     first_run = configGet('APP', 'first_time_running')
