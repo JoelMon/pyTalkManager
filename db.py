@@ -1,5 +1,4 @@
 import sqlite3
-
 import pyTalkManager as tm
 
 
