@@ -1,9 +1,7 @@
 __author__ = 'Joel Montes de Oca'
 
 import configparser
-
 from PySide import QtGui
-
 from db import DB
 
 
