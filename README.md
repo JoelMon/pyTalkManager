@@ -1,7 +1,7 @@
 # pyTalkManager
 
-**pyTalkManager** is a program to aid public talk coordinators in the
-congregations of Jehovah's Witness. It is written in
+**pyTalkManager** is a program to aid public talk coordinators, PTC,
+in the congregations of Jehovah's Witness. It is written in
 [Python3](https://www.python.org/) and uses the
 [Qt](http://qt-project.org/) GUI framework
 ([PySide](http://qt-project.org/wiki/PySide)) and
@@ -9,6 +9,14 @@ congregations of Jehovah's Witness. It is written in
 open source and cross platform technologies. Visit the project's
 [wiki](https://github.com/TheoDevelopers/pyTalkManager/wiki) for more
 information.
+
+**pyTalkManager** differentiates its self from other PTC software in a
+number of ways. For one, it is an open source project. Also,
+**pyTalkManager** will not be sold or have features that will only be
+unlocked with *donations*. Since **pyTalkManager** is open source and
+uses a flexible license, other PTC software developers can create
+programs that interact with **pyTalkManager**. 
+
 
 ##Development
 
@@ -25,6 +33,7 @@ in our wiki for installation instructions.
 
 ##Screenshots
 ![Screenshot of the main window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2014-11-26.png)
+
 
 ##License
 
