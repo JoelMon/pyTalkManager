@@ -54,7 +54,19 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
-    """Window for end user to manage pyTalkManager's database"""
+    """
+    Window for end user to manage pyTalkManager's database.
+
+    Supported actions for the user:
+
+      Create a new database
+      Backup existing database to a new location
+      Load an existing database
+
+    At the moment non of the functionality are implemented.
+    
+    """
+
 
     def __init__(self, parent=None):
         super(DatabaseWindow, self).__init__(parent)
