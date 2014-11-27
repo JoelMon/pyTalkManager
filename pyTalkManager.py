@@ -87,7 +87,7 @@ def buttonTest():
     """
     Test if a command works by printing a confirmation.
     :return: 'The command worked.'
-    
+
     """
 
     print('The command worked.')
