@@ -54,7 +54,19 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
-    """Window for end user to manage pyTalkManager's database"""
+    """
+    Window for end user to manage pyTalkManager's database.
+
+    Supported actions for the user:
+
+      Create a new database
+      Backup existing database to a new location
+      Load an existing database
+
+    At the moment non of the functionality are implemented.
+
+    """
+
 
     def __init__(self, parent=None):
         super(DatabaseWindow, self).__init__(parent)
@@ -77,7 +89,19 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
-    """Window for the end user to add brothers to the database."""
+    """
+
+    Window for the end user to add brothers to the database.
+
+    The window that opens when the user clicks on the 'Add'
+    button in BrotherWindow()
+
+    Methods:
+
+      add_item() - Takes all widget information and stores it in a variable.
+                   Currently the combo boxes and check boxes are not supported.
+
+    """
 
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
@@ -106,7 +130,23 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
-    """Window that allows the user to add, edit, and delete congregations to the database"""
+    """
+    Window that allows the user to add, edit, and delete congregations to the database.
+
+    Methods:
+
+      populate_table - Get's all the congregations entered in the database and returns
+                       only their names. Then it populates the list_congregation QListWidget
+                       with the retrieved names.
+
+      edit_congregation_window - Repurpose the AddCongregationWindow for editing congregation
+                                 information.
+
+      load_congregation_data - Submits user edits back to the database
+
+      show_add_congregation_window - Opens the AddCongregationWindow
+
+    """
 
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
@@ -143,23 +183,37 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(all_congregations[selection][0]))
 
         # Fill all of the fields with the values from the database.
-        # All the fields must be converted to string.
+        # All the fields must be converted to string otherwise an error is raised.
+        # Look more into the error.
         self.show_edit.line_name.setText(str(all_congregations[selection][1]))
         self.show_edit.line_phone.setText(str(all_congregations[selection][2]))
         self.show_edit.line_email.setText(str(all_congregations[selection][3]))
         self.show_edit.line_address.setText(str(all_congregations[selection][4]))
         self.show_edit.line_city.setText(str(all_congregations[selection][5]))
         self.show_edit.line_state.setText(str(all_congregations[selection][6]))
-        self.show_edit.line_zipcode.setText(str(all_congregations[selection][6]))
+        self.show_edit.line_zipcode.setText(str(all_congregations[selection][7]))
         self.show_edit.line_longitude.setText(str(all_congregations[selection][8]))
         self.show_edit.line_latitude.setText(str(all_congregations[selection][9]))
         self.show_edit.text_note.setText(str(all_congregations[selection][10]))
 
 
     def load_congregation_data(self, row):
+        """
+        Method that submits user made edits to be committed to the database.
 
-        # Takes the values entered by the user and
-        # adds it to variables.
+        All the fields are submitted to the
+        Congregation.edit_congregation method which will do various
+        checks such as make sure all required fields are entered. Then
+        from there it is passed off to the db module that will cause
+        the database to be modified.
+
+        Variables:
+          values - a list of all the values that can be edited by the user in
+                   order.
+
+        """
+
+
         name = self.show_edit.line_name.displayText()
         phone = self.show_edit.line_phone.displayText()
         email = self.show_edit.line_email.displayText()
@@ -180,12 +234,22 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     def show_add_congregation_window(self):
         """Window that allows the user enter a new congregation into the database"""
+
         self.add_cong_window = AddCongregationWindow()
         self.add_cong_window.show()
 
 
 class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
-    """Window to allow the user to enter information on a new congregation"""
+    """
+    Window to allow the user to enter a new congregation into the database.
+
+    Methods:
+      add_item - Takes care of collecting user entered information and submitting
+                 it to Congregation.add_congregation where it will be checked for
+                 various things before being sent to the db module for inserting
+                 into the database.
+
+    """
 
 
     def __init__(self, parent=None):
@@ -203,8 +267,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
         """
 
-        # Takes the values entered by the user and
-        # adds it to variables.
         name = self.line_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
@@ -218,7 +280,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
         values = [name, phone, email, address, city,
                   state, zipcode, longitude, latitude, notes]
-
 
         # Passes the columns and values needed for adding a new
         # congregation to add_congregation. The add_congregation method

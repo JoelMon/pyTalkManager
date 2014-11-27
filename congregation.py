@@ -17,16 +17,16 @@ class Congregation:
             :rtype : list
 
         """
+
         sql = "SELECT * FROM Congregation"
         return DB.return_pass_sql(None, sql)
 
 
     def get_list(self):
-        """
-        Get's all the names of congregations already in the database
+        """Get's all the names of congregations already in the database
         and returns them.
 
-        :return DB.return_pass_sql(None, sql): returns the output  of
+        :return DB.return_pass_sql(None, sql): returns the output of
         the method DB.return_pass_sql(None, sql)
 
         """
@@ -38,10 +38,10 @@ class Congregation:
     def add_congregation(self, values):
         """Method that adds a new congregation to the database.
 
-         First checks to make sure all required
-         fields were entered by the user. If the user failed to enter
-         a required field then do not commit data to the database
-         and return a list of missing fields.
+         First checks to make sure all required fields were entered by
+         the user. If the user failed to enter a required field then
+         do not commit data to the database and return a list of
+         missing fields.
 
         :param columns: a list of all columns in the Congregation table
         :param values: a list of user entered data for each column
@@ -93,10 +93,10 @@ class Congregation:
     def edit_congregation(self, values, row):
         """Method that edits congregation that was entered into the database.
 
-         First checks to make sure all required
-         fields were entered by the user. If the user failed to enter
-         a required field then do not commit data to the database
-         and return a list of missing fields.
+         First checks to make sure all required fields were entered by
+         the user. If the user failed to enter a required field then
+         do not commit data to the database and return a list of
+         missing fields.
 
         :param columns: a list of all columns in the Congregation table
         :param values: a list of user entered data for each column
