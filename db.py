@@ -8,7 +8,7 @@ class DB:
 
     def get_path():
         """Returns the path of the database located in config.ini"""
-        
+
         return tm.configGet('DB', 'location')
 
 
@@ -96,8 +96,8 @@ class DB:
     def add_item(self, table, column, value):
         """Takes an item and adds it to the database.
 
-        Known Problems: 
-            
+        Known Problems:
+
           The value list that is passed into the method is
           automatically converted into a string regardless if it's
           another data type such as an int, float, or bool.
@@ -139,7 +139,7 @@ class DB:
         Returns the item the user requested.
 
         WARNING: This method seems to be obsolete
- 
+
         """
 
         command = "{}".format(sql)
