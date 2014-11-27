@@ -233,6 +233,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
     def show_add_congregation_window(self):
         """Window that allows the user enter a new congregation into the database"""
+        
         self.add_cong_window = AddCongregationWindow()
         self.add_cong_window.show()
 
