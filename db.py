@@ -8,15 +8,18 @@ class DB:
 
     def get_path():
         """Returns the path of the database located in config.ini"""
+        
         return tm.configGet('DB', 'location')
 
 
     def DbInit():
         """Initialize SQLite database
 
-        This method runs when the user is running pyTalkManager for the first time
-        or when the user wants to initialize a new database. The method crates a
-        new SQLite database with all the needed tables and fields used by PyTalkManager.
+        This method runs when the user is running pyTalkManager for
+        the first time or when the user wants to initialize a new
+        database. The method crates a new SQLite database with all the
+        needed tables and fields used by PyTalkManager.
+
         """
 
         conn = sqlite3.connect(DB.get_path())
@@ -93,10 +96,11 @@ class DB:
     def add_item(self, table, column, value):
         """Takes an item and adds it to the database.
 
-        Known Problems:
-            The value list that is passed into the method is automatically
-            converted into a string regardless if it's another data type
-            such as an int, float, or bool.
+        Known Problems: 
+            
+          The value list that is passed into the method is
+          automatically converted into a string regardless if it's
+          another data type such as an int, float, or bool.
 
         :arguments
         table - a string with the table that will be written to
@@ -123,9 +127,9 @@ class DB:
 
         for item in combine:
             command = "UPDATE {table} SET {column} = '{value}' WHERE id = {row}".format(table=table,
-                                                                                      column=item[0],
-                                                                                      value=item[1],
-                                                                                      row=row)
+                                                                                        column=item[0],
+                                                                                        value=item[1],
+                                                                                        row=row)
 
             DB.commit_sql(None, command)
 
@@ -144,11 +148,6 @@ class DB:
 
     def delete_data(self):
         """Deletes data from the database"""
-        pass
-
-
-    def edit_item(self, table, item):
-        """Edits data in the database"""
         pass
 
 
