@@ -183,7 +183,8 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(all_congregations[selection][0]))
 
         # Fill all of the fields with the values from the database.
-        # All the fields must be converted to string.
+        # All the fields must be converted to string otherwise an error is raised:
+        # int is not subscribable 
         self.show_edit.line_name.setText(str(all_congregations[selection][1]))
         self.show_edit.line_phone.setText(str(all_congregations[selection][2]))
         self.show_edit.line_email.setText(str(all_congregations[selection][3]))
