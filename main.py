@@ -64,7 +64,7 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
       Load an existing database
 
     At the moment non of the functionality are implemented.
-    
+
     """
 
 
@@ -95,7 +95,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     The window that opens when the user clicks on the 'Add'
     button in BrotherWindow()
-    
+
     Methods:
 
       add_item() - Takes all widget information and stores it in a variable.
@@ -141,7 +141,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
       edit_congregation_window - Repurpose the AddCongregationWindow for editing congregation
                                  information.
-                       
+
       load_congregation_data - Submits user edits back to the database
 
       show_add_congregation_window - Opens the AddCongregationWindow
