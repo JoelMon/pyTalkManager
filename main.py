@@ -198,9 +198,21 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
 
     def load_congregation_data(self, row):
+    """
+    Method that submits user made edits to be committed to the database.
 
-        # Takes the values entered by the user and
-        # adds it to variables.
+    All the fields are submitted to the Congregation.edit_congregation method
+    which will do various checks such as make sure all required fields are 
+    entered. Then from there it is passed off to the db module that will 
+    cause the database to be modified.
+
+    Variables:
+      values - a list of all the values that can be edited by the user in
+               order.
+      
+    """
+
+
         name = self.show_edit.line_name.displayText()
         phone = self.show_edit.line_phone.displayText()
         email = self.show_edit.line_email.displayText()
