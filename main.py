@@ -130,7 +130,23 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
-    """Window that allows the user to add, edit, and delete congregations to the database"""
+    """
+    Window that allows the user to add, edit, and delete congregations to the database.
+
+    Methods:
+
+      populate_table - Get's all the congregations entered in the database and returns
+                       only their names. Then it populates the list_congregation QListWidget
+                       with the retrieved names.
+
+      edit_congregation_window - Repurpose the AddCongregationWindow for editing congregation
+                                 information.
+                       
+      load_congregation_data - Submits user edits back to the database
+
+      show_add_congregation_window - Opens the AddCongregationWindow
+
+    """
 
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
