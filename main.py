@@ -140,7 +140,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.show()
         self.show_edit.setWindowTitle("Edit Congregation")
         self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
-        self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(selection))
+        self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(selection[0]))
 
         # Fill all of the fields with the values from the database.
         # All the fields must be converted to string.
