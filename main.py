@@ -64,7 +64,7 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
     At the moment non of the functionality are implemented.
 
     """
-
+    # TODO: Implement DatabaseWindow features
 
     def __init__(self, parent=None):
         super(DatabaseWindow, self).__init__(parent)
