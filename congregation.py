@@ -49,6 +49,7 @@ class Congregation:
 
         """
 
+        # REVIEW long and lat: Leading zeros may be removed.
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(Congregation.columns, values)
 
