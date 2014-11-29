@@ -2,7 +2,6 @@ __author__ = 'Joel Montes de Oca'
 
 from db import DB
 
-
 class Congregation:
 
     # All of the columns in Congregation Window in correct order
@@ -86,7 +85,6 @@ class Congregation:
             return True
         else:
             return False, "Error: Fields", missing_fields
-
 
 
     def edit_congregation(self, values, row):
