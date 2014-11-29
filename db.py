@@ -9,7 +9,7 @@ class DB:
     def get_path():
         """Returns the path of the database located in config.ini"""
 
-        return tm.configGet('DB', 'location')
+        return tm.config_get('DB', 'location')
 
 
     def DbInit():
