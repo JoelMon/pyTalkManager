@@ -60,20 +60,20 @@ def configSet(section, key, value):
     try:
         open(configLocation)
     except FileNotFoundError:
-        messagebox.showerror("File config.ini was not found.",
-                             "The config.ini file was not found. "
-                             "Something may have gone wrong with the installation. "
-                             "Make sure the config.ini file is located in the "
-                             "application's root directory.")
+        print("File config.ini was not found.\n",
+              "The config.ini file was not found. "
+              "Something may have gone wrong with the installation. "
+              "Make sure the config.ini file is located in the "
+              "application's root directory.")
 
-        print('The config.ini file was not found.')
+        print("The config.ini file was not found.")
         quit()
     except PermissionError:
-        messagebox.showerror('Permission problem.',
-                             "You do not have sufficient permission for the config.ini file. "
-                             "Fix the problem then run %s again." % name)
+        print("Permission problem.",
+              "You do not have sufficient permission for the config.ini file. "
+              "Fix the problem then run {} again.".format(name))
 
-        print('You do not have permission to read the config.ini file.')
+        print("You do not have permission to read the config.ini file.")
         quit()
 
     config = configparser.ConfigParser()
@@ -108,24 +108,22 @@ def firstRunCheck():
     first_run = configGet('APP', 'first_time_running')
 
     if first_run == 'True':
-
-        message_box = QtGui.QMessageBox()
-        message_box.setWindowTitle("First time running pyTalkManager")
-        message_box.setText("This is the first time you run pyTalkManager.\n\n"
-                            "Please select a location to save pyTalkManager.")
+        print("-" * 80)
+        print("First time running pyTalkManager")
+        print("-" * 80)
+        print("This is the first time you run pyTalkManager.\n",
+              "Please select a location to save pyTalkManager.")
 
         message_box.exec_()
         file_name = QtGui.QFileDialog.getSaveFileName(
             None, "Save New Database", "New_Database.tdb",
             "pyTalkManager Database *.tdb")
         if file_name[0] == '':
-            message_box = QtGui.QMessageBox()
-            message_box.setWindowTitle("Warning")
-            message_box.Warning
-            message_box.setText("You did not select a location to save the database.\n"
-                                "Run pyTalkManager again and select a location to save\n"
-                                "the database.")
-            message_box.exec_()
+
+            print("Warning\n")
+            print("You did not select a location to save the database. "
+                  "Run pyTalkManager again and select a location to save "
+                  "the database.")
             quit()
 
         else:
