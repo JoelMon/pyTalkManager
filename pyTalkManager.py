@@ -114,11 +114,12 @@ def first_run_check():
         print("This is the first time you run pyTalkManager.\n",
               "Please select a location to save pyTalkManager.")
 
+        # Display QT Save File dialog window.
         file_name = QtGui.QFileDialog.getSaveFileName(
             None, "Save New Database", "New_Database.tdb",
             "pyTalkManager Database *.tdb")
-        if file_name[0] == '':
 
+        if file_name[0] == '':
             print("Warning\n")
             print("You did not select a location to save the database. "
                   "Run pyTalkManager again and select a location to save "
