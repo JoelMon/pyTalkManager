@@ -2,7 +2,7 @@ __author__ = 'Joel Montes de Oca'
 
 import configparser
 from PySide import QtGui
-from pyTalkManager.db import DB
+from db import DB
 
 version = '0.1'
 name = 'pyTalkManager'
