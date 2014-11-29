@@ -27,7 +27,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
 
-        tm.firstRunCheck()
+        tm.first_run_check()
 
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_window)
