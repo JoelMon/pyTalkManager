@@ -60,6 +60,7 @@ target/
 /.idea/pyTalkManager.iml
 /.idea/vcs.xml
 /.idea/
+pyTalkManager/.idea/
 
 # SQLite3 Database
 *.db
