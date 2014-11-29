@@ -53,6 +53,7 @@ class Congregation:
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(Congregation.columns, values)
 
+
         # Check if user entered data repeats. This section checks if the
         # name field of the congregation repeats with congregations already
         # in the database. If so, return error with reason.
