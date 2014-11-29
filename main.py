@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-
 from PySide import QtGui
-
 import pyTalkManager as tm
 from congregation import Congregation
 
