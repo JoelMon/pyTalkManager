@@ -64,7 +64,7 @@ class DB:
                                            street TEXT NOT NULL,
                                            city TEXT NOT NULL,
                                            state TEXT NOT NULL,
-                                           zip NUMERIC NOT NULL,
+                                           zip TEXT NOT NULL,
                                            long NUMERIC,
                                            lat NUMERIC,
                                            note BLOB

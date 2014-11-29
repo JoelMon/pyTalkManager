@@ -2,7 +2,6 @@ __author__ = 'Joel Montes de Oca'
 
 from db import DB
 
-
 class Congregation:
 
     # All of the columns in Congregation Window in correct order
@@ -50,9 +49,9 @@ class Congregation:
 
         """
 
+        # REVIEW long and lat: Leading zeros may be removed.
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(Congregation.columns, values)
-
 
         # Check if user entered data repeats. This section checks if the
         # name field of the congregation repeats with congregations already
@@ -87,7 +86,6 @@ class Congregation:
             return True
         else:
             return False, "Error: Fields", missing_fields
-
 
 
     def edit_congregation(self, values, row):
