@@ -1,10 +1,11 @@
-__author__ = 'Joel Montes de Oca'
+__author__ = 'JoelMontes de Oca'
 
 import unittest
 import pyTalkManager.pyTalkManager as tm
 
-class testMain(unittest.TestCase):
-    def test_buttonTest(self):
+
+class MyTestCase(unittest.TestCase):
+    def test_button_test(self):
         self.assertEquals(tm.buttonTest(), 'The command worked.')
 
 if __name__ == '__main__':
