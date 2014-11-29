@@ -56,6 +56,7 @@ class Congregation:
         # Check if user entered data repeats. This section checks if the
         # name field of the congregation repeats with congregations already
         # in the database. If so, return error with reason.
+        # TODO: Break this section up into it's own method.
 
         congregation_names = Congregation.get_list(None)
 
@@ -69,6 +70,7 @@ class Congregation:
         # Check user entered data against required_fields to see if user
         # has left any required fields empty. If required fields are empty,
         # then add the offending field to missing_fields list.
+        # TODO: Break this section up into it's own method.
 
         missing_fields = []
         for item in combine:
