@@ -2,7 +2,7 @@ __author__ = 'Joel Montes de Oca'
 
 import configparser
 from PySide import QtGui
-from db import DB
+from pyTalkManager.db import DB
 
 version = '0.1'
 name = 'pyTalkManager'
@@ -89,7 +89,7 @@ def buttonTest():
 
     """
 
-    print('The command worked.')
+    return 'The command worked.'
 
 
 def first_run_check():
