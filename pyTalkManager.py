@@ -99,10 +99,6 @@ def first_run_check():
     If it is pyTalkManager's first time running then initialize
     a SQLite database.
 
-    NOTE: The messages must be converted to print(). The current code
-    uses message_box which is old code left begind from the time that
-    Tkinter was being used for the GUI framework.
-
     """
 
     first_run = config_get('APP', 'first_time_running')
