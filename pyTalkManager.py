@@ -114,7 +114,6 @@ def first_run_check():
         print("This is the first time you run pyTalkManager.\n",
               "Please select a location to save pyTalkManager.")
 
-        message_box.exec_()
         file_name = QtGui.QFileDialog.getSaveFileName(
             None, "Save New Database", "New_Database.tdb",
             "pyTalkManager Database *.tdb")
