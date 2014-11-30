@@ -26,7 +26,7 @@ class Congregation:
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
-            :rtype : list
+            :returns : list
 
         """
 
