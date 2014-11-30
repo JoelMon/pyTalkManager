@@ -254,10 +254,10 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
-        self.button_add.clicked.connect(self.add_item)
+        self.button_add.clicked.connect(self.new_congregation)
 
 
-    def add_item(self):
+    def new_congregation(self):
         """
         Method to add information of a new congregation to
         the database.
