@@ -2,9 +2,8 @@ __author__ = 'Joel Montes de Oca'
 
 from db import DB
 
+
 class Congregation:
-
-
     def __init__(self):
         self.name = None
         self.phone = None
@@ -21,13 +20,12 @@ class Congregation:
 
     # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
-                   'state', 'zip', 'long', 'lat', 'note']
+               'state', 'zip', 'long', 'lat', 'note']
 
 
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
-
             :rtype : list
 
         """
@@ -79,7 +77,8 @@ class Congregation:
             item, value = str(item[0]), str(values[0])
             if item.lower() == value.lower():
                 # The return[1] needs to be translated
-                return False, "Error: duplicate", "Congregation '{}' has already been entered into the database.".format(item)
+                return False, "Error: duplicate", "Congregation '{}' has already been entered into the database.".format(
+                    item)
 
 
         # Check user entered data against required_fields to see if user
@@ -119,7 +118,6 @@ class Congregation:
                  otherwise return False.
 
         """
-
 
         required_fields = ['name', 'street', 'city', 'state', 'zip']
         combine = zip(Congregation.columns, values)
