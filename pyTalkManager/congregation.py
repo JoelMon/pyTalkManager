@@ -1,5 +1,3 @@
-__author__ = 'Joel Montes de Oca'
-
 from db import DB
 
 
@@ -92,6 +90,8 @@ class Congregation:
 
         """
 
+        print("add_congregation is running") # Debug code
+
         values = [self.name,
                  self.phone,
                  self.email,
@@ -110,6 +110,7 @@ class Congregation:
         # TODO: Break this section up into it's own method.
         congregation_names = Congregation.get_list(None)
 
+        print("About to check duplicates")  # debug code
         for item in congregation_names:
             item, value = str(item[0]), str(values[0])
             if item.lower() == value.lower():
@@ -124,6 +125,7 @@ class Congregation:
         else:
             print("ERROR: The following fields were missing and are reqired: {}".format(missing_fields))
 
+        print("Ended add_congregation")  # debug code
 
     def edit_congregation(self, values, row):
         """Method that edits congregation that was entered into the database.
