@@ -143,3 +143,21 @@ class Congregation:
             return True
         else:
             return False, "Error: Fields", missing_fields
+
+
+    def __zero_out(self):
+        """
+        Returns all of the Congregation's atributes back to null.
+        """
+
+        self.name = None
+        self.phone = None
+        self.email = None
+        self.street = None
+        self.city = None
+        self.state = None
+        self.zip = None
+        self.long = None
+        self.lat = None
+        self.note = None
+        self.visibility = None
