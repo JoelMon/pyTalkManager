@@ -275,9 +275,14 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
+        visibility = True
 
-        values = [name, phone, email, address, city,
-                  state, zipcode, longitude, latitude, notes]
+        new_congregation = Congregation()
+
+        new_congregation.set_attributes(name, phone, email, address,
+                                        city, state, zipcode, latitude,
+                                        longitude, notes, visibility)
+
 
         # Passes the columns and values needed for adding a new
         # congregation to add_congregation. The add_congregation method
