@@ -145,6 +145,33 @@ class Congregation:
             return False, "Error: Fields", missing_fields
 
 
+    def __check_required_fields(self):
+
+       # required_fields = ['name', 'street', 'city', 'state', 'zip']
+        missing_fields = []
+
+        if self.name is None:
+            missing_fields.append("name")
+        elif self.street is None:
+            missing_fields.append("street")
+        elif self.city is None:
+            missing_fields.append("city")
+        elif self.state is None:
+            missing_fields.append("state")
+        elif self.zip is None:
+            missing_fields.append("zip")
+
+        # If missing_fields list the data entered by the user is
+        # submitted to the database. If missing_fields list is not
+        # empty then return False and the list of missing_fields so
+        # that the information can be relayed to the end user.
+
+        if missing_fields == []:
+            return True
+        else:
+            return False, missing_fields
+
+
     def __zero_out(self):
         """
         Returns all of the Congregation's atributes back to null.
