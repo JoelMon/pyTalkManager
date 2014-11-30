@@ -274,34 +274,13 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
-        visibility = True
+        visibility = 'True'
 
         new_congregation = Congregation()
-
-        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, latitude, longitude, notes,
+        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode,longitude, latitude, notes,
                                         visibility)
+        new_congregation.add_congregation()
 
-        result = Congregation.add_congregation()
-
-        print(result)
-
-        """
-        # Passes the columns and values needed for adding a new
-        # congregation to add_congregation. The add_congregation method
-        # takes care of checking if all required fields have been
-        # entered. If not, then it returns False with the error
-        # otherwise it returns True.
-
-        submission = Congregation.add_congregation(None, values)
-
-        if submission is True:
-            pass
-        else:
-            if submission[1] == "Error: duplicate":
-                print(submission[2])  # debugging - Will replace with GUI
-            elif submission[1] == "Error: Fields":
-                print(submission[2])  # debugging - Will replace with GUI
-        """
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
