@@ -4,6 +4,9 @@ from db import DB
 
 
 class Congregation:
+    """Congregation class"""
+
+
     def __init__(self):
         self.name = None
         self.phone = None
