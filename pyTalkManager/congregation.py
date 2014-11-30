@@ -4,6 +4,21 @@ from db import DB
 
 class Congregation:
 
+
+    def __init__(self):
+        self.name = None
+        self.phone = None
+        self.email = None
+        self.street = None
+        self.city = None
+        self.state = None
+        self.zip = None
+        self.long = None
+        self.lat = None
+        self.note = None
+        self.visibility = None
+
+
     # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
                    'state', 'zip', 'long', 'lat', 'note']
