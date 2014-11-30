@@ -20,7 +20,33 @@ class Congregation:
 
     # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
-               'state', 'zip', 'long', 'lat', 'note']
+               'state', 'zip', 'long', 'lat', 'note', 'visibility']
+
+
+    def set_attributes(self,
+                       name=None,
+                       phone=None,
+                       email=None,
+                       street=None,
+                       city=None,
+                       state=None,
+                       zip=None,
+                       long=None,
+                       lat=None,
+                       note=None,
+                       visibility=True):
+
+        self.name = name
+        self.phone = phone
+        self.email = email
+        self.street = street
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.long = long
+        self.lat = lat
+        self.note = note
+        self.visibility = visibility
 
 
     def get_entries(self):
@@ -92,6 +118,8 @@ class Congregation:
 
         if missing_fields:
             DB.add_item(None, 'Congregation', Congregation.columns, values)
+        else:
+            print("ERROR: The following fields were missing and are reqired: {}".format(missing_fields))
 
 
     def edit_congregation(self, values, row):
