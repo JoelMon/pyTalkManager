@@ -211,7 +211,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         """
 
-
         name = self.show_edit.line_name.displayText()
         phone = self.show_edit.line_phone.displayText()
         email = self.show_edit.line_email.displayText()
@@ -279,11 +278,14 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
         new_congregation = Congregation()
 
-        new_congregation.set_attributes(name, phone, email, address,
-                                        city, state, zipcode, latitude,
-                                        longitude, notes, visibility)
+        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, latitude, longitude, notes,
+                                        visibility)
 
+        result = Congregation.add_congregation()
 
+        print(result)
+
+        """
         # Passes the columns and values needed for adding a new
         # congregation to add_congregation. The add_congregation method
         # takes care of checking if all required fields have been
@@ -299,7 +301,7 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
                 print(submission[2])  # debugging - Will replace with GUI
             elif submission[1] == "Error: Fields":
                 print(submission[2])  # debugging - Will replace with GUI
-
+        """
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
