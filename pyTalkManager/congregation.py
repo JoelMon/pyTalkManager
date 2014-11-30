@@ -35,8 +35,9 @@ class Congregation:
 
 
     def get_list(self):
-        """Get's all the names of congregations already in the database
-        and returns them.
+        """
+        Get's all the names of congregations already in the database
+        and returns them. The names are all returned within a list.
 
         :return DB.return_pass_sql(None, sql): returns the output of
         the method DB.return_pass_sql(None, sql)
