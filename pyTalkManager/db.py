@@ -67,7 +67,8 @@ class DB:
                                            zip TEXT NOT NULL,
                                            long NUMERIC,
                                            lat NUMERIC,
-                                           note BLOB
+                                           note BLOB,
+                                           visibility BOOL NOT NULL DEFAULT True
                                            )''')
 
         c.execute('''CREATE TABLE Hospitality (
