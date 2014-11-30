@@ -192,7 +192,7 @@ class Congregation:
             return False, missing_fields
 
 
-    def __zero_out(self):
+    def zero_out(self):
         """
         Returns all of the Congregation's atributes back to null.
         """
