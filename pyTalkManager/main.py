@@ -178,7 +178,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.show()
         self.show_edit.setWindowTitle("Edit Congregation")
         self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
-        self.show_edit.button_add.clicked.connect(lambda: self.load_congregation_data(all_congregations[selection][0]))
+        self.show_edit.button_add.clicked.connect(lambda: self.edit_congregation(all_congregations[selection][0]))
 
         # Fill all of the fields with the values from the database.
         # All the fields must be converted to string otherwise an error is raised.
@@ -195,7 +195,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit.text_note.setText(str(all_congregations[selection][10]))
 
 
-    def load_congregation_data(self, row):
+    def edit_congregation(self, row):
         """
         Method that submits user made edits to be committed to the database.
 
@@ -211,7 +211,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         """
 
-
         name = self.show_edit.line_name.displayText()
         phone = self.show_edit.line_phone.displayText()
         email = self.show_edit.line_email.displayText()
@@ -222,11 +221,12 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         latitude = self.show_edit.line_latitude.displayText()
         longitude = self.show_edit.line_longitude.displayText()
         notes = self.show_edit.text_note.toPlainText()
+        visibility = 'True'
 
-        values = [name, phone, email, address, city,
-                  state, zipcode, longitude, latitude, notes]
-
-        Congregation.edit_congregation(None, values, row)
+        edit_congregation = Congregation()
+        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
+                                         visibility)
+        edit_congregation.edit_congregation(row)
         self.show_edit.close()
 
 
@@ -251,14 +251,13 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
     def __init__(self, parent=None):
-        self.edit_mode = False
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
-        self.button_add.clicked.connect(self.add_item)
+        self.button_add.clicked.connect(self.new_congregation)
 
 
-    def add_item(self):
+    def new_congregation(self):
         """
         Method to add information of a new congregation to
         the database.
@@ -275,25 +274,12 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
+        visibility = 'True'
 
-        values = [name, phone, email, address, city,
-                  state, zipcode, longitude, latitude, notes]
-
-        # Passes the columns and values needed for adding a new
-        # congregation to add_congregation. The add_congregation method
-        # takes care of checking if all required fields have been
-        # entered. If not, then it returns False with the error
-        # otherwise it returns True.
-
-        submission = Congregation.add_congregation(None, values)
-
-        if submission is True:
-            pass
-        else:
-            if submission[1] == "Error: duplicate":
-                print(submission[2])  # debugging - Will replace with GUI
-            elif submission[1] == "Error: Fields":
-                print(submission[2])  # debugging - Will replace with GUI
+        new_congregation = Congregation()
+        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode,longitude, latitude, notes,
+                                        visibility)
+        new_congregation.add_congregation()
 
 
 if __name__ == '__main__':
