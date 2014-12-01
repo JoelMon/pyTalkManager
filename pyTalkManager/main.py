@@ -250,7 +250,6 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
 
 
     def __init__(self, parent=None):
-        self.edit_mode = False
         super(AddCongregationWindow, self).__init__(parent)
         self.setupUi(self)
 
