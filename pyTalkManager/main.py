@@ -128,7 +128,10 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
 
 class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
-    pass
+
+    def __init__(self):
+        super(EditCongregationDialog, self).__init__(parent)
+        self.setupUi(self)
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
