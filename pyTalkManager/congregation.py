@@ -90,8 +90,6 @@ class Congregation:
 
         """
 
-        print("add_congregation is running") # Debug code
-
         values = [self.name,
                  self.phone,
                  self.email,
@@ -115,17 +113,15 @@ class Congregation:
             item, value = str(item[0]), str(values[0])
             if item.lower() == value.lower():
                 # The return[1] needs to be translated
-                return False, "Error: duplicate", "Congregation '{}' has already been entered into the database.".format(
-                    item)
+                print("Error: duplicate", "Congregation '{}' has already been entered into the database.".format(item))
 
         missing_fields = Congregation.__check_required_fields(self)
-
+        print(missing_fields)
         if missing_fields:
             DB.add_item(None, 'Congregation', Congregation.columns, values)
         else:
             print("ERROR: The following fields were missing and are reqired: {}".format(missing_fields))
 
-        print("Ended add_congregation")  # debug code
 
     def edit_congregation(self, values, row):
         """Method that edits congregation that was entered into the database.
@@ -168,19 +164,19 @@ class Congregation:
 
 
     def __check_required_fields(self):
-
+        print("check requirements is running")  # debug code
         # required_fields = ['name', 'street', 'city', 'state', 'zip']
         missing_fields = []
 
-        if self.name is None:
+        if self.name == '':
             missing_fields.append("name")
-        elif self.street is None:
+        if self.street == '':
             missing_fields.append("street")
-        elif self.city is None:
+        if self.city == '':
             missing_fields.append("city")
-        elif self.state is None:
+        if self.state == '':
             missing_fields.append("state")
-        elif self.zip is None:
+        if self.zip == '':
             missing_fields.append("zip")
 
         # If missing_fields list the data entered by the user is
