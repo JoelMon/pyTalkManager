@@ -159,7 +159,12 @@ class Congregation:
     def __check_for_dup(self, name):
         """
         Checks to see if the congregation already exists in the database.
-        If it does, return the error.
+        If the congregation exists then return 'Failed' along with the
+        name of the duplicated congregation, otherwise return Passed.
+
+        :argument name: The name of the congregation to check.
+        :returns Passed: If no duplicates are found.
+        :returns (Failed, 'item'): If a duplicate is found.
         """
 
         congregation = Congregation()
@@ -172,7 +177,7 @@ class Congregation:
             for item in list_of_congregations:
                 item = item[0]
                 if item.lower() == check_name.lower():
-                    return "Failed", item
+                    return ("Failed", item)
                 else:
                     return "Passed"
 
