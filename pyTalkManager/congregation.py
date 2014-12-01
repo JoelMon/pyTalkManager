@@ -4,7 +4,6 @@ from db import DB
 class Congregation:
     """Congregation class"""
 
-
     def __init__(self):
         self.name = ''
         self.phone = None
@@ -107,44 +106,33 @@ class Congregation:
                 print("A required field was missing: {}".format(missing_fields[1]))
 
 
-    def edit_congregation(self, values, row):
-        """Method that edits congregation that was entered into the database.
-
-         First checks to make sure all required fields were entered by
-         the user. If the user failed to enter a required field then
-         do not commit data to the database and return a list of
-         missing fields.
-
-        :param columns: a list of all columns in the Congregation table
-        :param values: a list of user entered data for each column
-        :return: Return True if all required fields were entered
-                 otherwise return False.
-
+    def edit_congregation(self, row):
+        """
+        Method that prepares user entered data for the selected congregation
+        before sending it to the db module for updating it in the database.
         """
 
-        required_fields = ['name', 'street', 'city', 'state', 'zip']
-        combine = zip(Congregation.columns, values)
+        values = [self.name,
+                 self.phone,
+                 self.email,
+                 self.street,
+                 self.city,
+                 self.state,
+                 self.zip,
+                 self.long,
+                 self.lat,
+                 self.note,
+                 self.visibility]
 
-        # Check user entered data against required_fields to see if user
-        # has left any required fields empty. If required fields are empty,
-        # then add the offending field to missing_fields list.
+        # REVIEW long and lat: Leading zeros may be removed.
 
-        missing_fields = []
-        for item in combine:
-            if item[0] in required_fields and item[1] == '':
-                missing_fields.append(item[0])
+        dup_congregation = Congregation.__check_for_dup(self, values[0])
+        missing_fields = Congregation.__check_required_fields(self)
 
-
-        # If missing_fields list the data entered by the user is
-        # submitted to the database. If missing_fields list is not
-        # empty then return False and the list of missing_fields so
-        # that the information can be relayed to the end user.
-
-        if missing_fields == []:
+        if missing_fields == "Passed":
             DB.modify_item(None, 'Congregation', Congregation.columns, values, row)
-            return True
         else:
-            return False, "Error: Fields", missing_fields
+            print("A required field was missing: {}".format(missing_fields[1]))
 
 
     def __check_for_dup(self, name):
