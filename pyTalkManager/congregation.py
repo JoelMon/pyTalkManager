@@ -76,18 +76,9 @@ class Congregation:
 
 
     def add_congregation(self):
-        """Method that adds a new congregation to the database.
-
-         First checks to make sure all required fields were entered by
-         the user. If the user failed to enter a required field then
-         do not commit data to the database and return a list of
-         missing fields.
-
-        :param columns: a list of all columns in the Congregation table
-        :param values: a list of user entered data for each column
-        :return: Return True if all required fields were entered
-                 otherwise return False.
-
+        """
+        Method that prepares user entered data for a new congregation
+        before sending it to the db module for insertion into the database.
         """
 
         values = [self.name,
