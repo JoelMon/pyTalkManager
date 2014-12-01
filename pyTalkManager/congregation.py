@@ -183,6 +183,13 @@ class Congregation:
 
 
     def __check_required_fields(self):
+        """
+        Checks to see if all required fields for Congregation has been
+        entered by the user.
+
+        :returns 'Passed': If all required fields were entered.
+        :returns ('Failed', [field, ...]: If required fields were not entered.
+        """
 
         missing_fields = []
 
