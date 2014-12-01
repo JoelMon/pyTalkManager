@@ -212,7 +212,7 @@ class Congregation:
 
     def zero_out(self):
         """
-        Returns all of the Congregation's atributes back to null.
+        Returns all of the Congregation's attributes back to null.
         """
 
         self.name = None
