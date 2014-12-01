@@ -6,7 +6,7 @@ class Congregation:
 
 
     def __init__(self):
-        self.name = None
+        self.name = ''
         self.phone = None
         self.email = None
         self.street = None
@@ -104,23 +104,16 @@ class Congregation:
 
         # REVIEW long and lat: Leading zeros may be removed.
 
-        # Check for dupicates in the database.
-        # TODO: Break this section up into it's own method.
-        congregation_names = Congregation.get_list(None)
-
-        print("About to check duplicates")  # debug code
-        for item in congregation_names:
-            item, value = str(item[0]), str(values[0])
-            if item.lower() == value.lower():
-                # The return[1] needs to be translated
-                print("Error: duplicate", "Congregation '{}' has already been entered into the database.".format(item))
-
+        dup_congregation = Congregation.__check_for_dup(self, values[0])
         missing_fields = Congregation.__check_required_fields(self)
-        print(missing_fields)
-        if missing_fields:
+
+        if dup_congregation == "Passed" and missing_fields == "Passed":
             DB.add_item(None, 'Congregation', Congregation.columns, values)
         else:
-            print("ERROR: The following fields were missing and are reqired: {}".format(missing_fields))
+            if dup_congregation != "Passed":
+                print("A duplicate entry was found: {}".format(dup_congregation[1]))
+            else:
+                print("A required field was missing: {}".format(missing_fields[1]))
 
 
     def edit_congregation(self, values, row):
@@ -163,9 +156,29 @@ class Congregation:
             return False, "Error: Fields", missing_fields
 
 
+    def __check_for_dup(self, name):
+        """
+        Checks to see if the congregation already exists in the database.
+        If it does, return the error.
+        """
+
+        congregation = Congregation()
+        list_of_congregations = congregation.get_list()
+        check_name = name
+
+        if list_of_congregations == []:
+            return "Passed"
+        else:
+            for item in list_of_congregations:
+                item = item[0]
+                if item.lower() == check_name.lower():
+                    return "Failed", item
+                else:
+                    return "Passed"
+
+
     def __check_required_fields(self):
-        print("check requirements is running")  # debug code
-        # required_fields = ['name', 'street', 'city', 'state', 'zip']
+
         missing_fields = []
 
         if self.name == '':
@@ -179,15 +192,10 @@ class Congregation:
         if self.zip == '':
             missing_fields.append("zip")
 
-        # If missing_fields list the data entered by the user is
-        # submitted to the database. If missing_fields list is not
-        # empty then return False and the list of missing_fields so
-        # that the information can be relayed to the end user.
-
         if missing_fields == []:
-            return True
+            return "Passed"
         else:
-            return False, missing_fields
+            return ("Failed", missing_fields)
 
 
     def zero_out(self):
