@@ -129,12 +129,16 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
 class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
 
+    # TODO: implement this class fully.
     def __init__(self, index, parent=None):
         super(EditCongregationDialog, self).__init__(parent)
         self.setupUi(self)
-        print(index)
 
+        self.show_edit = AddCongregationWindow()
+        self.show_edit.button_add.clicked.connect(self.test)
 
+    def test(self):
+        print("It works")
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
@@ -187,10 +191,8 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
         self.show_edit.show()
 
-
-
-        # self.show_edit.setWindowTitle("Edit Congregation")
-        # self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
+        self.show_edit.setWindowTitle("Edit Congregation")
+        self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
         # self.show_edit.button_add.clicked.connect(lambda: self.edit_congregation(all_congregations[selection][0]))
 
         # # Fill all of the fields with the values from the database.
