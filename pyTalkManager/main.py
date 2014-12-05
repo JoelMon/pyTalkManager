@@ -135,10 +135,13 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         self.setupUi(self)
 
         self.edit_window = AddCongregationWindow()
-        self.edit_window.button_add.clicked.connect(self.test)
+        self.edit_window.button_add.clicked.connect(self.submit_edit)
 
         self.setWindowTitle("Edit Congregation")
         self.button_add.setText("Edit")
+
+    def submit_edit(self):
+        pass
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
