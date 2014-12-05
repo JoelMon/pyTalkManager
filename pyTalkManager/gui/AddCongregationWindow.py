@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'gui/AddCongregationWindow.ui'
+# Form implementation generated from reading ui file 'pyTalkManager/gui/AddCongregationWindow.ui'
 #
-# Created: Wed Nov 19 10:38:11 2014
+# Created: Fri Dec  5 18:25:13 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -127,6 +127,9 @@ class Ui_AddCongregationWindow(object):
         self.line_2.setObjectName("line_2")
         self.gridLayout_7.addWidget(self.line_2, 1, 0, 1, 1)
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_4 = QtGui.QWidget()
+        self.tab_4.setObjectName("tab_4")
+        self.tabWidget.addTab(self.tab_4, "")
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_5 = QtGui.QGridLayout(self.tab_3)
@@ -165,7 +168,7 @@ class Ui_AddCongregationWindow(object):
         self.gridLayout_8.addWidget(self.frame, 1, 0, 1, 1)
 
         self.retranslateUi(AddCongregationWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QObject.connect(self.button_close, QtCore.SIGNAL("clicked()"), AddCongregationWindow.close)
         QtCore.QMetaObject.connectSlotsByName(AddCongregationWindow)
         AddCongregationWindow.setTabOrder(self.line_name, self.line_phone)
@@ -195,6 +198,7 @@ class Ui_AddCongregationWindow(object):
         self.label_6.setText(QtGui.QApplication.translate("AddCongregationWindow", "State", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("AddCongregationWindow", "Zipcode", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("AddCongregationWindow", "Address", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QtGui.QApplication.translate("AddCongregationWindow", "Schedule", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("AddCongregationWindow", "Notes", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_4.setText(QtGui.QApplication.translate("AddCongregationWindow", "Batch", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("AddCongregationWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
