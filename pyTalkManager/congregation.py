@@ -110,6 +110,8 @@ class Congregation:
         """
         Method that prepares user entered data for the selected congregation
         before sending it to the db module for updating it in the database.
+
+        :param row: The row within the table Congregation being edited.
         """
 
         values = [self.name,
@@ -126,7 +128,6 @@ class Congregation:
 
         # REVIEW long and lat: Leading zeros may be removed.
 
-        dup_congregation = Congregation.__check_for_dup(self, values[0])
         missing_fields = Congregation.__check_required_fields(self)
 
         if missing_fields == "Passed":

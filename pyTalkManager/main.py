@@ -95,10 +95,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     button in BrotherWindow()
 
     Methods:
-
       add_item() - Takes all widget information and stores it in a variable.
                    Currently the combo boxes and check boxes are not supported.
-
     """
 
     def __init__(self, parent=None):
@@ -125,6 +123,65 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         values = [first_name, middle_name, last_name, phone, email,
                   congregation, responsibility, chairman, speaker,
                   coordinator, note]
+
+
+class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+    # TODO: implement this class fully.
+
+    def __init__(self, index, parent=None):  # index is the user selected congregation
+        super(EditCongregationDialog, self).__init__(parent)
+        self.setupUi(self)
+
+        self.setWindowTitle("Edit Congregation")
+        self.button_add.setText("Save")
+
+        all_congregations = Congregation.get_entries(None)
+
+        self.button_add.clicked.connect(lambda: self.submit_edit(all_congregations[index][0]))
+
+        # load information of selected congregation into the dialog
+        self.line_name.setText(str(all_congregations[index][1]))
+        self.line_phone.setText(str(all_congregations[index][2]))
+        self.line_email.setText(str(all_congregations[index][3]))
+        self.line_address.setText(str(all_congregations[index][4]))
+        self.line_city.setText(str(all_congregations[index][5]))
+        self.line_state.setText(str(all_congregations[index][6]))
+        self.line_zipcode.setText(str(all_congregations[index][7]))
+        self.line_longitude.setText(str(all_congregations[index][8]))
+        self.line_latitude.setText(str(all_congregations[index][9]))
+        self.text_note.setText(str(all_congregations[index][10]))
+
+
+    def submit_edit(self, row):
+        """
+        Method that submits user made edits to be committed to the database.
+
+        All the fields are submitted to the
+        Congregation.edit_congregation method which will do various
+        checks such as make sure all required fields are entered. Then
+        from there it is passed off to the db module that will cause
+        the database to be modified.
+
+        :param row: The row being modified.
+        """
+
+        name = self.line_name.displayText()
+        phone = self.line_phone.displayText()
+        email = self.line_email.displayText()
+        address = self.line_address.displayText()
+        city = self.line_city.displayText()
+        state = self.line_state.displayText()
+        zipcode = self.line_zipcode.displayText()
+        latitude = self.line_latitude.displayText()
+        longitude = self.line_longitude.displayText()
+        notes = self.text_note.toPlainText()
+        visibility = "True"
+
+        edit_congregation = Congregation()
+        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
+                                         visibility)
+        edit_congregation.edit_congregation(row)
+        self.close()
 
 
 class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
@@ -161,7 +218,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
 
-
     def edit_congregation_window(self):
         """
         Opens the AddCongregationWindow, changes the title to
@@ -174,60 +230,8 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
 
-        self.show_edit = AddCongregationWindow()
+        self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
         self.show_edit.show()
-        self.show_edit.setWindowTitle("Edit Congregation")
-        self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
-        self.show_edit.button_add.clicked.connect(lambda: self.edit_congregation(all_congregations[selection][0]))
-
-        # Fill all of the fields with the values from the database.
-        # All the fields must be converted to string otherwise an error is raised.
-        # Look more into the error.
-        self.show_edit.line_name.setText(str(all_congregations[selection][1]))
-        self.show_edit.line_phone.setText(str(all_congregations[selection][2]))
-        self.show_edit.line_email.setText(str(all_congregations[selection][3]))
-        self.show_edit.line_address.setText(str(all_congregations[selection][4]))
-        self.show_edit.line_city.setText(str(all_congregations[selection][5]))
-        self.show_edit.line_state.setText(str(all_congregations[selection][6]))
-        self.show_edit.line_zipcode.setText(str(all_congregations[selection][7]))
-        self.show_edit.line_longitude.setText(str(all_congregations[selection][8]))
-        self.show_edit.line_latitude.setText(str(all_congregations[selection][9]))
-        self.show_edit.text_note.setText(str(all_congregations[selection][10]))
-
-
-    def edit_congregation(self, row):
-        """
-        Method that submits user made edits to be committed to the database.
-
-        All the fields are submitted to the
-        Congregation.edit_congregation method which will do various
-        checks such as make sure all required fields are entered. Then
-        from there it is passed off to the db module that will cause
-        the database to be modified.
-
-        Variables:
-          values - a list of all the values that can be edited by the user in
-                   order.
-
-        """
-
-        name = self.show_edit.line_name.displayText()
-        phone = self.show_edit.line_phone.displayText()
-        email = self.show_edit.line_email.displayText()
-        address = self.show_edit.line_address.displayText()
-        city = self.show_edit.line_city.displayText()
-        state = self.show_edit.line_state.displayText()
-        zipcode = self.show_edit.line_zipcode.displayText()
-        latitude = self.show_edit.line_latitude.displayText()
-        longitude = self.show_edit.line_longitude.displayText()
-        notes = self.show_edit.text_note.toPlainText()
-        visibility = 'True'
-
-        edit_congregation = Congregation()
-        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-                                         visibility)
-        edit_congregation.edit_congregation(row)
-        self.show_edit.close()
 
 
     def show_add_congregation_window(self):
@@ -277,7 +281,7 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         visibility = 'True'
 
         new_congregation = Congregation()
-        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode,longitude, latitude, notes,
+        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
                                         visibility)
         new_congregation.add_congregation()
 
