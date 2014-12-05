@@ -130,7 +130,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
     # TODO: implement this class fully.
 
-    def __init__(self, index, parent=None):
+    def __init__(self, index, parent=None):  # index is the user selected congregation
         super(EditCongregationDialog, self).__init__(parent)
         self.setupUi(self)
 
@@ -141,7 +141,18 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         self.button_add.setText("Save")
 
         # load information of selected congregation into the dialog
+        all_congregations = Congregation.get_entries(None)
 
+        self.line_name.setText(str(all_congregations[index][1]))
+        self.line_phone.setText(str(all_congregations[index][2]))
+        self.line_email.setText(str(all_congregations[index][3]))
+        self.line_address.setText(str(all_congregations[index][4]))
+        self.line_city.setText(str(all_congregations[index][5]))
+        self.line_state.setText(str(all_congregations[index][6]))
+        self.line_zipcode.setText(str(all_congregations[index][7]))
+        self.line_longitude.setText(str(all_congregations[index][8]))
+        self.line_latitude.setText(str(all_congregations[index][9]))
+        self.text_note.setText(str(all_congregations[index][10]))
 
 
     def submit_edit(self):
@@ -196,25 +207,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
 
         self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
         self.show_edit.show()
-
-        # self.show_edit.setWindowTitle("Edit Congregation")
-        # self.show_edit.button_add.setText('Save')  # Renamed 'Add' button to 'Save'
-        # self.show_edit.button_add.clicked.connect(lambda: self.edit_congregation(all_congregations[selection][0]))
-
-        # # Fill all of the fields with the values from the database.
-        # # All the fields must be converted to string otherwise an error is raised.
-        # # Look more into the error.
-        # self.show_edit.line_name.setText(str(all_congregations[selection][1]))
-        # self.show_edit.line_phone.setText(str(all_congregations[selection][2]))
-        # self.show_edit.line_email.setText(str(all_congregations[selection][3]))
-        # self.show_edit.line_address.setText(str(all_congregations[selection][4]))
-        # self.show_edit.line_city.setText(str(all_congregations[selection][5]))
-        # self.show_edit.line_state.setText(str(all_congregations[selection][6]))
-        # self.show_edit.line_zipcode.setText(str(all_congregations[selection][7]))
-        # self.show_edit.line_longitude.setText(str(all_congregations[selection][8]))
-        # self.show_edit.line_latitude.setText(str(all_congregations[selection][9]))
-        # self.show_edit.text_note.setText(str(all_congregations[selection][10]))
-
 
     # def edit_congregation(self, row):
     #     """
