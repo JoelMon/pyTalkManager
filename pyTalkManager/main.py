@@ -134,7 +134,6 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         super(EditCongregationDialog, self).__init__(parent)
         self.setupUi(self)
 
-        self.edit_window = AddCongregationWindow()
         self.setWindowTitle("Edit Congregation")
         self.button_add.setText("Save")
 
