@@ -235,40 +235,6 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
         self.show_edit.show()
 
-    # def edit_congregation(self, row):
-    #     """
-    #     Method that submits user made edits to be committed to the database.
-    #
-    #     All the fields are submitted to the
-    #     Congregation.edit_congregation method which will do various
-    #     checks such as make sure all required fields are entered. Then
-    #     from there it is passed off to the db module that will cause
-    #     the database to be modified.
-    #
-    #     Variables:
-    #       values - a list of all the values that can be edited by the user in
-    #                order.
-    #
-    #     """
-    #
-    #     name = self.show_edit.line_name.displayText()
-    #     phone = self.show_edit.line_phone.displayText()
-    #     email = self.show_edit.line_email.displayText()
-    #     address = self.show_edit.line_address.displayText()
-    #     city = self.show_edit.line_city.displayText()
-    #     state = self.show_edit.line_state.displayText()
-    #     zipcode = self.show_edit.line_zipcode.displayText()
-    #     latitude = self.show_edit.line_latitude.displayText()
-    #     longitude = self.show_edit.line_longitude.displayText()
-    #     notes = self.show_edit.text_note.toPlainText()
-    #     visibility = 'True'
-    #
-    #     edit_congregation = Congregation()
-    #     edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-    #                                      visibility)
-    #     edit_congregation.edit_congregation(row)
-    #     self.show_edit.close()
-
 
     def show_add_congregation_window(self):
         """Window that allows the user enter a new congregation into the database"""
