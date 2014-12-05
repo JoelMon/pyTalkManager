@@ -95,10 +95,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     button in BrotherWindow()
 
     Methods:
-
       add_item() - Takes all widget information and stores it in a variable.
                    Currently the combo boxes and check boxes are not supported.
-
     """
 
     def __init__(self, parent=None):
