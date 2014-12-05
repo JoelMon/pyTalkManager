@@ -111,7 +111,7 @@ class Congregation:
         Method that prepares user entered data for the selected congregation
         before sending it to the db module for updating it in the database.
 
-        :argument row: The row within the table Congregation being edited
+        :param row: The row within the table Congregation being edited.
         """
 
         values = [self.name,
