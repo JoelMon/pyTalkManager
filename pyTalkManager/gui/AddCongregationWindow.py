@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pyTalkManager/gui/AddCongregationWindow.ui'
+# Form implementation generated from reading ui file 'AddCongregationWindow.ui'
 #
-# Created: Fri Dec  5 18:25:13 2014
+# Created: Fri Dec  5 18:31:01 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -168,7 +168,7 @@ class Ui_AddCongregationWindow(object):
         self.gridLayout_8.addWidget(self.frame, 1, 0, 1, 1)
 
         self.retranslateUi(AddCongregationWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.button_close, QtCore.SIGNAL("clicked()"), AddCongregationWindow.close)
         QtCore.QMetaObject.connectSlotsByName(AddCongregationWindow)
         AddCongregationWindow.setTabOrder(self.line_name, self.line_phone)
