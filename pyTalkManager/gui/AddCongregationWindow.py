@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pyTalkManager/gui/AddCongregationWindow.ui'
+# Form implementation generated from reading ui file 'AddCongregationWindow.ui'
 #
-# Created: Fri Dec  5 20:32:33 2014
+# Created: Fri Dec  5 20:37:04 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -159,12 +159,12 @@ class Ui_AddCongregationWindow(object):
         self.label_10 = QtGui.QLabel(self.frame_8)
         self.label_10.setObjectName("label_10")
         self.gridLayout_10.addWidget(self.label_10, 0, 0, 1, 1)
-        self.radioButton = QtGui.QRadioButton(self.frame_8)
-        self.radioButton.setObjectName("radioButton")
-        self.gridLayout_10.addWidget(self.radioButton, 0, 1, 1, 1)
-        self.radioButton_2 = QtGui.QRadioButton(self.frame_8)
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.gridLayout_10.addWidget(self.radioButton_2, 1, 1, 1, 1)
+        self.radioSaturday = QtGui.QRadioButton(self.frame_8)
+        self.radioSaturday.setObjectName("radioSaturday")
+        self.gridLayout_10.addWidget(self.radioSaturday, 0, 1, 1, 1)
+        self.radioSunday = QtGui.QRadioButton(self.frame_8)
+        self.radioSunday.setObjectName("radioSunday")
+        self.gridLayout_10.addWidget(self.radioSunday, 1, 1, 1, 1)
         self.verticalLayout_2.addWidget(self.frame_8)
         self.frame_9 = QtGui.QFrame(self.tab_4)
         self.frame_9.setFrameShape(QtGui.QFrame.StyledPanel)
@@ -233,8 +233,8 @@ class Ui_AddCongregationWindow(object):
         self.label_7.setText(QtGui.QApplication.translate("AddCongregationWindow", "Zipcode", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("AddCongregationWindow", "Address", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setText(QtGui.QApplication.translate("AddCongregationWindow", "Public talks are on:", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButton.setText(QtGui.QApplication.translate("AddCongregationWindow", "Saturday", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButton_2.setText(QtGui.QApplication.translate("AddCongregationWindow", "Sunday", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioSaturday.setText(QtGui.QApplication.translate("AddCongregationWindow", "Saturday", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioSunday.setText(QtGui.QApplication.translate("AddCongregationWindow", "Sunday", None, QtGui.QApplication.UnicodeUTF8))
         self.label_11.setText(QtGui.QApplication.translate("AddCongregationWindow", "Time:", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QtGui.QApplication.translate("AddCongregationWindow", "Schedule", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("AddCongregationWindow", "Notes", None, QtGui.QApplication.UnicodeUTF8))
