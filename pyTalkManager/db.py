@@ -65,6 +65,8 @@ class DB:
                                            city TEXT NOT NULL,
                                            state TEXT NOT NULL,
                                            zip TEXT NOT NULL,
+                                           week TEXT NOT NULL,
+                                           time TEXT NOT NULL,
                                            long NUMERIC,
                                            lat NUMERIC,
                                            note BLOB,
