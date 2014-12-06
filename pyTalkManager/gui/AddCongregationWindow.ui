@@ -297,7 +297,20 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="2">
-              <widget class="QTimeEdit" name="timeEdit"/>
+              <widget class="QTimeEdit" name="timeEdit">
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="accelerated">
+                <bool>false</bool>
+               </property>
+               <property name="calendarPopup">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
              <item row="0" column="1">
               <widget class="QLabel" name="label_11">
@@ -350,6 +363,9 @@
   <tabstop>line_zipcode</tabstop>
   <tabstop>line_latitude</tabstop>
   <tabstop>line_longitude</tabstop>
+  <tabstop>radioSaturday</tabstop>
+  <tabstop>radioSunday</tabstop>
+  <tabstop>timeEdit</tabstop>
   <tabstop>text_note</tabstop>
   <tabstop>button_add</tabstop>
   <tabstop>button_close</tabstop>

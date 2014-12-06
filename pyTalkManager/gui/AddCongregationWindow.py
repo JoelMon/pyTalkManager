@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'AddCongregationWindow.ui'
 #
-# Created: Fri Dec  5 20:37:04 2014
+# Created: Fri Dec  5 20:49:17 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -173,6 +173,10 @@ class Ui_AddCongregationWindow(object):
         self.gridLayout_11 = QtGui.QGridLayout(self.frame_9)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.timeEdit = QtGui.QTimeEdit(self.frame_9)
+        self.timeEdit.setWrapping(False)
+        self.timeEdit.setFrame(True)
+        self.timeEdit.setAccelerated(False)
+        self.timeEdit.setCalendarPopup(False)
         self.timeEdit.setObjectName("timeEdit")
         self.gridLayout_11.addWidget(self.timeEdit, 0, 2, 1, 1)
         self.label_11 = QtGui.QLabel(self.frame_9)
@@ -210,7 +214,10 @@ class Ui_AddCongregationWindow(object):
         AddCongregationWindow.setTabOrder(self.line_state, self.line_zipcode)
         AddCongregationWindow.setTabOrder(self.line_zipcode, self.line_latitude)
         AddCongregationWindow.setTabOrder(self.line_latitude, self.line_longitude)
-        AddCongregationWindow.setTabOrder(self.line_longitude, self.text_note)
+        AddCongregationWindow.setTabOrder(self.line_longitude, self.radioSaturday)
+        AddCongregationWindow.setTabOrder(self.radioSaturday, self.radioSunday)
+        AddCongregationWindow.setTabOrder(self.radioSunday, self.timeEdit)
+        AddCongregationWindow.setTabOrder(self.timeEdit, self.text_note)
         AddCongregationWindow.setTabOrder(self.text_note, self.button_add)
         AddCongregationWindow.setTabOrder(self.button_add, self.button_close)
         AddCongregationWindow.setTabOrder(self.button_close, self.tabWidget)
