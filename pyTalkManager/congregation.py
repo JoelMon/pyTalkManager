@@ -192,6 +192,10 @@ class Congregation:
             missing_fields.append("state")
         if self.zip == '':
             missing_fields.append("zip")
+        if self.week == '':
+            missing_fields.append("week")
+        if self.time == '':
+            missing_fields.append('time')
 
         if missing_fields == []:
             return "Passed"
