@@ -159,7 +159,8 @@ class CongregationWindow(QtGui.QDialog,
 
     def populate_table(self):
         """
-        Populates the congregation table so the user may select a congregation already entered into the database.
+        Populates the congregation table so the user may select a
+        congregation already entered into the database.
         """
         list = Congregation.get_list(None)
 
@@ -179,12 +180,14 @@ class CongregationWindow(QtGui.QDialog,
         all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
 
-        self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
+        self.show_edit = EditCongregationDialog(
+            selection)  # Pass the index of the user selection.
         self.show_edit.show()
 
 
     def show_add_congregation_window(self):
-        """Window that allows the user enter a new congregation into the database"""
+        """Window that allows the user enter a new congregation into the
+        database"""
 
         self.add_cong_window = AddCongregationWindow()
         self.add_cong_window.show()
@@ -252,7 +255,8 @@ class EditCongregationDialog(QtGui.QDialog,
 
         all_congregations = Congregation.get_entries(None)
 
-        self.button_add.clicked.connect(lambda: self.submit_edit(all_congregations[index][0]))
+        self.button_add.clicked.connect(
+            lambda: self.submit_edit(all_congregations[index][0]))
 
         # load information of selected congregation into the dialog
         self.line_name.setText(str(all_congregations[index][1]))
