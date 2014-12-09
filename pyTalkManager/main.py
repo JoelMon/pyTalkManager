@@ -280,17 +280,18 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         city = self.line_city.displayText()
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
+        week = "week"
+        time = "time"
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
         visibility = "True"
 
         edit_congregation = Congregation()
-        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-                                         visibility)
+        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, week, time, longitude,
+                                         latitude, notes, visibility)
         edit_congregation.edit_congregation(row)
         self.close()
-
 
 
 if __name__ == '__main__':
