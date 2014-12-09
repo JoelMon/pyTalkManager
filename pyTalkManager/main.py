@@ -72,7 +72,9 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 
 
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
-    """Window for the end user to manage the list of brothers in the database."""
+    """
+    Window for the end user to manage the list of brothers in the database.
+    """
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
@@ -125,18 +127,20 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
                   coordinator, note]
 
 
-class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
+class CongregationWindow(QtGui.QDialog,
+                         gui.CongregationWindow.Ui_CongregationWindow):
     """
-    Window that allows the user to add, edit, and delete congregations to the database.
+    Window that allows the user to add, edit, and delete congregations to the
+    database.
 
     Methods:
 
-      populate_table - Get's all the congregations entered in the database and returns
-                       only their names. Then it populates the list_congregation QListWidget
-                       with the retrieved names.
+      populate_table - Get's all the congregations entered in the database and
+      returns only their names. Then it populates the list_congregation
+      QListWidget with the retrieved names.
 
-      edit_congregation_window - Repurpose the AddCongregationWindow for editing congregation
-                                 information.
+      edit_congregation_window - Repurpose the AddCongregationWindow for
+      editing congregation information.
 
       load_congregation_data - Submits user edits back to the database
 
@@ -186,13 +190,15 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.add_cong_window.show()
 
 
-class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+class AddCongregationWindow(QtGui.QDialog,
+                            gui.AddCongregationWindow.Ui_AddCongregationWindow):
     """
     Window to allow the user to enter a new congregation into the database.
 
     Methods:
-      new_congregation - Takes care of collecting user entered information and submitting it to
-      Congregation.add_congregation where it will be checked for various things before being sent to the db module for
+      new_congregation - Takes care of collecting user entered information
+      and submitting it to Congregation.add_congregation where it will be
+      checked for various things before being sent to the db module for
       inserting into the database.
     """
 
@@ -226,15 +232,18 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         visibility = 'True'
 
         new_congregation = Congregation()
-        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, week, time, longitude,
+        new_congregation.set_attributes(name, phone, email, address, city,
+                                        state, zipcode, week, time, longitude,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
 
 
-class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+class EditCongregationDialog(QtGui.QDialog,
+                             gui.AddCongregationWindow.Ui_AddCongregationWindow):
     # TODO: implement this class fully.
 
-    def __init__(self, index, parent=None):  # index is the user selected congregation
+    # index is the user selected congregation
+    def __init__(self, index, parent=None):
         super(EditCongregationDialog, self).__init__(parent)
         self.setupUi(self)
 
@@ -288,7 +297,8 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         visibility = "True"
 
         edit_congregation = Congregation()
-        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, week, time, longitude,
+        edit_congregation.set_attributes(name, phone, email, address, city,
+                                         state, zipcode, week, time, longitude,
                                          latitude, notes, visibility)
         edit_congregation.edit_congregation(row)
         self.close()
