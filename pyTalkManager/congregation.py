@@ -215,6 +215,8 @@ class Congregation:
         self.city = None
         self.state = None
         self.zip = None
+        self.week = None
+        self.time = None
         self.long = None
         self.lat = None
         self.note = None
