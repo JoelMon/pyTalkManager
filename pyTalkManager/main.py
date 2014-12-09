@@ -253,6 +253,8 @@ class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCong
         self.line_city.setText(str(all_congregations[index][5]))
         self.line_state.setText(str(all_congregations[index][6]))
         self.line_zipcode.setText(str(all_congregations[index][7]))
+        # select the correct radio box
+        # self.timeEdit
         self.line_longitude.setText(str(all_congregations[index][8]))
         self.line_latitude.setText(str(all_congregations[index][9]))
         self.text_note.setText(str(all_congregations[index][10]))
