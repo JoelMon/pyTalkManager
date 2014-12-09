@@ -162,6 +162,7 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
 
+
     def edit_congregation_window(self):
         """
         Opens the AddCongregationWindow, changes the title to
