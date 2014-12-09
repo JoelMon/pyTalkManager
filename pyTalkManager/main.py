@@ -152,8 +152,11 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.button_add.clicked.connect(self.show_add_congregation_window)
         self.button_edit.clicked.connect(self.edit_congregation_window)
 
-    # Populate the congregation table
+
     def populate_table(self):
+        """
+        Populates the congregation table so the user may select a congregation already entered into the database.
+        """
         list = Congregation.get_list(None)
 
         for item in list:
