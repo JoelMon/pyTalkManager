@@ -92,6 +92,8 @@ class Congregation:
                  self.city,
                  self.state,
                  self.zip,
+                 self.week,
+                 self.time,
                  self.long,
                  self.lat,
                  self.note,
