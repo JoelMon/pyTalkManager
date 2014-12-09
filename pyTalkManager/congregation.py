@@ -32,6 +32,8 @@ class Congregation:
                        city=None,
                        state=None,
                        zip=None,
+                       week=None,
+                       time=None,
                        long=None,
                        lat=None,
                        note=None,
@@ -44,6 +46,8 @@ class Congregation:
         self.city = city
         self.state = state
         self.zip = zip
+        self.week = week
+        self.time = time
         self.long = long
         self.lat = lat
         self.note = note
