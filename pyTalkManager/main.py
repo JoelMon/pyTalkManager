@@ -191,7 +191,7 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
     Window to allow the user to enter a new congregation into the database.
 
     Methods:
-      add_congregation - Takes care of collecting user entered information and submitting it to
+      new_congregation - Takes care of collecting user entered information and submitting it to
       Congregation.add_congregation where it will be checked for various things before being sent to the db module for
       inserting into the database.
     """
