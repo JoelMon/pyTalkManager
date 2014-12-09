@@ -243,7 +243,6 @@ class AddCongregationWindow(QtGui.QDialog,
 
 class EditCongregationDialog(QtGui.QDialog,
                              gui.AddCongregationWindow.Ui_AddCongregationWindow):
-    # TODO: implement this class fully.
 
     # index is the user selected congregation
     def __init__(self, index, parent=None):
