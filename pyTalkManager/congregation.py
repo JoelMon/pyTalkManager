@@ -20,7 +20,8 @@ class Congregation:
 
     # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
-               'state', 'zip', 'long', 'lat', 'note', 'visibility']
+               'state', 'zip', 'week', 'time', 'long', 'lat',
+               'note', 'visibility']
 
 
     def set_attributes(self,
