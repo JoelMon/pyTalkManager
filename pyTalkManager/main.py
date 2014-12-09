@@ -218,14 +218,16 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         city = self.line_city.displayText()
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
+        week = "week"
+        time = "time"
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
         visibility = 'True'
 
         new_congregation = Congregation()
-        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-                                        visibility)
+        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, week, time, longitude,
+                                        latitude, notes, visibility)
         new_congregation.add_congregation()
 
 
