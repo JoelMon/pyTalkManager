@@ -266,7 +266,22 @@
              <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_10">
-             <item row="0" column="1">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_10">
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>10</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Meeting Days</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
               <widget class="QFrame" name="frame_10">
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -287,7 +302,7 @@
                    <bool>true</bool>
                   </property>
                   <property name="checked">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </property>
                   <property name="autoExclusive">
                    <bool>true</bool>
@@ -305,21 +320,6 @@
                  </widget>
                 </item>
                </layout>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_10">
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>10</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Meeting Days</string>
-               </property>
               </widget>
              </item>
             </layout>
@@ -416,8 +416,6 @@
   <tabstop>line_zipcode</tabstop>
   <tabstop>line_latitude</tabstop>
   <tabstop>line_longitude</tabstop>
-  <tabstop>radioSaturday</tabstop>
-  <tabstop>radioSunday</tabstop>
   <tabstop>timeEdit</tabstop>
   <tabstop>text_note</tabstop>
   <tabstop>button_add</tabstop>
