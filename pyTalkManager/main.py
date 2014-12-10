@@ -220,6 +220,8 @@ class AddCongregationWindow(QtGui.QDialog,
 
         """
 
+        add_cong_window = AddCongregationWindow()
+
         name = self.line_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
@@ -227,7 +229,7 @@ class AddCongregationWindow(QtGui.QDialog,
         city = self.line_city.displayText()
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
-        week = "week"
+        week = add_cong_window.determine_week()  # Return clicked radio button
         time = "time"
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
@@ -239,6 +241,25 @@ class AddCongregationWindow(QtGui.QDialog,
                                         state, zipcode, week, time, longitude,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
+
+    def determine_week(self):
+        """
+        Determine which date the user has selected.
+
+        :return: Return the radio button that is active. If no check radio
+        button are active then do not return an empty string.
+        """
+        # FIXME: The radio boxes come back as fales even when checked.
+        print(self.radioSaturday.isChecked())
+        print(self.radioSunday.isChecked())
+        if self.radioSaturday.isChecked():
+            print("Saturday was selected.")
+            return "Saturday"
+        elif self.radioSunday.isChecked():
+            print("Sunday was selected.")
+            return "Sunday"
+        else:
+            print("Nothing was detected.")
 
 
 class EditCongregationDialog(QtGui.QDialog,
