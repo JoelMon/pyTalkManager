@@ -249,17 +249,21 @@ class AddCongregationWindow(QtGui.QDialog,
         :return: Return the radio button that is active. If no check radio
         button are active then do not return an empty string.
         """
-        # FIXME: The radio boxes come back as fales even when checked.
+        # FIXME: The radio boxes come back as false even when checked.
+
+        # Debugging code
+        self.radioSunday.setChecked(True)
         print(self.radioSaturday.isChecked())
         print(self.radioSunday.isChecked())
+
         if self.radioSaturday.isChecked():
-            print("Saturday was selected.")
+            print("Saturday was selected.")  # Debugging code
             return "Saturday"
         elif self.radioSunday.isChecked():
-            print("Sunday was selected.")
+            print("Sunday was selected.")    # Debugging code
             return "Sunday"
         else:
-            print("Nothing was detected.")
+            print("Nothing was detected.")   # Debugging code
 
 
 class EditCongregationDialog(QtGui.QDialog,
