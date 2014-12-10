@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'AddCongregationWindow.ui'
 #
-# Created: Wed Dec 10 14:18:59 2014
+# Created: Wed Dec 10 16:47:09 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -207,6 +207,8 @@ class Ui_AddCongregationWindow(object):
         self.timeEdit.setWrapping(False)
         self.timeEdit.setFrame(True)
         self.timeEdit.setAccelerated(False)
+        self.timeEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2000, 1, 1), QtCore.QTime(0, 0, 0)))
+        self.timeEdit.setTime(QtCore.QTime(0, 0, 0))
         self.timeEdit.setCalendarPopup(False)
         self.timeEdit.setObjectName("timeEdit")
         self.gridLayout_11.addWidget(self.timeEdit, 0, 2, 1, 1)
