@@ -240,6 +240,7 @@ class AddCongregationWindow(QtGui.QDialog,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
 
+
     def determine_week(self):
         """
         Determine which date the user has selected.
