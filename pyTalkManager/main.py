@@ -257,7 +257,8 @@ class AddCongregationWindow(QtGui.QDialog,
         allow PySide to compile button groups correctly.
         https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
         """
-
+        # NOTE: Consider moving this method to the congregation mod.
+        
         if self.radioSaturday.isChecked():
             return "Saturday"
         elif self.radioSunday.isChecked():
