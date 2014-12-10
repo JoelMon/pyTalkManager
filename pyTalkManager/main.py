@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from PySide import QtGui
+from PySide import QtGui, QtCore
 import pyTalkManager as tm
 from congregation import Congregation
 
@@ -228,7 +228,7 @@ class AddCongregationWindow(QtGui.QDialog,
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
         week = self.determine_day()  # Return clicked radio button
-        time = "time"
+        time = str(self.timeEdit.time())[20:-1]
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
@@ -298,7 +298,9 @@ class EditCongregationDialog(QtGui.QDialog,
             self.radioSaturday.setChecked(True)
         else:
             self.radioSunday.setChecked(True)
-        # self.timeEdit
+        # show the time
+        h, m, s, ms = all_congregations[index][9].split(',')
+        self.timeEdit.setTime(QtCore.QTime(int(h), int(m)))
         self.line_longitude.setText(str(all_congregations[index][10]))
         self.line_latitude.setText(str(all_congregations[index][11]))
         self.text_note.setText(str(all_congregations[index][12]))
@@ -324,7 +326,8 @@ class EditCongregationDialog(QtGui.QDialog,
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
         week = AddCongregationWindow.determine_day(self)
-        time = "time"
+        # Time slices out PySide.QtCore.QTime()
+        time = str(self.timeEdit.time())[20:-1]
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
