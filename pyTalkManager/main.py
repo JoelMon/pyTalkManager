@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from PySide import QtGui
+from PySide import QtGui, QtCore
 import pyTalkManager as tm
 from congregation import Congregation
 
@@ -72,7 +72,9 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 
 
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
-    """Window for the end user to manage the list of brothers in the database."""
+    """
+    Window for the end user to manage the list of brothers in the database.
+    """
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
@@ -125,77 +127,20 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
                   coordinator, note]
 
 
-class EditCongregationDialog(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
-    # TODO: implement this class fully.
-
-    def __init__(self, index, parent=None):  # index is the user selected congregation
-        super(EditCongregationDialog, self).__init__(parent)
-        self.setupUi(self)
-
-        self.setWindowTitle("Edit Congregation")
-        self.button_add.setText("Save")
-
-        all_congregations = Congregation.get_entries(None)
-
-        self.button_add.clicked.connect(lambda: self.submit_edit(all_congregations[index][0]))
-
-        # load information of selected congregation into the dialog
-        self.line_name.setText(str(all_congregations[index][1]))
-        self.line_phone.setText(str(all_congregations[index][2]))
-        self.line_email.setText(str(all_congregations[index][3]))
-        self.line_address.setText(str(all_congregations[index][4]))
-        self.line_city.setText(str(all_congregations[index][5]))
-        self.line_state.setText(str(all_congregations[index][6]))
-        self.line_zipcode.setText(str(all_congregations[index][7]))
-        self.line_longitude.setText(str(all_congregations[index][8]))
-        self.line_latitude.setText(str(all_congregations[index][9]))
-        self.text_note.setText(str(all_congregations[index][10]))
-
-
-    def submit_edit(self, row):
-        """
-        Method that submits user made edits to be committed to the database.
-
-        All the fields are submitted to the
-        Congregation.edit_congregation method which will do various
-        checks such as make sure all required fields are entered. Then
-        from there it is passed off to the db module that will cause
-        the database to be modified.
-
-        :param row: The row being modified.
-        """
-
-        name = self.line_name.displayText()
-        phone = self.line_phone.displayText()
-        email = self.line_email.displayText()
-        address = self.line_address.displayText()
-        city = self.line_city.displayText()
-        state = self.line_state.displayText()
-        zipcode = self.line_zipcode.displayText()
-        latitude = self.line_latitude.displayText()
-        longitude = self.line_longitude.displayText()
-        notes = self.text_note.toPlainText()
-        visibility = "True"
-
-        edit_congregation = Congregation()
-        edit_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-                                         visibility)
-        edit_congregation.edit_congregation(row)
-        self.close()
-
-
-class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWindow):
+class CongregationWindow(QtGui.QDialog,
+                         gui.CongregationWindow.Ui_CongregationWindow):
     """
-    Window that allows the user to add, edit, and delete congregations to the database.
+    Window that allows the user to add, edit, and delete congregations to the
+    database.
 
     Methods:
 
-      populate_table - Get's all the congregations entered in the database and returns
-                       only their names. Then it populates the list_congregation QListWidget
-                       with the retrieved names.
+      populate_table - Get's all the congregations entered in the database and
+      returns only their names. Then it populates the list_congregation
+      QListWidget with the retrieved names.
 
-      edit_congregation_window - Repurpose the AddCongregationWindow for editing congregation
-                                 information.
+      edit_congregation_window - Repurpose the AddCongregationWindow for
+      editing congregation information.
 
       load_congregation_data - Submits user edits back to the database
 
@@ -211,12 +156,17 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         self.button_add.clicked.connect(self.show_add_congregation_window)
         self.button_edit.clicked.connect(self.edit_congregation_window)
 
-    # Populate the congregation table
+
     def populate_table(self):
+        """
+        Populates the congregation table so the user may select a
+        congregation already entered into the database.
+        """
         list = Congregation.get_list(None)
 
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
+
 
     def edit_congregation_window(self):
         """
@@ -230,27 +180,29 @@ class CongregationWindow(QtGui.QDialog, gui.CongregationWindow.Ui_CongregationWi
         all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
 
-        self.show_edit = EditCongregationDialog(selection)  # Pass the index of the user selection.
+        self.show_edit = EditCongregationDialog(
+            selection)  # Pass the index of the user selection.
         self.show_edit.show()
 
 
     def show_add_congregation_window(self):
-        """Window that allows the user enter a new congregation into the database"""
+        """Window that allows the user enter a new congregation into the
+        database"""
 
         self.add_cong_window = AddCongregationWindow()
         self.add_cong_window.show()
 
 
-class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongregationWindow):
+class AddCongregationWindow(QtGui.QDialog,
+                            gui.AddCongregationWindow.Ui_AddCongregationWindow):
     """
     Window to allow the user to enter a new congregation into the database.
 
     Methods:
-      add_item - Takes care of collecting user entered information and submitting
-                 it to Congregation.add_congregation where it will be checked for
-                 various things before being sent to the db module for inserting
-                 into the database.
-
+      new_congregation - Takes care of collecting user entered information
+      and submitting it to Congregation.add_congregation where it will be
+      checked for various things before being sent to the db module for
+      inserting into the database.
     """
 
 
@@ -275,15 +227,118 @@ class AddCongregationWindow(QtGui.QDialog, gui.AddCongregationWindow.Ui_AddCongr
         city = self.line_city.displayText()
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
+        week = self.determine_day()  # Return clicked radio button
+        time = str(self.timeEdit.time())[20:-1]
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
         notes = self.text_note.toPlainText()
         visibility = 'True'
 
         new_congregation = Congregation()
-        new_congregation.set_attributes(name, phone, email, address, city, state, zipcode, longitude, latitude, notes,
-                                        visibility)
+        new_congregation.set_attributes(name, phone, email, address, city,
+                                        state, zipcode, week, time, longitude,
+                                        latitude, notes, visibility)
         new_congregation.add_congregation()
+
+
+    def determine_day(self):
+        """
+        Determine which date the user has selected.
+
+        :return: Return the radio button that is active. If no check radio
+        button are active then do not return an empty string.
+
+        Note:
+        Radio buttons can be added to a button group and to replace the
+        determine_day method by using a code line like this:
+        day = group.checkedButton(); week = day.text() if day else ''
+
+        What prevents this: as of December 10, 2014 there's a bug that doesn't
+        allow PySide to compile button groups correctly.
+        https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
+        """
+        # NOTE: Consider moving this method to the congregation mod.
+
+        if self.radioSaturday.isChecked():
+            return "Saturday"
+        elif self.radioSunday.isChecked():
+            return "Sunday"
+
+
+class EditCongregationDialog(QtGui.QDialog,
+                             gui.AddCongregationWindow.Ui_AddCongregationWindow):
+    """
+    Opens the AddCongregationWindow for editing congregation entries from the
+    database.
+    """
+
+    # index is the user selected congregation
+    def __init__(self, index, parent=None):
+        super(EditCongregationDialog, self).__init__(parent)
+        self.setupUi(self)
+
+        self.setWindowTitle("Edit Congregation")
+        self.button_add.setText("Save")
+
+        all_congregations = Congregation.get_entries(None)
+
+        self.button_add.clicked.connect(
+            lambda: self.submit_edit(all_congregations[index][0]))
+
+        # load information of selected congregation into the dialog
+        self.line_name.setText(str(all_congregations[index][1]))
+        self.line_phone.setText(str(all_congregations[index][2]))
+        self.line_email.setText(str(all_congregations[index][3]))
+        self.line_address.setText(str(all_congregations[index][4]))
+        self.line_city.setText(str(all_congregations[index][5]))
+        self.line_state.setText(str(all_congregations[index][6]))
+        self.line_zipcode.setText(str(all_congregations[index][7]))
+        # select the correct radio box
+        if str(all_congregations[index][8]) == "Saturday":
+            self.radioSaturday.setChecked(True)
+        else:
+            self.radioSunday.setChecked(True)
+        # show the time
+        h, m, s, ms = all_congregations[index][9].split(',')
+        self.timeEdit.setTime(QtCore.QTime(int(h), int(m)))
+        self.line_longitude.setText(str(all_congregations[index][10]))
+        self.line_latitude.setText(str(all_congregations[index][11]))
+        self.text_note.setText(str(all_congregations[index][12]))
+
+
+    def submit_edit(self, row):
+        """
+        Method that submits user made edits to be committed to the database.
+
+        All the fields are submitted to the Congregation.edit_congregation
+        method which will do various checks such as make sure all required
+        fields are entered. Then from there it is passed off to the db module
+        that will cause the database to be modified.
+
+        :param row: The row (id) in the database that is being modified.
+        """
+
+        name = self.line_name.displayText()
+        phone = self.line_phone.displayText()
+        email = self.line_email.displayText()
+        address = self.line_address.displayText()
+        city = self.line_city.displayText()
+        state = self.line_state.displayText()
+        zipcode = self.line_zipcode.displayText()
+        week = AddCongregationWindow.determine_day(self)
+        # Time slices out PySide.QtCore.QTime()
+        time = str(self.timeEdit.time())[20:-1]
+        latitude = self.line_latitude.displayText()
+        longitude = self.line_longitude.displayText()
+        notes = self.text_note.toPlainText()
+        visibility = "True"
+
+        edit_congregation = Congregation()
+        edit_congregation.set_attributes(name, phone, email, address, city,
+                                         state, zipcode, week, time, longitude,
+                                         latitude, notes, visibility)
+        edit_congregation.edit_congregation(row)
+        self.close()
 
 
 if __name__ == '__main__':

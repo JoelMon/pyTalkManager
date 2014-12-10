@@ -20,7 +20,8 @@ class Congregation:
 
     # All of the columns in Congregation Window in correct order
     columns = ['name', 'phone', 'email', 'street', 'city',
-               'state', 'zip', 'long', 'lat', 'note', 'visibility']
+               'state', 'zip', 'week', 'time', 'long', 'lat',
+               'note', 'visibility']
 
 
     def set_attributes(self,
@@ -30,7 +31,9 @@ class Congregation:
                        street=None,
                        city=None,
                        state=None,
-                       zip=None,
+                       zipcode=None,
+                       week=None,
+                       time=None,
                        long=None,
                        lat=None,
                        note=None,
@@ -42,7 +45,9 @@ class Congregation:
         self.street = street
         self.city = city
         self.state = state
-        self.zip = zip
+        self.zip = zipcode
+        self.week = week
+        self.time = time
         self.long = long
         self.lat = lat
         self.note = note
@@ -87,6 +92,8 @@ class Congregation:
                  self.city,
                  self.state,
                  self.zip,
+                 self.week,
+                 self.time,
                  self.long,
                  self.lat,
                  self.note,
@@ -121,6 +128,8 @@ class Congregation:
                  self.city,
                  self.state,
                  self.zip,
+                 self.week,
+                 self.time,
                  self.long,
                  self.lat,
                  self.note,
@@ -183,6 +192,10 @@ class Congregation:
             missing_fields.append("state")
         if self.zip == '':
             missing_fields.append("zip")
+        if self.week == '':
+            missing_fields.append("week")
+        if self.time == '':
+            missing_fields.append('time')
 
         if missing_fields == []:
             return "Passed"
@@ -202,6 +215,8 @@ class Congregation:
         self.city = None
         self.state = None
         self.zip = None
+        self.week = None
+        self.time = None
         self.long = None
         self.lat = None
         self.note = None

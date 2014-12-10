@@ -26,22 +26,29 @@ class DB:
         c = conn.cursor()
 
         c.execute('''CREATE TABLE Assignment (
-                                              id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                              id INTEGER PRIMARY KEY NOT NULL
+                                              UNIQUE,
                                               speaker INTEGER NOT NULL,
                                               talk INTEGER NOT NULL,
                                               congregation INTEGER NOT NULL,
                                               chairman INTEGER NOT NULL,
                                               hospitality INTEGER NOT NULL,
                                               date DATETIME NOT NULL,
-                                              FOREIGN KEY(speaker) REFERENCES Brother(id),
-                                              FOREIGN KEY(talk) REFERENCES Talk(id),
-                                              FOREIGN KEY(congregation) REFERENCES Congregation(id),
-                                              FOREIGN KEY(chairman) REFERENCES Brother(id),
-                                              FOREIGN KEY(hospitality) REFERENCES Hospitality(id)
+                                              FOREIGN KEY(speaker) REFERENCES
+                                              Brother(id),
+                                              FOREIGN KEY(talk) REFERENCES
+                                              Talk(id),
+                                              FOREIGN KEY(congregation)
+                                              REFERENCES Congregation(id),
+                                              FOREIGN KEY(chairman)
+                                              REFERENCES Brother(id),
+                                              FOREIGN KEY(hospitality)
+                                              REFERENCES Hospitality(id)
                                               )''')
 
         c.execute('''CREATE TABLE Brother (
-                                           id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                           id INTEGER PRIMARY KEY NOT NULL
+                                           UNIQUE,
                                            first_name TEXT NOT NULL,
                                            middle_name TEXT,
                                            last_name TEXT NOT NULL,
@@ -53,11 +60,13 @@ class DB:
                                            chairman BOOL NOT NULL DEFAULT 0,
                                            coordinator BOOL NOT NULL DEFAULT 0,
                                            note BLOB,
-                                           FOREIGN KEY(congregation) REFERENCES Congregation(id)
+                                           FOREIGN KEY(congregation)
+                                           REFERENCES Congregation(id)
                                            )''')
 
         c.execute('''CREATE TABLE Congregation (
-                                           id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                           id INTEGER PRIMARY KEY NOT NULL
+                                           UNIQUE,
                                            name TEXT NOT NULL,
                                            phone TEXT,
                                            email TEXT,
@@ -65,6 +74,8 @@ class DB:
                                            city TEXT NOT NULL,
                                            state TEXT NOT NULL,
                                            zip TEXT NOT NULL,
+                                           week TEXT NOT NULL,
+                                           time TEXT NOT NULL,
                                            long NUMERIC,
                                            lat NUMERIC,
                                            note BLOB,
@@ -72,17 +83,21 @@ class DB:
                                            )''')
 
         c.execute('''CREATE TABLE Hospitality (
-                                               id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                               id INTEGER PRIMARY KEY NOT
+                                               NULL UNIQUE,
                                                name TEXT NOT NULL,
                                                note TEXT
                                                )''')
 
         c.execute('''CREATE TABLE SpeakerTalk (
-                                               id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+                                               id INTEGER PRIMARY KEY NOT
+                                               NULL UNIQUE,
                                                title INTEGER NOT NULL,
                                                speaker INTEGER NOT NULL,
-                                               FOREIGN KEY(title) REFERENCES Talk(id)
-                                               FOREIGN KEY(speaker) REFERENCES Brother(id)
+                                               FOREIGN KEY(title) REFERENCES
+                                               Talk(id)
+                                               FOREIGN KEY(speaker)
+                                               REFERENCES Brother(id)
                                                )''')
 
         c.execute('''CREATE TABLE Talk (
@@ -113,9 +128,10 @@ class DB:
         list_column = ', '.join(column)
         list_value = "', '".join(value)  # Converts each value into a string.
 
-        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(table=table,  # adds ' ' to values.
-                                                                            column=list_column,
-                                                                            values=list_value)
+        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(
+            table=table,  # adds ' ' to values.
+            column=list_column,
+            values=list_value)
 
         DB.commit_sql(None, command)
 
@@ -123,14 +139,15 @@ class DB:
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database"""
 
-
         combine = list(zip(column, value))
 
         for item in combine:
-            command = "UPDATE {table} SET {column} = '{value}' WHERE id = {row}".format(table=table,
-                                                                                        column=item[0],
-                                                                                        value=item[1],
-                                                                                        row=row)
+            command = "UPDATE {table} SET {column} = '{value}' WHERE id = {" \
+                      "row}".format(
+                table=table,
+                column=item[0],
+                value=item[1],
+                row=row)
 
             DB.commit_sql(None, command)
 
