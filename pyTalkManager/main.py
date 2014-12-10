@@ -267,6 +267,10 @@ class AddCongregationWindow(QtGui.QDialog,
 
 class EditCongregationDialog(QtGui.QDialog,
                              gui.AddCongregationWindow.Ui_AddCongregationWindow):
+    """
+    Opens the AddCongregationWindow for editing congregation entries from the
+    database.
+    """
 
     # index is the user selected congregation
     def __init__(self, index, parent=None):
