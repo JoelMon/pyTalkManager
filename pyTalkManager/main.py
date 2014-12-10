@@ -263,8 +263,6 @@ class AddCongregationWindow(QtGui.QDialog,
             return "Saturday"
         elif self.radioSunday.isChecked():
             return "Sunday"
-        else:
-            return ""
 
 
 class EditCongregationDialog(QtGui.QDialog,
