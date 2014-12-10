@@ -291,10 +291,14 @@ class EditCongregationDialog(QtGui.QDialog,
         self.line_state.setText(str(all_congregations[index][6]))
         self.line_zipcode.setText(str(all_congregations[index][7]))
         # select the correct radio box
+        if str(all_congregations[index][8]) == "Saturday":
+            self.radioSaturday.setChecked(True)
+        else:
+            self.radioSunday.setChecked(True)
         # self.timeEdit
-        self.line_longitude.setText(str(all_congregations[index][8]))
-        self.line_latitude.setText(str(all_congregations[index][9]))
-        self.text_note.setText(str(all_congregations[index][10]))
+        self.line_longitude.setText(str(all_congregations[index][10]))
+        self.line_latitude.setText(str(all_congregations[index][11]))
+        self.text_note.setText(str(all_congregations[index][12]))
 
 
     def submit_edit(self, row):
