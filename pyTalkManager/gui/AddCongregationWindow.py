@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'AddCongregationWindow.ui'
 #
-# Created: Wed Dec 10 16:47:09 2014
+# Created: Wed Dec 10 17:11:27 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,10 +21,10 @@ class Ui_AddCongregationWindow(object):
         self.frame.setObjectName("frame")
         self.horizontalLayout = QtGui.QHBoxLayout(self.frame)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.checkBox_4 = QtGui.QCheckBox(self.frame)
-        self.checkBox_4.setEnabled(True)
-        self.checkBox_4.setObjectName("checkBox_4")
-        self.horizontalLayout.addWidget(self.checkBox_4)
+        self.checkBatch = QtGui.QCheckBox(self.frame)
+        self.checkBatch.setEnabled(True)
+        self.checkBatch.setObjectName("checkBatch")
+        self.horizontalLayout.addWidget(self.checkBatch)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.button_close = QtGui.QPushButton(self.frame)
@@ -207,8 +207,8 @@ class Ui_AddCongregationWindow(object):
         self.timeEdit.setWrapping(False)
         self.timeEdit.setFrame(True)
         self.timeEdit.setAccelerated(False)
-        self.timeEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2000, 1, 1), QtCore.QTime(0, 0, 0)))
-        self.timeEdit.setTime(QtCore.QTime(0, 0, 0))
+        self.timeEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2000, 1, 1), QtCore.QTime(12, 0, 0)))
+        self.timeEdit.setTime(QtCore.QTime(12, 0, 0))
         self.timeEdit.setCalendarPopup(False)
         self.timeEdit.setObjectName("timeEdit")
         self.gridLayout_11.addWidget(self.timeEdit, 0, 2, 1, 1)
@@ -249,11 +249,11 @@ class Ui_AddCongregationWindow(object):
         AddCongregationWindow.setTabOrder(self.text_note, self.button_add)
         AddCongregationWindow.setTabOrder(self.button_add, self.button_close)
         AddCongregationWindow.setTabOrder(self.button_close, self.tabWidget)
-        AddCongregationWindow.setTabOrder(self.tabWidget, self.checkBox_4)
+        AddCongregationWindow.setTabOrder(self.tabWidget, self.checkBatch)
 
     def retranslateUi(self, AddCongregationWindow):
         AddCongregationWindow.setWindowTitle(QtGui.QApplication.translate("AddCongregationWindow", "Add Congregation", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_4.setText(QtGui.QApplication.translate("AddCongregationWindow", "Batch", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBatch.setText(QtGui.QApplication.translate("AddCongregationWindow", "Batch", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("AddCongregationWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
         self.button_add.setText(QtGui.QApplication.translate("AddCongregationWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("AddCongregationWindow", "Name", None, QtGui.QApplication.UnicodeUTF8))

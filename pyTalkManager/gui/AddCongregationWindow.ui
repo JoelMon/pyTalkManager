@@ -24,7 +24,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="checkBatch">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -438,7 +438,7 @@
   <tabstop>button_add</tabstop>
   <tabstop>button_close</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>checkBox_4</tabstop>
+  <tabstop>checkBatch</tabstop>
  </tabstops>
  <resources/>
  <connections>

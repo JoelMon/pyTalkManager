@@ -278,6 +278,7 @@ class EditCongregationDialog(QtGui.QDialog,
         self.setupUi(self)
 
         self.setWindowTitle("Edit Congregation")
+        self.ch
         self.button_add.setText("Save")
 
         all_congregations = Congregation.get_entries(None)
