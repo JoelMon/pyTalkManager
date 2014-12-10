@@ -258,7 +258,7 @@ class AddCongregationWindow(QtGui.QDialog,
         https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
         """
         # NOTE: Consider moving this method to the congregation mod.
-        
+
         if self.radioSaturday.isChecked():
             return "Saturday"
         elif self.radioSunday.isChecked():
@@ -321,7 +321,7 @@ class EditCongregationDialog(QtGui.QDialog,
         city = self.line_city.displayText()
         state = self.line_state.displayText()
         zipcode = self.line_zipcode.displayText()
-        week = "week"
+        week = AddCongregationWindow.determine_day(self)
         time = "time"
         latitude = self.line_latitude.displayText()
         longitude = self.line_longitude.displayText()
