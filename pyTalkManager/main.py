@@ -247,6 +247,15 @@ class AddCongregationWindow(QtGui.QDialog,
 
         :return: Return the radio button that is active. If no check radio
         button are active then do not return an empty string.
+
+        Note:
+        Radio buttons can be added to a button group and to replace the
+        determine_day method by using a code line like this:
+        day = group.checkedButton(); week = day.text() if day else ''
+
+        What prevents this: as of December 10, 2014 there's a bug that doesn't
+        allow PySide to compile button groups correctly.
+        https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
         """
 
         if self.radioSaturday.isChecked():
