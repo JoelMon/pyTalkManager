@@ -67,4 +67,5 @@ pyTalkManager/.idea/
 *.tdb
 
 # ini file
-config.ini
+*.ini
+/*.ini
