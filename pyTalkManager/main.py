@@ -305,13 +305,12 @@ class EditCongregationDialog(QtGui.QDialog,
         """
         Method that submits user made edits to be committed to the database.
 
-        All the fields are submitted to the
-        Congregation.edit_congregation method which will do various
-        checks such as make sure all required fields are entered. Then
-        from there it is passed off to the db module that will cause
-        the database to be modified.
+        All the fields are submitted to the Congregation.edit_congregation
+        method which will do various checks such as make sure all required
+        fields are entered. Then from there it is passed off to the db module
+        that will cause the database to be modified.
 
-        :param row: The row being modified.
+        :param row: The row (id) in the database that is being modified.
         """
 
         name = self.line_name.displayText()
