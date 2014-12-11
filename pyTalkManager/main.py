@@ -162,7 +162,9 @@ class CongregationWindow(QtGui.QDialog,
         Populates the congregation table so the user may select a
         congregation already entered into the database.
         """
+
         list = Congregation.get_list(None)
+        self.list_congregation.clear()
 
         for item in list:
             self.list_congregation.addItem("{}".format(item[0]))
@@ -182,7 +184,10 @@ class CongregationWindow(QtGui.QDialog,
 
         self.show_edit = EditCongregationDialog(
             selection)  # Pass the index of the user selection.
-        self.show_edit.show()
+
+        saved = self.show_edit.exec_()
+        if saved:
+            self.populate_table()
 
 
     def show_add_congregation_window(self):
@@ -190,7 +195,10 @@ class CongregationWindow(QtGui.QDialog,
         database"""
 
         self.add_cong_window = AddCongregationWindow()
-        self.add_cong_window.show()
+
+        saved = self.add_cong_window.exec_()
+        if saved:
+            self.populate_table()
 
 
 class AddCongregationWindow(QtGui.QDialog,
@@ -239,6 +247,7 @@ class AddCongregationWindow(QtGui.QDialog,
                                         state, zipcode, week, time, longitude,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
+        self.done(True)
 
 
     def determine_day(self):
@@ -339,7 +348,8 @@ class EditCongregationDialog(QtGui.QDialog,
                                          state, zipcode, week, time, longitude,
                                          latitude, notes, visibility)
         edit_congregation.edit_congregation(row)
-        self.close()
+
+        self.done(True)
 
 
 if __name__ == '__main__':
