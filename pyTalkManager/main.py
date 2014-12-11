@@ -24,12 +24,27 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        self.center_on_screen()
         tm.first_run_check()
 
         # Tool bar actions
         self.actionDatabase.triggered.connect(self.show_database_window)
         self.actionBrothers.triggered.connect(self.show_brother_window)
         self.actionCongregation.triggered.connect(self.show_congregation_window)
+
+    def center_on_screen(self):
+        """
+        Center the window on the user's screen.
+        """
+        screen_resolution = QtGui.QDesktopWidget().screenGeometry()
+
+        center_horizontal = ((screen_resolution.width() / 2) -
+                             (self.frameSize().width() / 2))
+
+        center_vertical = ((screen_resolution.height() / 2) -
+                           (self.frameSize().height() / 2))
+
+        self.move(center_horizontal, center_vertical)
 
 
     def show_database_window(self):
