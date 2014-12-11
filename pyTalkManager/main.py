@@ -240,6 +240,8 @@ class AddCongregationWindow(QtGui.QDialog,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
 
+        self.close()
+
 
     def determine_day(self):
         """
