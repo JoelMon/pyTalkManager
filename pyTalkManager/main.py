@@ -24,7 +24,6 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-
         tm.first_run_check()
 
         # Tool bar actions
@@ -32,17 +31,20 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.actionBrothers.triggered.connect(self.show_brother_window)
         self.actionCongregation.triggered.connect(self.show_congregation_window)
 
+
     def show_database_window(self):
         """Method that calls the Database Window"""
 
         self.db_window = DatabaseWindow()
         self.db_window.show()
 
+
     def show_brother_window(self):
         """Method that calls the Brother Window"""
 
         self.bro_window = BrotherWindow()
         self.bro_window.show()
+
 
     def show_congregation_window(self):
         """Method that calls the Congregation Window"""
