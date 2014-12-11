@@ -162,6 +162,7 @@ class CongregationWindow(QtGui.QDialog,
         Populates the congregation table so the user may select a
         congregation already entered into the database.
         """
+
         list = Congregation.get_list(None)
 
         for item in list:
