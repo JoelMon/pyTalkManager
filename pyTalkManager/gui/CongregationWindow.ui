@@ -155,7 +155,7 @@
          <item row="2" column="0">
           <widget class="QRadioButton" name="radioButton">
            <property name="text">
-            <string>Assending</string>
+            <string>Ascending</string>
            </property>
            <property name="checked">
             <bool>true</bool>

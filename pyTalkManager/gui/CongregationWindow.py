@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'CongregationWindow.ui'
 #
-# Created: Thu Dec 11 19:49:36 2014
+# Created: Fri Dec 12 01:57:34 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -103,6 +103,6 @@ class Ui_CongregationWindow(object):
         self.radioButton_3.setText(QtGui.QApplication.translate("CongregationWindow", "Distance", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButton_4.setText(QtGui.QApplication.translate("CongregationWindow", "Date added", None, QtGui.QApplication.UnicodeUTF8))
         self.radioButton_2.setText(QtGui.QApplication.translate("CongregationWindow", "Desending", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioButton.setText(QtGui.QApplication.translate("CongregationWindow", "Assending", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton.setText(QtGui.QApplication.translate("CongregationWindow", "Ascending", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("CongregationWindow", "Sort by:", None, QtGui.QApplication.UnicodeUTF8))
 
