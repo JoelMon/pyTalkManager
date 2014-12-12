@@ -174,6 +174,7 @@ class CongregationWindow(QtGui.QDialog,
         self.button_edit.clicked.connect(self.edit_congregation_window)
 
 
+
     def populate_table(self):
         """
         Populates the congregation table so the user may select a
@@ -189,18 +190,13 @@ class CongregationWindow(QtGui.QDialog,
 
     def edit_congregation_window(self):
         """
-        Opens the AddCongregationWindow, changes the title to
-        'Edit Congregation', and populates the fields with data from
-        the database. The user can edit any field and save it to the
-        database.
-
+        Call EditCongregationDialog class which opens the AddCongregationWindow.
         """
 
         all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
-
-        self.show_edit = EditCongregationDialog(
-            selection)  # Pass the index of the user selection.
+        # Pass the index of the user selection.
+        self.show_edit = EditCongregationDialog(selection)
 
         saved = self.show_edit.exec_()
         if saved:
