@@ -165,19 +165,17 @@ class Congregation:
         :returns (Failed, 'item'): If a duplicate is found.
         """
 
-        congregation = Congregation()
-        list_of_congregations = congregation.get_list()
-        check_name = name
+        sql = "SELECT name FROM Congregation"
+        congregations = DB.return_sql(None, sql)
 
-        if list_of_congregations == []:
+        if congregations[0] == []:
             return "Passed"
         else:
-            for item in list_of_congregations:
+            for item in congregations:
                 item = item[0]
-                if item.lower() == check_name.lower():
+                if item.lower() == name.lower():
                     return ("Failed", item)
-                else:
-                    return "Passed"
+            return "Passed"
 
 
     def __check_required_fields(self):
