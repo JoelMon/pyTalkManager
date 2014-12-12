@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'gui/CongregationWindow.ui'
+# Form implementation generated from reading ui file 'CongregationWindow.ui'
 #
-# Created: Tue Nov 18 21:06:45 2014
+# Created: Thu Dec 11 19:49:36 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_CongregationWindow(object):
     def setupUi(self, CongregationWindow):
         CongregationWindow.setObjectName("CongregationWindow")
-        CongregationWindow.resize(342, 347)
+        CongregationWindow.resize(354, 358)
         CongregationWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         CongregationWindow.setSizeGripEnabled(True)
         CongregationWindow.setModal(False)
@@ -49,18 +49,50 @@ class Ui_CongregationWindow(object):
         self.frame.setFrameShape(QtGui.QFrame.NoFrame)
         self.frame.setFrameShadow(QtGui.QFrame.Plain)
         self.frame.setObjectName("frame")
-        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.frame)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem2)
+        self.gridLayout_3 = QtGui.QGridLayout(self.frame)
+        self.gridLayout_3.setObjectName("gridLayout_3")
         self.button_close = QtGui.QPushButton(self.frame)
         self.button_close.setObjectName("button_close")
-        self.horizontalLayout_2.addWidget(self.button_close)
+        self.gridLayout_3.addWidget(self.button_close, 0, 2, 1, 1)
+        self.frame_3 = QtGui.QFrame(self.frame)
+        self.frame_3.setFrameShape(QtGui.QFrame.Box)
+        self.frame_3.setFrameShadow(QtGui.QFrame.Sunken)
+        self.frame_3.setObjectName("frame_3")
+        self.gridLayout_2 = QtGui.QGridLayout(self.frame_3)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.radioButton_3 = QtGui.QRadioButton(self.frame_3)
+        self.radioButton_3.setEnabled(False)
+        self.radioButton_3.setObjectName("radioButton_3")
+        self.gridLayout_2.addWidget(self.radioButton_3, 3, 1, 1, 1)
+        self.radioButton_4 = QtGui.QRadioButton(self.frame_3)
+        self.radioButton_4.setObjectName("radioButton_4")
+        self.gridLayout_2.addWidget(self.radioButton_4, 3, 0, 1, 1)
+        self.radioButton_2 = QtGui.QRadioButton(self.frame_3)
+        self.radioButton_2.setObjectName("radioButton_2")
+        self.gridLayout_2.addWidget(self.radioButton_2, 2, 1, 1, 1)
+        self.radioButton = QtGui.QRadioButton(self.frame_3)
+        self.radioButton.setChecked(True)
+        self.radioButton.setObjectName("radioButton")
+        self.gridLayout_2.addWidget(self.radioButton, 2, 0, 1, 1)
+        self.label = QtGui.QLabel(self.frame_3)
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 1, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frame_3, 0, 0, 1, 1)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem2, 0, 1, 1, 1)
         self.gridLayout.addWidget(self.frame, 2, 0, 1, 1)
 
         self.retranslateUi(CongregationWindow)
         QtCore.QObject.connect(self.button_close, QtCore.SIGNAL("clicked()"), CongregationWindow.close)
         QtCore.QMetaObject.connectSlotsByName(CongregationWindow)
+        CongregationWindow.setTabOrder(self.button_add, self.button_edit)
+        CongregationWindow.setTabOrder(self.button_edit, self.button_delete)
+        CongregationWindow.setTabOrder(self.button_delete, self.radioButton)
+        CongregationWindow.setTabOrder(self.radioButton, self.radioButton_2)
+        CongregationWindow.setTabOrder(self.radioButton_2, self.radioButton_4)
+        CongregationWindow.setTabOrder(self.radioButton_4, self.radioButton_3)
+        CongregationWindow.setTabOrder(self.radioButton_3, self.button_close)
+        CongregationWindow.setTabOrder(self.button_close, self.list_congregation)
 
     def retranslateUi(self, CongregationWindow):
         CongregationWindow.setWindowTitle(QtGui.QApplication.translate("CongregationWindow", "Congregations", None, QtGui.QApplication.UnicodeUTF8))
@@ -68,4 +100,9 @@ class Ui_CongregationWindow(object):
         self.button_add.setText(QtGui.QApplication.translate("CongregationWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.button_edit.setText(QtGui.QApplication.translate("CongregationWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("CongregationWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton_3.setText(QtGui.QApplication.translate("CongregationWindow", "Distance", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton_4.setText(QtGui.QApplication.translate("CongregationWindow", "Date added", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton_2.setText(QtGui.QApplication.translate("CongregationWindow", "Desending", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioButton.setText(QtGui.QApplication.translate("CongregationWindow", "Assending", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("CongregationWindow", "Sort by:", None, QtGui.QApplication.UnicodeUTF8))
 
