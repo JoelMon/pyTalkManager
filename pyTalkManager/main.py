@@ -4,6 +4,7 @@ import sys
 from PySide import QtGui, QtCore
 import pyTalkManager as tm
 from congregation import Congregation
+from db import DB
 
 # Importation of GUIs
 import gui.MainWindow
@@ -168,6 +169,7 @@ class CongregationWindow(QtGui.QDialog,
     def __init__(self, parent=None):
         super(CongregationWindow, self).__init__(parent)
         self.setupUi(self)
+        self.sorted_list = None
         self.populate_table()
 
         self.button_add.clicked.connect(self.show_add_congregation_window)
@@ -182,11 +184,12 @@ class CongregationWindow(QtGui.QDialog,
         congregation already entered into the database.
         """
 
-        list = Congregation.get_list(None)
         self.list_congregation.clear()
+        list = Congregation.get_list(None, "ASC")
+        self.sorted_list = list
 
         for item in list:
-            self.list_congregation.addItem("{}".format(item[0]))
+            self.list_congregation.addItem("{}".format(item[1]))
 
 
     def edit_congregation_window(self):
@@ -194,10 +197,11 @@ class CongregationWindow(QtGui.QDialog,
         Call EditCongregationDialog class which opens the AddCongregationWindow.
         """
 
-        all_congregations = Congregation.get_entries(None)
         selection = self.list_congregation.currentRow()
-        # Pass the index of the user selection.
-        self.show_edit = EditCongregationDialog(selection)
+        row_id = self.sorted_list[selection][0]
+
+        # Pass the row ID of the congregation the user has selected.
+        self.show_edit = EditCongregationDialog(row_id)
 
         saved = self.show_edit.exec_()
         if saved:
@@ -295,8 +299,8 @@ class EditCongregationDialog(QtGui.QDialog,
     database.
     """
 
-    # index is the user selected congregation
-    def __init__(self, index, parent=None):
+
+    def __init__(self, row_id, parent=None):
         super(EditCongregationDialog, self).__init__(parent)
         self.setupUi(self)
 
@@ -304,30 +308,31 @@ class EditCongregationDialog(QtGui.QDialog,
         self.checkBatch.hide()
         self.button_add.setText("Save")
 
-        all_congregations = Congregation.get_entries(None)
+        sql = "SELECT * FROM Congregation WHERE id={}".format(row_id)
+        congregation = DB.return_sql(self,sql)
 
         self.button_add.clicked.connect(
-            lambda: self.submit_edit(all_congregations[index][0]))
+            lambda: self.submit_edit(congregation[0][0]))
 
         # load information of selected congregation into the dialog
-        self.line_name.setText(str(all_congregations[index][1]))
-        self.line_phone.setText(str(all_congregations[index][2]))
-        self.line_email.setText(str(all_congregations[index][3]))
-        self.line_address.setText(str(all_congregations[index][4]))
-        self.line_city.setText(str(all_congregations[index][5]))
-        self.line_state.setText(str(all_congregations[index][6]))
-        self.line_zipcode.setText(str(all_congregations[index][7]))
+        self.line_name.setText(str(congregation[0][1]))
+        self.line_phone.setText(str(congregation[0][2]))
+        self.line_email.setText(str(congregation[0][3]))
+        self.line_address.setText(str(congregation[0][4]))
+        self.line_city.setText(str(congregation[0][5]))
+        self.line_state.setText(str(congregation[0][6]))
+        self.line_zipcode.setText(str(congregation[0][7]))
         # select the correct radio box
-        if str(all_congregations[index][8]) == "Saturday":
+        if str(congregation[0][8]) == "Saturday":
             self.radioSaturday.setChecked(True)
         else:
             self.radioSunday.setChecked(True)
         # show the time
-        h, m, s, ms = all_congregations[index][9].split(',')
+        h, m, s, ms = congregation[0][9].split(',')
         self.timeEdit.setTime(QtCore.QTime(int(h), int(m)))
-        self.line_longitude.setText(str(all_congregations[index][10]))
-        self.line_latitude.setText(str(all_congregations[index][11]))
-        self.text_note.setText(str(all_congregations[index][12]))
+        self.line_longitude.setText(str(congregation[0][10]))
+        self.line_latitude.setText(str(congregation[0][11]))
+        self.text_note.setText(str(congregation[0][12]))
 
 
     def submit_edit(self, row):
