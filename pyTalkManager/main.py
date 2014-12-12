@@ -171,21 +171,22 @@ class CongregationWindow(QtGui.QDialog,
         self.setupUi(self)
         self.sorted_list = None
         self.populate_table()
-
         self.button_add.clicked.connect(self.show_add_congregation_window)
         self.button_edit.clicked.connect(self.edit_congregation_window)
         self.list_congregation.doubleClicked.connect(
             self.edit_congregation_window)
+        self.radioAscending.clicked.connect(lambda: self.populate_table('ASC'))
+        self.radioDesending.clicked.connect(lambda: self.populate_table('DESC'))
+        self.radioDate.clicked.connect(lambda: self.populate_table('DATE'))
 
-
-    def populate_table(self):
+    def populate_table(self, sort='ASC'):
         """
         Populates the congregation table so the user may select a
         congregation already entered into the database.
         """
 
         self.list_congregation.clear()
-        list = Congregation.get_list(None, "ASC")
+        list = Congregation.get_list(None, "{}".format(sort))
         self.sorted_list = list
 
         for item in list:
