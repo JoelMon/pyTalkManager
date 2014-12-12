@@ -172,7 +172,8 @@ class CongregationWindow(QtGui.QDialog,
 
         self.button_add.clicked.connect(self.show_add_congregation_window)
         self.button_edit.clicked.connect(self.edit_congregation_window)
-
+        self.list_congregation.doubleClicked.connect(
+            self.edit_congregation_window)
 
 
     def populate_table(self):
