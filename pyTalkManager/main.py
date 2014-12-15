@@ -171,10 +171,12 @@ class CongregationWindow(QtGui.QDialog,
         self.setupUi(self)
         self.sorted_list = None
         self.populate_table()
+        self.button_delete.clicked.connect(self.delete_congregation)
         self.button_add.clicked.connect(self.show_add_congregation_window)
         self.button_edit.clicked.connect(self.edit_congregation_window)
         self.list_congregation.doubleClicked.connect(
             self.edit_congregation_window)
+        # Sorting radio buttons.
         self.radioAscending.clicked.connect(lambda: self.populate_table('ASC'))
         self.radioDesending.clicked.connect(lambda: self.populate_table('DESC'))
         self.radioDate.clicked.connect(lambda: self.populate_table('DATE'))
@@ -218,6 +220,20 @@ class CongregationWindow(QtGui.QDialog,
         saved = self.add_cong_window.exec_()
         if saved:
             self.populate_table()
+
+
+    def delete_congregation(self):
+        """
+        Switches the visibility to 'False' for a congregation to prevent it
+        from being displayed in the congregation list.
+
+        The DB.modify_item requires that the column and value to be a list.
+        """
+
+        selection = self.list_congregation.currentRow()
+        id = self.sorted_list[selection][0]
+
+        DB.modify_item(None, 'Congregation', ['visibility'], ['False'], id)
 
 
 class AddCongregationWindow(QtGui.QDialog,
