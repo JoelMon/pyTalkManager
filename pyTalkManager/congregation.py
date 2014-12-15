@@ -67,8 +67,8 @@ class Congregation:
 
     def get_list(self, sort=None):
         """
-        Get's all the names of congregations already in the database
-        and returns them. The names are all returned within a list.
+        Gets all the names of congregations already in the database and
+        returns them. The names are all returned within a list.
 
         :return DB.return_pass_sql(None, sql): returns the output of
         the method DB.return_pass_sql(None, sql)
@@ -76,17 +76,21 @@ class Congregation:
         """
 
         if sort == "ASC":
-            sql = "SELECT id, name FROM Congregation ORDER BY name ASC"
+            sql = "SELECT id, name FROM Congregation WHERE visibility " \
+                  "IS 'True' ORDER BY name ASC"
             return DB.return_pass_sql(None, sql)
         if sort == "DESC":
-            sql = "SELECT id, name FROM Congregation ORDER BY name DESC"
+            sql = "SELECT id, name FROM Congregation WHERE visibility IS " \
+                  "'True' ORDER BY name DESC"
             return DB.return_pass_sql(None, sql)
         if sort == "DATE":
-            sql = "SELECT id, name FROM Congregation ORDER BY id ASC"
+            sql = "SELECT id, name FROM Congregation WHERE visibility IS " \
+                  "'True' ORDER BY id ASC"
             return DB.return_pass_sql(None, sql)
         else:
-            sql = "SELECT id, name FROM Congregation"
+            sql = "SELECT id, name FROM Congregation WHERE visibility IS 'True'"
             return DB.return_pass_sql(None, sql)
+
 
     def add_congregation(self):
         """
