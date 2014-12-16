@@ -3,17 +3,24 @@ import pyTalkManager as tm
 
 
 class DB:
-    """The DB module provides an interface to the project's SQLite3 database."""
+    """
+    The DB module provides an interface to the project's SQLite3 database.
+
+    """
 
 
     def get_path():
-        """Returns the path of the database located in config.ini"""
+        """
+        Returns the path of the database located in config.ini
+
+        """
 
         return tm.config_get('DB', 'location')
 
 
     def DbInit():
-        """Initialize SQLite database
+        """
+        Initialize SQLite database
 
         This method runs when the user is running pyTalkManager for
         the first time or when the user wants to initialize a new
@@ -110,13 +117,14 @@ class DB:
 
 
     def add_item(self, table, column, value):
-        """Takes an item and adds it to the database.
+        """
+        Takes an item and adds it to the database.
 
         Known Problems:
 
-          The value list that is passed into the method is
-          automatically converted into a string regardless if it's
-          another data type such as an int, float, or bool.
+        The value list that is passed into the method is
+        automatically converted into a string regardless if it's
+        another data type such as an int, float, or bool.
 
         :arguments
         table - a string with the table that will be written to
@@ -172,10 +180,11 @@ class DB:
 
 
     def commit_sql(self, sql):
-        """Takes the SQL commands and commits it to SQLite
+        """
+        Takes the SQL commands and commits it to SQLite
 
         :param sql: the SQL command that needs to be passed
-                       to SQLite.
+        to SQLite.
 
         """
 
