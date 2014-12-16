@@ -46,7 +46,8 @@ def config_get(section, key):
 
 
 def config_set(section, key, value):
-    """Takes arguments for the config.ini file and writes to file.
+    """
+    Takes arguments for the config.ini file and writes to file.
 
     NOTE: The exceptions must be changed to print to avoid
     errors. This is code left behind from the time that pyTalkmanager
@@ -93,7 +94,8 @@ def buttonTest():
 
 
 def first_run_check():
-    """Checks to see if it's pyTalkManager first time running.
+    """
+    Checks to see if it's pyTalkManager first time running.
 
     If it is pyTalkManager's first time running then initialize
     a SQLite database.
