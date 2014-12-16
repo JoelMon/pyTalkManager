@@ -16,7 +16,8 @@ import gui.AddCongregationWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
-    """The main window of pyTalkManager.
+    """
+    The main window of pyTalkManager.
 
     From MainWindow all functions of pyTalkManager is accessed by the end user.
 
@@ -36,7 +37,9 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     def center_on_screen(self):
         """
         Center the window on the user's screen.
+
         """
+
         screen_resolution = QtGui.QDesktopWidget().screenGeometry()
 
         center_horizontal = ((screen_resolution.width() / 2) -
@@ -49,21 +52,30 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
 
     def show_database_window(self):
-        """Method that calls the Database Window"""
+        """
+        Method that calls the Database Window
+
+        """
 
         self.db_window = DatabaseWindow()
         self.db_window.show()
 
 
     def show_brother_window(self):
-        """Method that calls the Brother Window"""
+        """
+        Method that calls the Brother Window
+
+        """
 
         self.bro_window = BrotherWindow()
         self.bro_window.show()
 
 
     def show_congregation_window(self):
-        """Method that calls the Congregation Window"""
+        """
+        Method that calls the Congregation Window
+
+        """
 
         self.congregation_window = CongregationWindow()
         self.congregation_window.show()
@@ -92,6 +104,7 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
     Window for the end user to manage the list of brothers in the database.
+    
     """
 
     def __init__(self, parent=None):
@@ -117,6 +130,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     Methods:
       add_item() - Takes all widget information and stores it in a variable.
                    Currently the combo boxes and check boxes are not supported.
+
     """
 
     def __init__(self, parent=None):
@@ -185,6 +199,7 @@ class CongregationWindow(QtGui.QDialog,
         """
         Populates the congregation table so the user may select a
         congregation already entered into the database.
+
         """
 
         self.list_congregation.clear()
@@ -198,6 +213,7 @@ class CongregationWindow(QtGui.QDialog,
     def edit_congregation_window(self):
         """
         Call EditCongregationDialog class which opens the AddCongregationWindow.
+
         """
 
         selection = self.list_congregation.currentRow()
@@ -212,8 +228,11 @@ class CongregationWindow(QtGui.QDialog,
 
 
     def show_add_congregation_window(self):
-        """Window that allows the user enter a new congregation into the
-        database"""
+        """
+        Window that allows the user enter a new congregation into the
+        database
+
+        """
 
         self.add_cong_window = AddCongregationWindow()
 
@@ -228,6 +247,7 @@ class CongregationWindow(QtGui.QDialog,
         from being displayed in the congregation list.
 
         The DB.modify_item requires that the column and value to be a list.
+
         """
 
         selection = self.list_congregation.currentRow()
@@ -247,8 +267,8 @@ class AddCongregationWindow(QtGui.QDialog,
       and submitting it to Congregation.add_congregation where it will be
       checked for various things before being sent to the db module for
       inserting into the database.
-    """
 
+    """
 
     def __init__(self, parent=None):
         super(AddCongregationWindow, self).__init__(parent)
@@ -301,7 +321,9 @@ class AddCongregationWindow(QtGui.QDialog,
         What prevents this: as of December 10, 2014 there's a bug that doesn't
         allow PySide to compile button groups correctly.
         https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
+
         """
+
         # NOTE: Consider moving this method to the congregation mod.
 
         if self.radioSaturday.isChecked():
@@ -315,8 +337,8 @@ class EditCongregationDialog(QtGui.QDialog,
     """
     Opens the AddCongregationWindow for editing congregation entries from the
     database.
-    """
 
+    """
 
     def __init__(self, row_id, parent=None):
         super(EditCongregationDialog, self).__init__(parent)
@@ -363,6 +385,7 @@ class EditCongregationDialog(QtGui.QDialog,
         that will cause the database to be modified.
 
         :param row: The row (id) in the database that is being modified.
+
         """
 
         name = self.line_name.displayText()
