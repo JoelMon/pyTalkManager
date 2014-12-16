@@ -234,6 +234,7 @@ class CongregationWindow(QtGui.QDialog,
         id = self.sorted_list[selection][0]
 
         DB.modify_item(None, 'Congregation', ['visibility'], ['False'], id)
+        self.populate_table()  # Update the cong. list after deletion
 
 
 class AddCongregationWindow(QtGui.QDialog,
