@@ -2,7 +2,10 @@ from db import DB
 
 
 class Congregation:
-    """Congregation class"""
+    """
+    Congregation class
+    
+    """
 
     def __init__(self):
         self.name = ''
@@ -57,7 +60,9 @@ class Congregation:
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
-            :returns : list
+            
+        :returns sql: A list containing every row of the
+        Congregation table.
 
         """
 
@@ -74,6 +79,7 @@ class Congregation:
         the method DB.return_pass_sql(None, sql)
 
         """
+
 
         if sort == "ASC":
             sql = "SELECT id, name FROM Congregation WHERE visibility " \
@@ -94,8 +100,9 @@ class Congregation:
 
     def add_congregation(self):
         """
-        Method that prepares user entered data for a new congregation
-        before sending it to the db module for insertion into the database.
+        Prepares user entered data for a new congregation before sending it to 
+        the db module for insertion into the database.
+
         """
 
         values = [self.name,
@@ -128,10 +135,13 @@ class Congregation:
 
     def edit_congregation(self, row):
         """
-        Method that prepares user entered data for the selected congregation
-        before sending it to the db module for updating it in the database.
+        Prepares user entered data for the selected congregation before sending 
+        it to the db module for updating it in the database.
+    
+        Checks conducted: Check for required fields the user may have left blank.
 
-        :param row: The row within the table Congregation being edited.
+        :param row: The id within the table Congregation being edited.
+
         """
 
         values = [self.name,
@@ -167,6 +177,7 @@ class Congregation:
         :argument name: The name of the congregation to check.
         :returns Passed: If no duplicates are found.
         :returns (Failed, 'item'): If a duplicate is found.
+
         """
 
         sql = "SELECT name FROM Congregation"
@@ -189,6 +200,7 @@ class Congregation:
 
         :returns 'Passed': If all required fields were entered.
         :returns ('Failed', [field, ...]: If required fields were not entered.
+
         """
 
         missing_fields = []
@@ -217,6 +229,7 @@ class Congregation:
     def zero_out(self):
         """
         Returns all of the Congregation's attributes back to null.
+
         """
 
         self.name = None
