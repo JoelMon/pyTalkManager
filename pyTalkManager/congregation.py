@@ -31,25 +31,25 @@ class Congregation:
                        city=None, state=None, zipcode=None, week=None,
                        time=None, long=None, lat=None, note=None,
                        visibility=True):
-    """
-    An interface to allow other methods to set __init__'s variables.
+        """
+        An interface to allow other methods to set __init__'s variables.
 
-    :param name: The name of the congregation
-    :param phone: The phone number of the congregation
-    :param email: The email address of the congregation
-    :param street: The street address of the congregation
-    :param city: The city of the congregation
-    :param state: The state of the congregation
-    :param zipcode: The zipcode of th congregation
-    :param week: The day of the week the congregation has public talks
-    :param time: The time the meeting begins on the day of public talks
-    :param long: The longitude coordinate of the congregation
-    :param lat: The latitude coordinate of the congregation
-    :param note: Notes about the congregation
-    :param visibility: The visibility state of the congregation. True =
-    visible False = not visible/deleted.
+        :param name: The name of the congregation
+        :param phone: The phone number of the congregation
+        :param email: The email address of the congregation
+        :param street: The street address of the congregation
+        :param city: The city of the congregation
+        :param state: The state of the congregation
+        :param zipcode: The zipcode of th congregation
+        :param week: The day of the week the congregation has public talks
+        :param time: The time the meeting begins on the day of public talks
+        :param long: The longitude coordinate of the congregation
+        :param lat: The latitude coordinate of the congregation
+        :param note: Notes about the congregation
+        :param visibility: The visibility state of the congregation. True =
+        visible False = not visible/deleted.
 
-    """
+        """
 
         self.name = name
         self.phone = phone
