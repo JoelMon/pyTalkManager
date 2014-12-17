@@ -58,4 +58,34 @@ class Brother:
         self.coordinator = coordinator
         self.note = note
 
+    def add_brother(self):
+        """
+        Adds a new brother to the database.
 
+        :return:
+
+        """
+
+        missing_fields = Brother.__check_required_fields(self)
+
+    def __check_required_fields(self):
+        """
+        Checks for required fileds when the user submits a new brother to be
+        entered into the database.
+
+        :return:
+
+        """
+
+        missing_fields = []
+
+        if self.first_name == '':
+            missing_fields.append('first name')
+        if self.last_name == '':
+            missing_fields.append('last name')
+        if self.phone == '':
+            missing_fields.append('phone')
+        if self.chairman == '' and self.speaker == '' and self.coordinator == '':
+            missing_fields.append('capacity')
+
+        return missing_fields
