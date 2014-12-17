@@ -4,7 +4,7 @@ from db import DB
 class Congregation:
     """
     Congregation class
-    
+
     """
 
     def __init__(self):
@@ -27,20 +27,29 @@ class Congregation:
                'note', 'visibility']
 
 
-    def set_attributes(self,
-                       name=None,
-                       phone=None,
-                       email=None,
-                       street=None,
-                       city=None,
-                       state=None,
-                       zipcode=None,
-                       week=None,
-                       time=None,
-                       long=None,
-                       lat=None,
-                       note=None,
+    def set_attributes(self, name=None, phone=None, email=None, street=None,
+                       city=None, state=None, zipcode=None, week=None,
+                       time=None, long=None, lat=None, note=None,
                        visibility=True):
+    """
+    An interface to allow other methods to set __init__'s variables.
+
+    :param name: The name of the congregation
+    :param phone: The phone number of the congregation
+    :param email: The email address of the congregation
+    :param street: The street address of the congregation
+    :param city: The city of the congregation
+    :param state: The state of the congregation
+    :param zipcode: The zipcode of th congregation
+    :param week: The day of the week the congregation has public talks
+    :param time: The time the meeting begins on the day of public talks
+    :param long: The longitude coordinate of the congregation
+    :param lat: The latitude coordinate of the congregation
+    :param note: Notes about the congregation
+    :param visibility: The visibility state of the congregation. True =
+    visible False = not visible/deleted.
+
+    """
 
         self.name = name
         self.phone = phone
@@ -60,7 +69,7 @@ class Congregation:
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
-            
+
         :returns sql: A list containing every row of the
         Congregation table.
 
@@ -100,7 +109,7 @@ class Congregation:
 
     def add_congregation(self):
         """
-        Prepares user entered data for a new congregation before sending it to 
+        Prepares user entered data for a new congregation before sending it to
         the db module for insertion into the database.
 
         """
@@ -135,9 +144,9 @@ class Congregation:
 
     def edit_congregation(self, row):
         """
-        Prepares user entered data for the selected congregation before sending 
+        Prepares user entered data for the selected congregation before sending
         it to the db module for updating it in the database.
-    
+
         Checks conducted: Check for required fields the user may have left blank.
 
         :param row: The id within the table Congregation being edited.
