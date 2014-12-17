@@ -19,10 +19,11 @@ class Brother:
         self.chairman = None
         self.coordinator = None
         self.note = None
+        self.visibility = True
 
     columns = ['first_name', 'middle_name', 'last_name', 'email',
                'phone', 'congregation', 'responsibility', 'speaker',
-               'chairman', 'coordinator', 'note']
+               'chairman', 'coordinator', 'note', 'visibility']
 
 
     def set_attribute(self, first_name=None, middle_name=None,
@@ -58,6 +59,7 @@ class Brother:
         self.coordinator = coordinator
         self.note = note
 
+
     def add_brother(self):
         """
         Adds a new brother to the database.
@@ -66,7 +68,25 @@ class Brother:
 
         """
 
+        values = [self.first_name,
+                  self.middle_name,
+                  self.last_name,
+                  self.email,
+                  self.phone,
+                  self.congregation,
+                  self.responsibility,
+                  self.speaker,
+                  self.chairman,
+                  self.coordinator,
+                  self.note,
+                  self.visibility]
+
         missing_fields = Brother.__check_required_fields(self)
+
+        if missing_fields == []:
+            DB.add_item(None, 'Brother', Brother.columns, values)
+        else:
+            print("The following are missing: ", missing_fields)
 
     def __check_required_fields(self):
         """

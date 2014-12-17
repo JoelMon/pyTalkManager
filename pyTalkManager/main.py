@@ -138,7 +138,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
-        self.button_add.clicked.connect(self.add_item)
+        self.button_add.clicked.connect(self.add_brother)
         self.sorted_list = None
         self.populate_cong()
 
@@ -156,7 +156,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
             self.combo_congregation.addItem(congregation[1])
 
 
-    def add_item(self):
+    def add_brother(self):
         first_name = self.line_f_name.displayText()
         middle_name = self.line_m_name.displayText()
         last_name = self.line_l_name.displayText()
@@ -185,6 +185,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
                                   speaker, chairman, coordinator, note)
 
         new_brother.add_brother()
+        self.done(True)
 
 
 class CongregationWindow(QtGui.QDialog,
