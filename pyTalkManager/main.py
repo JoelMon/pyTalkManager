@@ -139,6 +139,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
         self.button_add.clicked.connect(self.add_item)
+        self.sorted_list = None
         self.populate_cong()
 
     def populate_cong(self):
@@ -148,7 +149,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
         """
 
-        congregations = Congregation.get_list('ASC')
+        congregations = Congregation.get_list(None, 'ASC')
+        self.sorted_list = congregations
 
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
@@ -160,20 +162,29 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         last_name = self.line_l_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
-        #congregation = self.combo_congregation.itemText()
-        responsibility = 'Responsibility combo box'
-        chairman = 'Chairman check box'
-        speaker = 'Speaker check box'
-        coordinator = 'Coordinator check box'
+        # Combo box
+        selection = self.combo_congregation.currentIndex()
+        congregation = self.sorted_list[selection][0]
+        responsibility = self.combo_publisher.itemText(
+            self.combo_publisher.currentIndex())
+        # Capacity radio buttons
+        chairman = ''
+        speaker = ''
+        coordinator = ''
+        if self.check_chairman.isChecked():
+            chairman = 'True'
+        if self.check_speaker.isChecked():
+            speaker = 'True'
+        if self.check_talkC.isChecked():
+            coordinator = 'True'
         note = self.text_note.toPlainText()
 
-        # columns = ['first_name', 'middle_name', 'last_name', 'phone', 'email',
-        #            'congregation', 'responsibility', 'chairman', 'speaker',
-        #            'coordinator', 'note']
+        new_brother = Brother()
+        new_brother.set_attribute(first_name, middle_name, last_name,
+                                  email, phone, congregation, responsibility,
+                                  speaker, chairman, coordinator, note)
 
-        values = [first_name, middle_name, last_name, phone, email,
-                  congregation, responsibility, chairman, speaker,
-                  coordinator, note]
+        new_brother.add_brother()
 
 
 class CongregationWindow(QtGui.QDialog,
