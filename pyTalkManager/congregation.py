@@ -195,7 +195,7 @@ class Congregation:
         sql = "SELECT name FROM Congregation"
         congregations = DB.return_sql(None, sql)
 
-        if congregations[0] == []:
+        if congregations == []:
             return "Passed"
         else:
             for item in congregations:
