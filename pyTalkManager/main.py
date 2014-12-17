@@ -104,7 +104,7 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
     Window for the end user to manage the list of brothers in the database.
-    
+
     """
 
     def __init__(self, parent=None):
@@ -349,7 +349,7 @@ class EditCongregationDialog(QtGui.QDialog,
         self.button_add.setText("Save")
 
         sql = "SELECT * FROM Congregation WHERE id={}".format(row_id)
-        congregation = DB.return_sql(self,sql)
+        congregation = DB.return_sql(self, sql)
 
         self.button_add.clicked.connect(
             lambda: self.submit_edit(congregation[0][0]))
