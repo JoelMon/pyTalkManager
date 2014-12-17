@@ -89,7 +89,6 @@ class Congregation:
 
         """
 
-
         if sort == "ASC":
             sql = "SELECT id, name FROM Congregation WHERE visibility " \
                   "IS 'True' ORDER BY name ASC"
@@ -115,18 +114,18 @@ class Congregation:
         """
 
         values = [self.name,
-                 self.phone,
-                 self.email,
-                 self.street,
-                 self.city,
-                 self.state,
-                 self.zip,
-                 self.week,
-                 self.time,
-                 self.long,
-                 self.lat,
-                 self.note,
-                 self.visibility]
+                  self.phone,
+                  self.email,
+                  self.street,
+                  self.city,
+                  self.state,
+                  self.zip,
+                  self.week,
+                  self.time,
+                  self.long,
+                  self.lat,
+                  self.note,
+                  self.visibility]
 
         # REVIEW long and lat: Leading zeros may be removed.
 
@@ -137,9 +136,11 @@ class Congregation:
             DB.add_item(None, 'Congregation', Congregation.columns, values)
         else:
             if dup_congregation != "Passed":
-                print("A duplicate entry was found: {}".format(dup_congregation[1]))
+                print("A duplicate entry was found: {}".format(
+                    dup_congregation[1]))
             else:
-                print("A required field was missing: {}".format(missing_fields[1]))
+                print("A required field was missing: {}".format(
+                    missing_fields[1]))
 
 
     def edit_congregation(self, row):
@@ -147,32 +148,34 @@ class Congregation:
         Prepares user entered data for the selected congregation before sending
         it to the db module for updating it in the database.
 
-        Checks conducted: Check for required fields the user may have left blank.
+        Checks conducted: Check for required fields the user may have left
+        blank.
 
         :param row: The id within the table Congregation being edited.
 
         """
 
         values = [self.name,
-                 self.phone,
-                 self.email,
-                 self.street,
-                 self.city,
-                 self.state,
-                 self.zip,
-                 self.week,
-                 self.time,
-                 self.long,
-                 self.lat,
-                 self.note,
-                 self.visibility]
+                  self.phone,
+                  self.email,
+                  self.street,
+                  self.city,
+                  self.state,
+                  self.zip,
+                  self.week,
+                  self.time,
+                  self.long,
+                  self.lat,
+                  self.note,
+                  self.visibility]
 
         # REVIEW long and lat: Leading zeros may be removed.
 
         missing_fields = Congregation.__check_required_fields(self)
 
         if missing_fields == "Passed":
-            DB.modify_item(None, 'Congregation', Congregation.columns, values, row)
+            DB.modify_item(None, 'Congregation', Congregation.columns, values,
+                           row)
         else:
             print("A required field was missing: {}".format(missing_fields[1]))
 
