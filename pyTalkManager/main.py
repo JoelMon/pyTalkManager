@@ -118,7 +118,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
-        self.add_bro_window.show()
+        self.add_bro_window.exec_()
 
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
@@ -253,6 +253,7 @@ class CongregationWindow(QtGui.QDialog,
 
         self.add_cong_window = AddCongregationWindow()
 
+        # If the user saves a new congregation, run populate_table()
         saved = self.add_cong_window.exec_()
         if saved:
             self.populate_table()
