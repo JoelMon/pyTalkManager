@@ -1,0 +1,61 @@
+from db import DB
+
+
+class Brother:
+    """
+    Brother class
+
+    """
+
+    def __init__(self):
+        self.first_name = None
+        self.middle_name = None
+        self.last_name = None
+        self.email = None
+        self.phone = None
+        self.congregation = None
+        self.responsibility = None
+        self.speaker = None
+        self.chairman = None
+        self.coordinator = None
+        self.note = None
+
+    columns = ['first_name', 'middle_name', 'last_name', 'email',
+               'phone', 'congregation', 'responsibility', 'speaker',
+               'chairman', 'coordinator', 'note']
+
+
+    def set_attribute(self, first_name=None, middle_name=None,
+                      last_name=None, email=None, phone=None,
+                      congregation=None, responsibility=None, speaker=None,
+                      chairman=None, coordinator=None, note=None):
+        """
+        An interface to allow other methods to set __init__'s variables.
+
+        :param first_name: The first name of the brother
+        :param middle_name: The middle name of the brother
+        :param last_name: The last name of the brother
+        :param email: The email address of the brother
+        :param phone: The phone number of the brother
+        :param congregation: The congregation the brother belongs to
+        :param responsibility: The responsibility held by the brother
+        :param speaker: Can the brother give talks?
+        :param chairman: Can the brother be a chairman?
+        :param coordinator: Is the brother a talk coordinator?
+        :param note: Notes about the brother
+
+        """
+
+        self.first_name = first_name
+        self.middle_name = middle_name
+        self.last_name = last_name
+        self.email = email
+        self.phone = phone
+        self.congregation = congregation
+        self.responsibility = responsibility
+        self.speaker = speaker
+        self.chairman = chairman
+        self.coordinator = coordinator
+        self.note = note
+
+
