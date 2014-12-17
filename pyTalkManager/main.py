@@ -5,6 +5,8 @@ from PySide import QtGui, QtCore
 import pyTalkManager as tm
 from congregation import Congregation
 from db import DB
+from brother import Brother
+
 
 # Importation of GUIs
 import gui.MainWindow
@@ -137,6 +139,20 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
         self.button_add.clicked.connect(self.add_item)
+        self.populate_cong()
+
+    def populate_cong(self):
+        """
+        Populate the congregation combo box with all the names from
+        congregations already entered into the database.
+
+        """
+
+        congregations = Congregation.get_list('ASC')
+
+        for congregation in congregations:
+            self.combo_congregation.addItem(congregation[1])
+
 
     def add_item(self):
         first_name = self.line_f_name.displayText()
@@ -144,16 +160,17 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         last_name = self.line_l_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
-        congregation = 'Congregation combo box'
+        #congregation = self.combo_congregation.itemText()
         responsibility = 'Responsibility combo box'
         chairman = 'Chairman check box'
         speaker = 'Speaker check box'
         coordinator = 'Coordinator check box'
         note = self.text_note.toPlainText()
 
-        columns = ['first_name', 'middle_name', 'last_name', 'phone', 'email',
-                   'congregation', 'responsibility', 'chairman', 'speaker',
-                   'coordinator', 'note']
+        # columns = ['first_name', 'middle_name', 'last_name', 'phone', 'email',
+        #            'congregation', 'responsibility', 'chairman', 'speaker',
+        #            'coordinator', 'note']
+
         values = [first_name, middle_name, last_name, phone, email,
                   congregation, responsibility, chairman, speaker,
                   coordinator, note]
