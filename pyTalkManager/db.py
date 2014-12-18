@@ -1,5 +1,5 @@
 import sqlite3
-import pyTalkManager as tm
+import pyTalkManager as TM
 
 
 class DB:
@@ -15,10 +15,10 @@ class DB:
 
         """
 
-        return tm.config_get('DB', 'location')
+        return TM.config_get('DB', 'location')
 
 
-    def DbInit():
+    def db_init():
         """
         Initialize SQLite database
 

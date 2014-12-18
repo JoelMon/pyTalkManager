@@ -126,4 +126,4 @@ def first_run_check():
         else:
             config_set('APP', 'first_time_running', 'False')
             config_set('DB', 'location', file_name[0])
-            DB.DbInit()
+            DB.db_init()

@@ -25,7 +25,6 @@ class Brother:
                'phone', 'congregation', 'responsibility', 'speaker',
                'chairman', 'coordinator', 'note', 'visibility']
 
-
     def set_attribute(self, first_name=None, middle_name=None,
                       last_name=None, email=None, phone=None,
                       congregation=None, responsibility=None, speaker=None,
@@ -59,7 +58,6 @@ class Brother:
         self.coordinator = coordinator
         self.note = note
 
-
     def add_brother(self):
         """
         Adds a new brother to the database.
@@ -88,7 +86,6 @@ class Brother:
         else:
             print("The following are missing: ", missing_fields)
 
-
     def populate_table(self):
 
         sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
@@ -96,7 +93,6 @@ class Brother:
               "Brother.congregation=Congregation.id"
 
         return DB.return_sql(self, sql)
-
 
     def __check_required_fields(self):
         """
@@ -115,7 +111,8 @@ class Brother:
             missing_fields.append('last name')
         if self.phone == '':
             missing_fields.append('phone')
-        if self.chairman == '' and self.speaker == '' and self.coordinator == '':
+        if self.chairman == '' and self.speaker == '' and self.coordinator ==\
+                '':
             missing_fields.append('capacity')
 
         return missing_fields
