@@ -149,7 +149,7 @@ class DB:
 
     def count_rows(self, table):
         """
-        Count the total ammount of rows in a table.
+        Count the total amount of rows in a table.
 
         :param table: The table that needs to be counted.
         :return: The total number of rows in the table as an int.

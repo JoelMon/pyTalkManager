@@ -100,7 +100,7 @@ class Brother:
 
     def __check_required_fields(self):
         """
-        Checks for required fileds when the user submits a new brother to be
+        Checks for required fields when the user submits a new brother to be
         entered into the database.
 
         :return:
