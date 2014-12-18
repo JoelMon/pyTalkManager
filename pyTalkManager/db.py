@@ -147,6 +147,21 @@ class DB:
         DB.commit_sql(None, command)
 
 
+    def count_rows(self, table):
+        """
+        Count the total ammount of rows in a table.
+
+        :param table: The table that needs to be counted.
+        :return: The total number of rows in the table as an int.
+
+        """
+
+        sql = "SELECT Count(*) FROM {Table}".format(Table=table)
+        count = self.return_sql(sql)
+
+        return int(count[0][0])
+
+
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database"""
 
