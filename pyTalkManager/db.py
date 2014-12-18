@@ -67,6 +67,8 @@ class DB:
                                            chairman BOOL NOT NULL DEFAULT 0,
                                            coordinator BOOL NOT NULL DEFAULT 0,
                                            note BLOB,
+                                           visibility BOOL NOT NULL DEFAULT
+                                           True,
                                            FOREIGN KEY(congregation)
                                            REFERENCES Congregation(id)
                                            )''')
@@ -134,7 +136,8 @@ class DB:
         """
 
         list_column = ', '.join(column)
-        list_value = "', '".join(value)  # Converts each value into a string.
+        # Convert each value into a string. Join requires strings.
+        list_value = "', '".join(str(v) for v in value)
 
         command = "INSERT INTO {table}({column}) VALUES('{values}')".format(
             table=table,  # adds ' ' to values.
@@ -142,6 +145,21 @@ class DB:
             values=list_value)
 
         DB.commit_sql(None, command)
+
+
+    def count_rows(self, table):
+        """
+        Count the total ammount of rows in a table.
+
+        :param table: The table that needs to be counted.
+        :return: The total number of rows in the table as an int.
+
+        """
+
+        sql = "SELECT Count(*) FROM {Table}".format(Table=table)
+        count = self.return_sql(sql)
+
+        return int(count[0][0])
 
 
     def modify_item(self, table, column, value, row):

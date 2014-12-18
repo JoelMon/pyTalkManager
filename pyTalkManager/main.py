@@ -5,6 +5,8 @@ from PySide import QtGui, QtCore
 import pyTalkManager as tm
 from congregation import Congregation
 from db import DB
+from brother import Brother
+
 
 # Importation of GUIs
 import gui.MainWindow
@@ -104,19 +106,46 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
     Window for the end user to manage the list of brothers in the database.
-    
+
     """
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
         self.setupUi(self)
+        self.populate_brothers()
 
         self.button_add.clicked.connect(self.show_add_brother_window)
 
 
+    def populate_brothers(self):
+        """
+        Populates the brother item_list
+
+        """
+
+        db = DB()
+        self.tableWidget.setRowCount(db.count_rows('Brother'))
+        self.tableWidget.setColumnCount(2)
+        bro = Brother()
+
+        item_list = bro.populate_table()
+        item_list = (list(enumerate(item_list)))
+
+        for item in item_list:
+            name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
+                                                            item[1][2],
+                                                            item[1][3]))
+
+            congregation = QtGui.QTableWidgetItem("{Cong}".format(Cong=item[1][
+                4]))
+
+            self.tableWidget.setItem(int(item[0]), 0, name)
+            self.tableWidget.setItem(int(item[0]), 1, congregation)
+
+
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
-        self.add_bro_window.show()
+        self.add_bro_window.exec_()
 
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
@@ -136,27 +165,54 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     def __init__(self, parent=None):
         super(AddBrotherWindow, self).__init__(parent)
         self.setupUi(self)
-        self.button_add.clicked.connect(self.add_item)
+        self.button_add.clicked.connect(self.add_brother)
+        self.sorted_list = None
+        self.populate_cong()
 
-    def add_item(self):
+    def populate_cong(self):
+        """
+        Populate the congregation combo box with all the names from
+        congregations already entered into the database.
+
+        """
+
+        congregations = Congregation.get_list(None, 'ASC')
+        self.sorted_list = congregations
+
+        for congregation in congregations:
+            self.combo_congregation.addItem(congregation[1])
+
+
+    def add_brother(self):
         first_name = self.line_f_name.displayText()
         middle_name = self.line_m_name.displayText()
         last_name = self.line_l_name.displayText()
         phone = self.line_phone.displayText()
         email = self.line_email.displayText()
-        congregation = 'Congregation combo box'
-        responsibility = 'Responsibility combo box'
-        chairman = 'Chairman check box'
-        speaker = 'Speaker check box'
-        coordinator = 'Coordinator check box'
+        # Combo box
+        selection = self.combo_congregation.currentIndex()
+        congregation = self.sorted_list[selection][0]
+        responsibility = self.combo_publisher.itemText(
+            self.combo_publisher.currentIndex())
+        # Capacity radio buttons
+        chairman = ''
+        speaker = ''
+        coordinator = ''
+        if self.check_chairman.isChecked():
+            chairman = 'True'
+        if self.check_speaker.isChecked():
+            speaker = 'True'
+        if self.check_talkC.isChecked():
+            coordinator = 'True'
         note = self.text_note.toPlainText()
 
-        columns = ['first_name', 'middle_name', 'last_name', 'phone', 'email',
-                   'congregation', 'responsibility', 'chairman', 'speaker',
-                   'coordinator', 'note']
-        values = [first_name, middle_name, last_name, phone, email,
-                  congregation, responsibility, chairman, speaker,
-                  coordinator, note]
+        new_brother = Brother()
+        new_brother.set_attribute(first_name, middle_name, last_name,
+                                  email, phone, congregation, responsibility,
+                                  speaker, chairman, coordinator, note)
+
+        new_brother.add_brother()
+        self.done(True)
 
 
 class CongregationWindow(QtGui.QDialog,
@@ -236,6 +292,7 @@ class CongregationWindow(QtGui.QDialog,
 
         self.add_cong_window = AddCongregationWindow()
 
+        # If the user saves a new congregation, run populate_table()
         saved = self.add_cong_window.exec_()
         if saved:
             self.populate_table()
@@ -349,7 +406,7 @@ class EditCongregationDialog(QtGui.QDialog,
         self.button_add.setText("Save")
 
         sql = "SELECT * FROM Congregation WHERE id={}".format(row_id)
-        congregation = DB.return_sql(self,sql)
+        congregation = DB.return_sql(self, sql)
 
         self.button_add.clicked.connect(
             lambda: self.submit_edit(congregation[0][0]))

@@ -17,10 +17,10 @@
    <item row="0" column="0">
     <widget class="QFrame" name="frame_7">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -46,10 +46,10 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout">
              <item row="5" column="0">
@@ -97,10 +97,10 @@
           <item row="2" column="0">
            <widget class="QFrame" name="frame_3">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_4">
              <item row="0" column="0">
@@ -136,10 +136,10 @@
           <item row="0" column="0">
            <widget class="QFrame" name="frame_4">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_8">
              <item row="0" column="0">
@@ -150,23 +150,7 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QComboBox" name="combo_congregation">
-               <item>
-                <property name="text">
-                 <string>Cong 1</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Cong 2</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Cong 3</string>
-                </property>
-               </item>
-              </widget>
+              <widget class="QComboBox" name="combo_congregation"/>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_7">
@@ -179,7 +163,7 @@
               <widget class="QComboBox" name="combo_publisher">
                <item>
                 <property name="text">
-                 <string>Publisher</string>
+                 <string>Elder</string>
                 </property>
                </item>
                <item>
@@ -189,7 +173,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Elder</string>
+                 <string>Publisher</string>
                 </property>
                </item>
               </widget>
@@ -207,16 +191,16 @@
           <item row="2" column="0">
            <widget class="QFrame" name="frame_5">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_9">
              <item row="0" column="0" colspan="3">
               <widget class="QLabel" name="label_8">
                <property name="text">
-                <string>Serves in the following capacity:</string>
+                <string>Brother serves in the following capacity:</string>
                </property>
                <property name="wordWrap">
                 <bool>true</bool>
@@ -257,10 +241,10 @@
           <item row="0" column="0">
            <widget class="QFrame" name="frame_6">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Plain</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_6">
              <item row="0" column="0">
@@ -279,14 +263,14 @@
    <item row="1" column="0">
     <widget class="QFrame" name="frame">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="check_batch">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -342,6 +326,7 @@
   <tabstop>text_note</tabstop>
   <tabstop>button_close</tabstop>
   <tabstop>button_add</tabstop>
+  <tabstop>check_batch</tabstop>
  </tabstops>
  <resources/>
  <connections>

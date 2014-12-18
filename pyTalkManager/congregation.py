@@ -4,7 +4,7 @@ from db import DB
 class Congregation:
     """
     Congregation class
-    
+
     """
 
     def __init__(self):
@@ -27,20 +27,29 @@ class Congregation:
                'note', 'visibility']
 
 
-    def set_attributes(self,
-                       name=None,
-                       phone=None,
-                       email=None,
-                       street=None,
-                       city=None,
-                       state=None,
-                       zipcode=None,
-                       week=None,
-                       time=None,
-                       long=None,
-                       lat=None,
-                       note=None,
+    def set_attributes(self, name=None, phone=None, email=None, street=None,
+                       city=None, state=None, zipcode=None, week=None,
+                       time=None, long=None, lat=None, note=None,
                        visibility=True):
+        """
+        An interface to allow other methods to set __init__'s variables.
+
+        :param name: The name of the congregation
+        :param phone: The phone number of the congregation
+        :param email: The email address of the congregation
+        :param street: The street address of the congregation
+        :param city: The city of the congregation
+        :param state: The state of the congregation
+        :param zipcode: The zipcode of th congregation
+        :param week: The day of the week the congregation has public talks
+        :param time: The time the meeting begins on the day of public talks
+        :param long: The longitude coordinate of the congregation
+        :param lat: The latitude coordinate of the congregation
+        :param note: Notes about the congregation
+        :param visibility: The visibility state of the congregation. True =
+        visible False = not visible/deleted.
+
+        """
 
         self.name = name
         self.phone = phone
@@ -60,7 +69,7 @@ class Congregation:
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
-            
+
         :returns sql: A list containing every row of the
         Congregation table.
 
@@ -79,7 +88,6 @@ class Congregation:
         the method DB.return_pass_sql(None, sql)
 
         """
-
 
         if sort == "ASC":
             sql = "SELECT id, name FROM Congregation WHERE visibility " \
@@ -100,24 +108,24 @@ class Congregation:
 
     def add_congregation(self):
         """
-        Prepares user entered data for a new congregation before sending it to 
+        Prepares user entered data for a new congregation before sending it to
         the db module for insertion into the database.
 
         """
 
         values = [self.name,
-                 self.phone,
-                 self.email,
-                 self.street,
-                 self.city,
-                 self.state,
-                 self.zip,
-                 self.week,
-                 self.time,
-                 self.long,
-                 self.lat,
-                 self.note,
-                 self.visibility]
+                  self.phone,
+                  self.email,
+                  self.street,
+                  self.city,
+                  self.state,
+                  self.zip,
+                  self.week,
+                  self.time,
+                  self.long,
+                  self.lat,
+                  self.note,
+                  self.visibility]
 
         # REVIEW long and lat: Leading zeros may be removed.
 
@@ -128,42 +136,46 @@ class Congregation:
             DB.add_item(None, 'Congregation', Congregation.columns, values)
         else:
             if dup_congregation != "Passed":
-                print("A duplicate entry was found: {}".format(dup_congregation[1]))
+                print("A duplicate entry was found: {}".format(
+                    dup_congregation[1]))
             else:
-                print("A required field was missing: {}".format(missing_fields[1]))
+                print("A required field was missing: {}".format(
+                    missing_fields[1]))
 
 
     def edit_congregation(self, row):
         """
-        Prepares user entered data for the selected congregation before sending 
+        Prepares user entered data for the selected congregation before sending
         it to the db module for updating it in the database.
-    
-        Checks conducted: Check for required fields the user may have left blank.
+
+        Checks conducted: Check for required fields the user may have left
+        blank.
 
         :param row: The id within the table Congregation being edited.
 
         """
 
         values = [self.name,
-                 self.phone,
-                 self.email,
-                 self.street,
-                 self.city,
-                 self.state,
-                 self.zip,
-                 self.week,
-                 self.time,
-                 self.long,
-                 self.lat,
-                 self.note,
-                 self.visibility]
+                  self.phone,
+                  self.email,
+                  self.street,
+                  self.city,
+                  self.state,
+                  self.zip,
+                  self.week,
+                  self.time,
+                  self.long,
+                  self.lat,
+                  self.note,
+                  self.visibility]
 
         # REVIEW long and lat: Leading zeros may be removed.
 
         missing_fields = Congregation.__check_required_fields(self)
 
         if missing_fields == "Passed":
-            DB.modify_item(None, 'Congregation', Congregation.columns, values, row)
+            DB.modify_item(None, 'Congregation', Congregation.columns, values,
+                           row)
         else:
             print("A required field was missing: {}".format(missing_fields[1]))
 
@@ -183,7 +195,7 @@ class Congregation:
         sql = "SELECT name FROM Congregation"
         congregations = DB.return_sql(None, sql)
 
-        if congregations[0] == []:
+        if congregations == []:
             return "Passed"
         else:
             for item in congregations:
