@@ -115,7 +115,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.populate_brothers()
 
         self.button_add.clicked.connect(self.show_add_brother_window)
-
+        self.button_edit.clicked.connect(self.show_edit_brother_window)
 
     def populate_brothers(self):
         """
@@ -142,10 +142,13 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
             self.tableWidget.setItem(int(item[0]), 0, name)
             self.tableWidget.setItem(int(item[0]), 1, congregation)
 
-
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
         self.add_bro_window.exec_()
+
+    def show_edit_brother_window(self):
+        self.edit_bro_window = EditBrotherWindow()
+        self.edit_bro_window.exec_()
 
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
@@ -207,12 +210,64 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         note = self.text_note.toPlainText()
 
         new_brother = Brother()
-        new_brother.set_attribute(first_name, middle_name, last_name,
-                                  email, phone, congregation, responsibility,
+        new_brother.set_attribute(first_name, middle_name, last_name, email,
+                                  phone, congregation, responsibility,
                                   speaker, chairman, coordinator, note)
 
         new_brother.add_brother()
         self.done(True)
+
+
+class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
+    """
+    Opens AddBrotherWindow and changes the GUI for editing.
+
+    """
+
+    def __init__(self, row_id=5, parent=None):
+        super(EditBrotherWindow, self).__init__(parent)
+        self.setupUi(self)
+
+        self.setWindowTitle('Edit Brother')
+        self.button_add.setText("Save")
+        self.check_batch.hide()
+        self.sorted_list = None
+
+        self.populate_cong()
+
+        sql = "SELECT * FROM Brother WHERE id={}".format(row_id)
+        brother = DB.return_sql(self, sql)
+
+        # Loops to find correct index for the congregation in the database.
+        congregation_index = enumerate(self.sorted_list)
+        for item in congregation_index:
+            if item[1][0] == brother[0][6]:
+                cong_index = item[0]
+
+        # Load selected item into the dialog
+        print(brother)  #DEBUGGING
+
+        self.line_f_name.setText(brother[0][1])
+        self.line_m_name.setText(brother[0][2])
+        self.line_l_name.setText(brother[0][3])
+        self.line_email.setText(brother[0][4])
+        self.line_phone.setText(brother[0][5])
+        self.combo_congregation.setCurrentIndex(cong_index)
+        #TODO: Checkboxes
+
+
+    def populate_cong(self):
+        """
+        Populate the congregation combo box with all the names from
+        congregations already entered into the database.
+
+        """
+
+        congregations = Congregation.get_list(None, 'ASC')
+        self.sorted_list = congregations
+
+        for congregation in congregations:
+            self.combo_congregation.addItem(congregation[1])
 
 
 class CongregationWindow(QtGui.QDialog,
