@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'BrotherWindow.ui'
 #
-# Created: Wed Dec 17 15:57:10 2014
+# Created: Wed Dec 17 18:48:08 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_BrotherWindow(object):
     def setupUi(self, BrotherWindow):
         BrotherWindow.setObjectName("BrotherWindow")
-        BrotherWindow.resize(593, 367)
+        BrotherWindow.resize(665, 366)
         BrotherWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         BrotherWindow.setAutoFillBackground(True)
         BrotherWindow.setSizeGripEnabled(True)
@@ -26,7 +26,15 @@ class Ui_BrotherWindow(object):
         self.tableWidget.setAutoFillBackground(True)
         self.tableWidget.setFrameShape(QtGui.QFrame.StyledPanel)
         self.tableWidget.setFrameShadow(QtGui.QFrame.Sunken)
+        self.tableWidget.setLineWidth(1)
+        self.tableWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.tableWidget.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+        self.tableWidget.setDragEnabled(False)
+        self.tableWidget.setAlternatingRowColors(True)
+        self.tableWidget.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
         self.tableWidget.setShowGrid(True)
+        self.tableWidget.setGridStyle(QtCore.Qt.NoPen)
+        self.tableWidget.setWordWrap(True)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(2)
         self.tableWidget.setRowCount(0)
@@ -188,6 +196,7 @@ class Ui_BrotherWindow(object):
     def retranslateUi(self, BrotherWindow):
         BrotherWindow.setWindowTitle(QtGui.QApplication.translate("BrotherWindow", "Brothers", None, QtGui.QApplication.UnicodeUTF8))
         self.tableWidget.setWhatsThis(QtGui.QApplication.translate("BrotherWindow", "<html><head/><body><p>An orderd list of all the brothers entered into the database. Names are sorted first by <span style=\" font-style:italic;\">first</span> or <span style=\" font-style:italic;\">last</span> name and then by their congregation.</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.tableWidget.setSortingEnabled(False)
         self.tableWidget.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("BrotherWindow", "Name", None, QtGui.QApplication.UnicodeUTF8))
         self.tableWidget.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("BrotherWindow", "Congregation", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("BrotherWindow", "Display:", None, QtGui.QApplication.UnicodeUTF8))
