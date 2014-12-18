@@ -112,8 +112,35 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
         self.setupUi(self)
+        self.populate_brothers()
 
         self.button_add.clicked.connect(self.show_add_brother_window)
+
+
+    def populate_brothers(self):
+        """
+        Populates the brother item_list
+
+        """
+
+        db = DB()
+        self.tableWidget.setRowCount(db.count_rows('Brother'))
+        self.tableWidget.setColumnCount(2)
+        bro = Brother()
+
+        item_list = bro.populate_table()
+        item_list = (list(enumerate(item_list)))
+
+        for item in item_list:
+            name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
+                                                            item[1][2],
+                                                            item[1][3]))
+
+            congregation = QtGui.QTableWidgetItem("{Cong}".format(Cong=item[1][
+                4]))
+
+            self.tableWidget.setItem(int(item[0]), 0, name)
+            self.tableWidget.setItem(int(item[0]), 1, congregation)
 
 
     def show_add_brother_window(self):

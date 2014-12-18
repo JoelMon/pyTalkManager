@@ -88,6 +88,16 @@ class Brother:
         else:
             print("The following are missing: ", missing_fields)
 
+
+    def populate_table(self):
+
+        sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
+              "congregation.name FROM Brother JOIN Congregation ON " \
+              "Brother.congregation=Congregation.id"
+
+        return DB.return_sql(self, sql)
+
+
     def __check_required_fields(self):
         """
         Checks for required fileds when the user submits a new brother to be
