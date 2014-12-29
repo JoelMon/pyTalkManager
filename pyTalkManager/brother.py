@@ -87,7 +87,13 @@ class Brother:
             print("The following are missing: ", missing_fields)
 
     def populate_table(self):
+        """
+        Returns information about all the brothers in the database for the
+        perpouse of populating the brother table.
 
+        :return: Brother id, first name, middle name, last name,
+        and congregation
+        """
         sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
               "congregation.name FROM Brother JOIN Congregation ON " \
               "Brother.congregation=Congregation.id"
