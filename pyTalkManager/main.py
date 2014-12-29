@@ -238,7 +238,7 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         brother = DB.return_sql(self, sql)
 
         # Load selected item into the dialog
-        print(brother)  #DEBUGGING
+        print(brother)  # DEBUGGING
 
         self.line_f_name.setText(brother[0][1])
         self.line_m_name.setText(brother[0][2])
@@ -247,6 +247,16 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         self.line_phone.setText(brother[0][5])
         self.combo_congregation.setCurrentIndex(self.cong_index(brother))
         self.combo_publisher.setCurrentIndex(self.resp_index(brother))
+        # Check boxes
+        if brother[0][8] == 'True':
+            self.check_chairman.setChecked(True)
+        if brother[0][9] == 'True':
+            self.check_speaker.setChecked(True)
+        if brother[0][10] == 'True':
+            self.check_talkC.setChecked(True)
+        self.text_note.setText(brother[0][11])
+
+        #TODO Save edits.
 
 
     def cong_index(self, brother):
