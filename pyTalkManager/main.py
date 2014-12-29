@@ -318,6 +318,12 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
 
+    def submit_edits(self):
+        """
+        Submits edits to the database.
+        """
+        pass
+
 
 class CongregationWindow(QtGui.QDialog,
                          gui.CongregationWindow.Ui_CongregationWindow):
