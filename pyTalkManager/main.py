@@ -186,6 +186,11 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
 
     def add_brother(self):
+
+        chairman = ''
+        speaker = ''
+        coordinator = ''
+
         first_name = self.line_f_name.displayText()
         middle_name = self.line_m_name.displayText()
         last_name = self.line_l_name.displayText()
@@ -197,9 +202,6 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         responsibility = self.combo_publisher.itemText(
             self.combo_publisher.currentIndex())
         # Capacity radio buttons
-        chairman = ''
-        speaker = ''
-        coordinator = ''
         if self.check_chairman.isChecked():
             chairman = 'True'
         if self.check_speaker.isChecked():
@@ -238,8 +240,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         brother = DB.return_sql(self, sql)
 
         # Load selected item into the dialog
-        print(brother)  # DEBUGGING
-
         self.line_f_name.setText(brother[0][1])
         self.line_m_name.setText(brother[0][2])
         self.line_l_name.setText(brother[0][3])
