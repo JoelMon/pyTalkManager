@@ -94,6 +94,7 @@ class Brother:
         :return: Brother id, first name, middle name, last name,
         and congregation
         """
+
         sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
               "congregation.name FROM Brother JOIN Congregation ON " \
               "Brother.congregation=Congregation.id"
