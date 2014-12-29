@@ -96,7 +96,6 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
     At the moment non of the functionality are implemented.
 
     """
-    # TODO Implement DatabaseWindow features
 
     def __init__(self, parent=None):
         super(DatabaseWindow, self).__init__(parent)
@@ -238,12 +237,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         sql = "SELECT * FROM Brother WHERE id={}".format(row_id)
         brother = DB.return_sql(self, sql)
 
-        # Loops to find correct index for the congregation in the database.
-        congregation_index = enumerate(self.sorted_list)
-        for item in congregation_index:
-            if item[1][0] == brother[0][6]:
-                cong_index = item[0]
-
         # Load selected item into the dialog
         print(brother)  #DEBUGGING
 
@@ -252,8 +245,21 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         self.line_l_name.setText(brother[0][3])
         self.line_email.setText(brother[0][4])
         self.line_phone.setText(brother[0][5])
-        self.combo_congregation.setCurrentIndex(cong_index)
-        #TODO: Checkboxes
+        self.combo_congregation.setCurrentIndex(self.cong_index(brother))
+
+
+    def cong_index(self, brother):
+        """
+        Returns the index of the congregation the brother belongs to.
+
+        :param brother: The list belonging to the brother being edited.
+        """
+
+        congregation_index = enumerate(self.sorted_list)
+        for item in congregation_index:
+            if item[1][0] == brother[0][6]:
+                cong_index = item[0]
+        return cong_index
 
 
     def populate_cong(self):
