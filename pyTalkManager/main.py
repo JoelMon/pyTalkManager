@@ -246,6 +246,7 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         self.line_email.setText(brother[0][4])
         self.line_phone.setText(brother[0][5])
         self.combo_congregation.setCurrentIndex(self.cong_index(brother))
+        self.combo_publisher.setCurrentIndex(self.resp_index(brother))
 
 
     def cong_index(self, brother):
@@ -260,6 +261,22 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
             if item[1][0] == brother[0][6]:
                 cong_index = item[0]
         return cong_index
+
+
+    def resp_index(self, brother):
+        """
+        Finds the correct index for the brother's responsibility.
+
+        :param brother: The list belonging to the brother being edited.
+        """
+
+        resp = brother[0][7]
+        if resp == 'Elder':
+            return 0
+        if resp == 'Ministerial Servant':
+            return 1
+        if resp == 'Publisher':
+            return 2
 
 
     def populate_cong(self):
