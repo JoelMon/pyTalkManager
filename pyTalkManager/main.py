@@ -245,14 +245,13 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
 
     """
 
-    def __init__(self, row_id=5, parent=None):
+    def __init__(self, row_id, parent=None):
         super(EditBrotherWindow, self).__init__(parent)
         self.setupUi(self)
 
         self.setWindowTitle('Edit Brother')
         self.button_add.setText("Save")
         self.check_batch.hide()
-        self.sorted_list = None
 
         self.populate_cong()
 
