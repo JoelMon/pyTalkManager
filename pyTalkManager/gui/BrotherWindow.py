@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'BrotherWindow.ui'
 #
-# Created: Wed Dec 17 18:48:08 2014
+# Created: Mon Dec 29 15:00:49 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -32,6 +32,7 @@ class Ui_BrotherWindow(object):
         self.tableWidget.setDragEnabled(False)
         self.tableWidget.setAlternatingRowColors(True)
         self.tableWidget.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
+        self.tableWidget.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableWidget.setShowGrid(True)
         self.tableWidget.setGridStyle(QtCore.Qt.NoPen)
         self.tableWidget.setWordWrap(True)
