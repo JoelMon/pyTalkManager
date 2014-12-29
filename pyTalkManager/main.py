@@ -107,6 +107,8 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     Window for the end user to manage the list of brothers in the database.
 
     """
+    brother_id_sorted = []  # Brother ids in correct sorting order.
+
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
@@ -125,12 +127,15 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         db = DB()
         self.tableWidget.setRowCount(db.count_rows('Brother'))
         self.tableWidget.setColumnCount(2)
-        bro = Brother()
 
+        bro = Brother()
         item_list = bro.populate_table()
         item_list = (list(enumerate(item_list)))
 
+        brother_ids = []
+
         for item in item_list:
+            brother_ids.append(item[1][0])
             name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
                                                             item[1][2],
                                                             item[1][3]))
@@ -141,13 +146,29 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
             self.tableWidget.setItem(int(item[0]), 0, name)
             self.tableWidget.setItem(int(item[0]), 1, congregation)
 
+        # Return all of the brother database ids in the correct order based
+        # on the sort applied.
+        BrotherWindow.brother_id_sorted = brother_ids
+
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
         self.add_bro_window.exec_()
 
     def show_edit_brother_window(self):
-        self.edit_bro_window = EditBrotherWindow()
+        self.id_brother()
+        self.edit_bro_window = EditBrotherWindow(self.id_brother())
         self.edit_bro_window.exec_()
+
+    def id_brother(self):
+        """
+        Return the id of the brother selected.
+
+        :returns: The database id of the brother selected
+        """
+
+        selected_brother = self.tableWidget.currentRow()
+        brothers_id = BrotherWindow.brother_id_sorted
+        return brothers_id[selected_brother]
 
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
@@ -183,7 +204,6 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
-
 
     def add_brother(self):
 
@@ -258,7 +278,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
 
         #TODO Save edits.
 
-
     def cong_index(self, brother):
         """
         Returns the index of the congregation the brother belongs to.
@@ -271,7 +290,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
             if item[1][0] == brother[0][6]:
                 cong_index = item[0]
         return cong_index
-
 
     def resp_index(self, brother):
         """
@@ -287,7 +305,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
             return 1
         if resp == 'Publisher':
             return 2
-
 
     def populate_cong(self):
         """
