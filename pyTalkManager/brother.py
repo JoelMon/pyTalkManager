@@ -123,3 +123,5 @@ class Brother:
             missing_fields.append('capacity')
 
         return missing_fields
+
+    # TODO Add a check for duplicates
