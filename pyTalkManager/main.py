@@ -118,6 +118,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.button_add.clicked.connect(self.show_add_brother_window)
         self.tableWidget.doubleClicked.connect(self.show_edit_brother_window)
         self.button_edit.clicked.connect(self.show_edit_brother_window)
+        self.tableWidget.resizeColumnsToContents()
 
     def populate_brothers(self):
         """
