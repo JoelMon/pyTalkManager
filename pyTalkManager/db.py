@@ -1,5 +1,5 @@
 import sqlite3
-import pyTalkManager as tm
+import pyTalkManager as TM
 
 
 class DB:
@@ -15,10 +15,10 @@ class DB:
 
         """
 
-        return tm.config_get('DB', 'location')
+        return TM.config_get('DB', 'location')
 
 
-    def DbInit():
+    def db_init():
         """
         Initialize SQLite database
 
@@ -149,7 +149,7 @@ class DB:
 
     def count_rows(self, table):
         """
-        Count the total ammount of rows in a table.
+        Count the total amount of rows in a table.
 
         :param table: The table that needs to be counted.
         :return: The total number of rows in the table as an int.
