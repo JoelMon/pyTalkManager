@@ -133,8 +133,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         bro = Brother()
         item_list = bro.populate_table()
         item_list = (list(enumerate(item_list)))
-
-        brother_ids = []
+        brother_ids = []  # IDs of the brothers entered in the DB.
 
         for item in item_list:
             brother_ids.append(item[1][0])
@@ -251,12 +250,12 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         super(EditBrotherWindow, self).__init__(parent)
         self.setupUi(self)
 
+        self.button_add.clicked.connect(lambda: self.submit_edits(row_id))
         self.setWindowTitle('Edit Brother')
         self.button_add.setText("Save")
         self.check_batch.hide()
-
         self.populate_cong()
-
+        #Get the information from the selected brother
         sql = "SELECT * FROM Brother WHERE id={}".format(row_id)
         brother = DB.return_sql(self, sql)
 
@@ -276,8 +275,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         if brother[0][10] == 'True':
             self.check_talkC.setChecked(True)
         self.text_note.setText(brother[0][11])
-
-        #TODO Save edits.
 
     def cong_index(self, brother):
         """
@@ -320,11 +317,52 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
 
-    def submit_edits(self):
+    def submit_edits(self, row):
         """
-        Submits edits to the database.
+        Method that submits user made edits to be committed to the database.
+
+        All the fields are submitted to the Brother.edit_brother
+        method which will do various checks such as make sure all required
+        fields are entered. Then from there it is passed off to the db module
+        that will cause the database to be modified.
+
+        :param row: The row (id) in the database that is being modified.
+
         """
-        pass
+
+        first_name = self.line_f_name.displayText()
+        middle_name = self.line_m_name.displayText()
+        last_name = self.line_l_name.displayText()
+        phone = self.line_phone.displayText()
+        email = self.line_email.displayText()
+        # Combo box
+        selection = self.combo_congregation.currentIndex()
+        congregation = self.sorted_list[selection][0]
+        responsibility = self.combo_publisher.itemText(
+            self.combo_publisher.currentIndex())
+        # Capacity radio buttons
+        if self.check_chairman.isChecked():
+            chairman = 'True'
+        else:
+            chairman = 'False'
+        if self.check_speaker.isChecked():
+            speaker = 'True'
+        else:
+            speaker = 'Flase'
+        if self.check_talkC.isChecked():
+            coordinator = 'True'
+        else:
+            coordinator = 'False'
+        note = self.text_note.toPlainText()
+
+        edit = Brother()
+        edit.set_attribute(first_name, middle_name, last_name, email, phone,
+                           congregation, responsibility, speaker, chairman,
+                           coordinator, note)
+        edit.edit_brother(row)
+        self.close()
+
+
 
 
 class CongregationWindow(QtGui.QDialog,
@@ -572,11 +610,11 @@ class EditCongregationDialog(QtGui.QDialog,
         notes = self.text_note.toPlainText()
         visibility = "True"
 
-        edit_congregation = Congregation()
-        edit_congregation.set_attributes(name, phone, email, address, city,
+        edit = Congregation()
+        edit.set_attributes(name, phone, email, address, city,
                                          state, zipcode, week, time, longitude,
                                          latitude, notes, visibility)
-        edit_congregation.edit_congregation(row)
+        edit.edit_congregation(row)
 
         self.done(True)
 

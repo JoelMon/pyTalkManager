@@ -121,7 +121,44 @@ class Brother:
         if self.chairman == '' and self.speaker == '' and self.coordinator ==\
                 '':
             missing_fields.append('capacity')
+        if missing_fields == []:
+            return "Passed"
+        else:
+            return missing_fields
 
-        return missing_fields
+    def edit_brother(self, row):
+        """
+        Prepares user entered data for the selected brother before sending
+        it to the db module for updating it in the database.
+
+        Checks conducted: Check for required fields the user may have left
+        blank.
+
+        :param row: The id within the table Congregation being edited.
+
+        """
+
+        values = [self.first_name,
+                  self.middle_name,
+                  self.last_name,
+                  self.email,
+                  self.phone,
+                  self.congregation,
+                  self.responsibility,
+                  self.speaker,
+                  self.chairman,
+                  self.coordinator,
+                  self.note,
+                  self.visibility]
+
+        # Check for missing fields
+        # TODO: There's a bug when you try to save while there's a missing field
+        missing_fields = Brother.__check_required_fields(self)
+        if missing_fields == "Passed":
+            DB.modify_item(None, 'Brother', Brother.columns, values, row)
+        else:
+            print("A required field was missing: {}".format(missing_fields[1]))
+
+
 
     # TODO Add a check for duplicates
