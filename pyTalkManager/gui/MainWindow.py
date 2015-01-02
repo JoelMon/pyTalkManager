@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './gui/MainWindow.ui'
+# Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Tue Nov 18 11:55:10 2014
+# Created: Fri Jan  2 17:37:47 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(421, 289)
+        MainWindow.resize(430, 289)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -79,10 +79,16 @@ class Ui_MainWindow(object):
         icon5.addPixmap(QtGui.QPixmap(":/MainWindow/system-log-out.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionExit.setIcon(icon5)
         self.actionExit.setObjectName("actionExit")
+        self.actionSchedule = QtGui.QAction(MainWindow)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/MainWindow/schedule.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSchedule.setIcon(icon6)
+        self.actionSchedule.setObjectName("actionSchedule")
         self.toolBar.addAction(self.actionDatabase)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionBrothers)
         self.toolBar.addAction(self.actionCongregation)
+        self.toolBar.addAction(self.actionSchedule)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionReports)
         self.toolBar.addAction(self.actionSettings)
@@ -111,5 +117,7 @@ class Ui_MainWindow(object):
         self.actionCongregation.setText(QtGui.QApplication.translate("MainWindow", "Congregations", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCongregation.setToolTip(QtGui.QApplication.translate("MainWindow", "List of congregations", None, QtGui.QApplication.UnicodeUTF8))
         self.actionExit.setText(QtGui.QApplication.translate("MainWindow", "Exit", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSchedule.setText(QtGui.QApplication.translate("MainWindow", "Schedule", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSchedule.setToolTip(QtGui.QApplication.translate("MainWindow", "Set schedule", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc

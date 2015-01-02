@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="MainWindow">
+    <file>schedule.png</file>
     <file>system-log-out.png</file>
     <file>preferences-system.png</file>
     <file>x-office-presentation.png</file>

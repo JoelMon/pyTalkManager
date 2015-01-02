@@ -376,7 +376,6 @@ class CongregationWindow(QtGui.QDialog,
     database.
 
     Methods:
-
       populate_table - Gets all the congregations entered in the database and
       returns only their names. Then it populates the list_congregation
       QListWidget with the retrieved names.
