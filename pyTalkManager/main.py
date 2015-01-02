@@ -153,12 +153,18 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
-        self.add_bro_window.exec_()
+        # If the user saves a new congregation, run populate_table()
+        saved = self.add_bro_window.exec_()
+        if saved:
+            self.populate_brothers()
 
     def show_edit_brother_window(self):
         self.id_brother()
         self.edit_bro_window = EditBrotherWindow(self.id_brother())
-        self.edit_bro_window.exec_()
+        # If the user saves a new congregation, run populate_table()
+        saved = self.edit_bro_window.exec_()
+        if saved:
+            self.populate_brothers()
 
     def id_brother(self):
         """
@@ -360,9 +366,7 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
                            congregation, responsibility, speaker, chairman,
                            coordinator, note)
         edit.edit_brother(row)
-        self.close()
-
-
+        self.done(True)
 
 
 class CongregationWindow(QtGui.QDialog,
@@ -483,7 +487,6 @@ class AddCongregationWindow(QtGui.QDialog,
 
         self.button_add.clicked.connect(self.new_congregation)
 
-
     def new_congregation(self):
         """
         Method to add information of a new congregation to
@@ -511,7 +514,6 @@ class AddCongregationWindow(QtGui.QDialog,
                                         latitude, notes, visibility)
         new_congregation.add_congregation()
         self.done(True)
-
 
     def determine_day(self):
         """

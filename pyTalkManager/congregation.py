@@ -142,7 +142,6 @@ class Congregation:
                 print("A required field was missing: {}".format(
                     missing_fields[1]))
 
-
     def edit_congregation(self, row):
         """
         Prepares user entered data for the selected congregation before sending
