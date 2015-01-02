@@ -157,7 +157,7 @@ class Brother:
         if missing_fields == "Passed":
             DB.modify_item(None, 'Brother', Brother.columns, values, row)
         else:
-            print("A required field was missing: {}".format(missing_fields[1]))
+            print("A required field was missing: {}".format(missing_fields))
 
 
 
