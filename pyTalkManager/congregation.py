@@ -22,9 +22,9 @@ class Congregation:
 
 
     # All of the columns in Congregation Window in correct order
-    columns = ['name', 'phone', 'email', 'street', 'city',
+    columns = ('name', 'phone', 'email', 'street', 'city',
                'state', 'zip', 'week', 'time', 'long', 'lat',
-               'note', 'visibility']
+               'note', 'visibility')
 
 
     def set_attributes(self, name=None, phone=None, email=None, street=None,
@@ -113,7 +113,7 @@ class Congregation:
 
         """
 
-        values = [self.name,
+        values = (self.name,
                   self.phone,
                   self.email,
                   self.street,
@@ -125,7 +125,7 @@ class Congregation:
                   self.long,
                   self.lat,
                   self.note,
-                  self.visibility]
+                  self.visibility)
 
         # REVIEW long and lat: Leading zeros may be removed.
 
@@ -155,7 +155,7 @@ class Congregation:
 
         """
 
-        values = [self.name,
+        values = (self.name,
                   self.phone,
                   self.email,
                   self.street,
@@ -167,7 +167,7 @@ class Congregation:
                   self.long,
                   self.lat,
                   self.note,
-                  self.visibility]
+                  self.visibility)
 
         # REVIEW long and lat: Leading zeros may be removed.
 

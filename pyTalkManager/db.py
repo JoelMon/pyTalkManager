@@ -134,18 +134,17 @@ class DB:
         value - a list with the value(s) that will be written.
 
         """
-
+        value = (value,)
         list_column = ', '.join(column)
         # Convert each value into a string. Join requires strings.
         list_value = "', '".join(str(v) for v in value)
 
-        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(
+        command = "INSERT INTO {table}({column}) VALUES{values}".format(
             table=table,  # adds ' ' to values.
             column=list_column,
             values=list_value)
 
         DB.commit_sql(None, command)
-
 
     def count_rows(self, table):
         """
@@ -165,18 +164,20 @@ class DB:
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database"""
 
-        combine = list(zip(column, value))
+        # Adds =?, to each column so that values can then be unpacked.
+        column_new = "=?, ".join(column)
+        column_new = column_new + "=?"
 
-        for item in combine:
-            command = "UPDATE {table} SET {column} = '{value}' WHERE id = {" \
-                      "row}".format(
-                table=table,
-                column=item[0],
-                value=item[1],
-                row=row)
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
 
-            DB.commit_sql(None, command)
-
+        col_len = len(column)
+        for x in range(col_len):
+            c.execute("UPDATE {} SET {} WHERE id = {}".format(
+                table, column_new, row), value)
+        conn.commit()
+        conn.close()
 
     def return_pass_sql(self, sql):
         """

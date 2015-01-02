@@ -19,11 +19,11 @@ class Brother:
         self.chairman = None
         self.coordinator = None
         self.note = None
-        self.visibility = True
+        self.visibility = 'True'
 
-    columns = ['first_name', 'middle_name', 'last_name', 'email',
+    columns = ('first_name', 'middle_name', 'last_name', 'email',
                'phone', 'congregation', 'responsibility', 'speaker',
-               'chairman', 'coordinator', 'note', 'visibility']
+               'chairman', 'coordinator', 'note', 'visibility')
 
     def set_attribute(self, first_name=None, middle_name=None,
                       last_name=None, email=None, phone=None,
@@ -66,7 +66,7 @@ class Brother:
 
         """
 
-        values = [self.first_name,
+        values = (self.first_name,
                   self.middle_name,
                   self.last_name,
                   self.email,
@@ -77,11 +77,11 @@ class Brother:
                   self.chairman,
                   self.coordinator,
                   self.note,
-                  self.visibility]
+                  self.visibility)
 
         missing_fields = Brother.__check_required_fields(self)
 
-        if missing_fields == []:
+        if missing_fields == "Passed":
             DB.add_item(None, 'Brother', Brother.columns, values)
         else:
             print("The following are missing: ", missing_fields)
