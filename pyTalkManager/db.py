@@ -134,18 +134,17 @@ class DB:
         value - a list with the value(s) that will be written.
 
         """
-
+        value = (value,)
         list_column = ', '.join(column)
         # Convert each value into a string. Join requires strings.
         list_value = "', '".join(str(v) for v in value)
 
-        command = "INSERT INTO {table}({column}) VALUES('{values}')".format(
+        command = "INSERT INTO {table}({column}) VALUES{values}".format(
             table=table,  # adds ' ' to values.
             column=list_column,
             values=list_value)
 
         DB.commit_sql(None, command)
-
 
     def count_rows(self, table):
         """
