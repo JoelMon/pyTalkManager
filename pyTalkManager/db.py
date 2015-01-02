@@ -174,8 +174,8 @@ class DB:
 
         col_len = len(column)
         for x in range(col_len):
-            c.execute("UPDATE Congregation SET {} WHERE id = {}".format(
-                column_new, row), value)
+            c.execute("UPDATE {} SET {} WHERE id = {}".format(
+                table, column_new, row), value)
         conn.commit()
         conn.close()
 
