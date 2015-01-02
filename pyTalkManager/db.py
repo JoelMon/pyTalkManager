@@ -164,18 +164,20 @@ class DB:
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database"""
 
-        combine = list(zip(column, value))
+        # Adds =?, to each column so that values can then be unpacked.
+        column_new = "=?, ".join(column)
+        column_new = column_new + "=?"
 
-        for item in combine:
-            command = "UPDATE {table} SET {column} = '{value}' WHERE id = {" \
-                      "row}".format(
-                table=table,
-                column=item[0],
-                value=item[1],
-                row=row)
+        conn = sqlite3.connect(DB.get_path())
+        c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON")
 
-            DB.commit_sql(None, command)
-
+        col_len = len(column)
+        for x in range(col_len):
+            c.execute("UPDATE Congregation SET {} WHERE id = {}".format(
+                column_new, row), value)
+        conn.commit()
+        conn.close()
 
     def return_pass_sql(self, sql):
         """
