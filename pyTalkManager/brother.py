@@ -88,7 +88,7 @@ class Brother:
 
 
 
-    def populate_table(self):
+    def populate_table(self, name="first_name", congregation="ASC"):
         """
         Returns information about all the brothers in the database for the
         perpouse of populating the brother table.
@@ -99,7 +99,8 @@ class Brother:
 
         sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
               "congregation.name FROM Brother JOIN Congregation ON " \
-              "Brother.congregation=Congregation.id"
+              "Brother.congregation=Congregation.id ORDER BY name {ORDER}, " \
+              "{NAME} ASC".format(NAME=name, ORDER=congregation)
 
         return DB.return_sql(self, sql)
 

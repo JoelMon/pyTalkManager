@@ -123,7 +123,6 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     def populate_brothers(self):
         """
         Populates the brother item_list
-
         """
 
         db = DB()
@@ -131,12 +130,19 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.tableWidget.setColumnCount(2)
 
         bro = Brother()
+
+
         item_list = bro.populate_table()
         item_list = (list(enumerate(item_list)))
-        brother_ids = []  # IDs of the brothers entered in the DB.
 
+
+
+
+        # Set the list of brothers onto the table.
+        brother_ids = []  # IDs of the brothers entered in the DB.
         for item in item_list:
             brother_ids.append(item[1][0])
+            # First, middle, and last name.
             name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
                                                             item[1][2],
                                                             item[1][3]))
@@ -148,7 +154,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
             self.tableWidget.setItem(int(item[0]), 1, congregation)
 
         # Return all of the brother database ids in the correct order based
-        # on the sort applied.
+        # on the sort applied to BrotherWinow.brother_id_sorted.
         BrotherWindow.brother_id_sorted = brother_ids
 
     def show_add_brother_window(self):
