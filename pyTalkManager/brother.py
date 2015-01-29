@@ -91,7 +91,7 @@ class Brother:
     def populate_table(self, name="first_name", congregation="ASC"):
         """
         Returns information about all the brothers in the database for the
-        perpouse of populating the brother table.
+        purpose of populating the brother table.
 
         :return: Brother id, first name, middle name, last name,
         and congregation
