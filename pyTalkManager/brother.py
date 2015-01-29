@@ -88,18 +88,29 @@ class Brother:
 
 
 
-    def populate_table(self):
+    def populate_table(self, name="first_name", resp="NOT NULL",
+                       coord="NOT NULL", cong="NOT NULL"):
         """
         Returns information about all the brothers in the database for the
-        perpouse of populating the brother table.
+        purpose of populating the brother table.
 
+        :param resp: The responsibility that will be displayed. "NOT NULL"
+        shows all. In order to show a specific responsibility, the name of
+        the responsibility need to be passed within quotations such as:
+        '"Elder"'
+        :param name: The method in which the brother's names will be sorted.
+        The default method is by first name.
         :return: Brother id, first name, middle name, last name,
         and congregation
         """
 
-        sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
-              "congregation.name FROM Brother JOIN Congregation ON " \
-              "Brother.congregation=Congregation.id"
+        sql = """
+        SELECT Brother.id, first_name, middle_name, last_name,
+        congregation.name FROM Brother JOIN Congregation ON
+        Brother.congregation=Congregation.id WHERE
+        Brother.responsibility is {RESP} AND Brother.coordinator is {COORD}
+        AND Congregation.name is {CONG} ORDER BY {NAME} ASC
+        """.format(RESP=resp, COORD=coord, CONG=cong, NAME=name)
 
         return DB.return_sql(self, sql)
 
