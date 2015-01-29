@@ -93,14 +93,19 @@ class Brother:
         Returns information about all the brothers in the database for the
         purpose of populating the brother table.
 
+        :param name: The method in which the brother's names will be sorted.
+        The default method is by first name.
+        :param congregation: The method in which the congregation will be
+        sorted. The default method is ASC.
         :return: Brother id, first name, middle name, last name,
         and congregation
         """
 
-        sql = "SELECT Brother.id, first_name, middle_name, last_name, " \
-              "congregation.name FROM Brother JOIN Congregation ON " \
-              "Brother.congregation=Congregation.id ORDER BY name {ORDER}, " \
-              "{NAME} ASC".format(NAME=name, ORDER=congregation)
+        sql = """
+        SELECT Brother.id, first_name, middle_name, last_name,
+        congregation.name FROM Brother JOIN Congregation ON
+        Brother.congregation=Congregation.id ORDER BY {NAME} ASC
+        """.format(NAME=name, ORDER=congregation)
 
         return DB.return_sql(self, sql)
 

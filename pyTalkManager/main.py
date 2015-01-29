@@ -119,8 +119,13 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.tableWidget.doubleClicked.connect(self.show_edit_brother_window)
         self.button_edit.clicked.connect(self.show_edit_brother_window)
         self.tableWidget.resizeColumnsToContents()
+        # Sorting
+        self.radio_fname.clicked.connect(lambda: self.populate_brothers(
+            'first_name'))
+        self.radio_l_name.clicked.connect(lambda: self.populate_brothers(
+            'last_name'))
 
-    def populate_brothers(self):
+    def populate_brothers(self, sort_name='first_name'):
         """
         Populates the brother item_list
         """
@@ -128,11 +133,9 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         db = DB()
         self.tableWidget.setRowCount(db.count_rows('Brother'))
         self.tableWidget.setColumnCount(2)
-
         bro = Brother()
 
-
-        item_list = bro.populate_table()
+        item_list = bro.populate_table(sort_name)
         item_list = (list(enumerate(item_list)))
 
 
