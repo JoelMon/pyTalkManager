@@ -113,35 +113,75 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
         self.setupUi(self)
-        self.populate_brothers()
         self.populate_cong()
         self.sorted_list = None
+        self.options_selected = {"Name": "first_name", "Resp": "NOT NULL",
+                                 "Coord": "Not Null"}
+        self.populate_brothers(self.options_selected)
 
         self.button_add.clicked.connect(self.show_add_brother_window)
         self.tableWidget.doubleClicked.connect(self.show_edit_brother_window)
         self.button_edit.clicked.connect(self.show_edit_brother_window)
         self.tableWidget.resizeColumnsToContents()
-        # Sorting
-        self.radio_fname.clicked.connect(lambda: self.populate_brothers(
-            'first_name'))
-        self.radio_l_name.clicked.connect(lambda: self.populate_brothers(
-            'last_name'))
+        # Sorting of brothers
+        self.radio_fname.clicked.connect(self.clicked_button)
+        self.radio_l_name.clicked.connect(self.clicked_button)
+        self.radio_all.clicked.connect(self.clicked_button)
+        self.radio_coord.clicked.connect(self.clicked_button)
+        self.radio_elder.clicked.connect(self.clicked_button)
+        self.radio_ms.clicked.connect(self.clicked_button)
+        self.radio_pub.clicked.connect(self.clicked_button)
 
-    def populate_brothers(self, sort_name='first_name'):
+
+    def clicked_button(self):
+        """
+        Determins which radio buttons have been selected and adds the
+        selected radio buttons to the dictionary 'options_selected'. Then it
+        calls the populate_cong method and passes the options_selected dic so
+        that the table can be sorted using the parameters included in
+        options_selected.
+
+        :return: None
+        """
+        if self.radio_fname.isChecked():
+            self.options_selected["Name"] = "first_name"
+        else:
+            self.options_selected["Name"] = "last_name"
+
+        if self.radio_all.isChecked():
+            self.options_selected["Resp"] = "NOT NULL"
+            self.options_selected["Coord"] = "NOT NULL"
+        elif self.radio_coord.isChecked():
+            self.options_selected["Resp"] = "NOT NULL"
+            self.options_selected["Coord"] = '"True"'
+        elif self.radio_elder.isChecked():
+            self.options_selected["Resp"] = '"Elder"'
+            self.options_selected["Coord"] = "NOT NULL"
+        elif self.radio_ms.isChecked():
+            self.options_selected["Resp"] = '"Ministerial Servant"'
+            self.options_selected["Coord"] = "NOT NULL"
+        elif self.radio_pub.isChecked():
+            self.options_selected["Resp"] = '"Publisher"'
+            self.options_selected["Coord"] = "NOT NULL"
+        print(self.options_selected)
+        self.populate_brothers(self.options_selected)
+
+
+    def populate_brothers(self, option_dic):
         """
         Populates the brother item_list
         """
 
-        db = DB()
-        self.tableWidget.setRowCount(db.count_rows('Brother'))
         self.tableWidget.setColumnCount(2)
         bro = Brother()
+        sort_name = option_dic["Name"]
+        resp = option_dic["Resp"]
+        coord = option_dic["Coord"]
+        self.tableWidget.clearContents()
 
-        item_list = bro.populate_table(sort_name)
+        item_list = bro.populate_table(sort_name, resp, coord)
         item_list = (list(enumerate(item_list)))
-
-
-
+        self.tableWidget.setRowCount(len(item_list))
 
         # Set the list of brothers onto the table.
         brother_ids = []  # IDs of the brothers entered in the DB.
@@ -176,7 +216,6 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         # congregation to be included.
         self.sorted_list.insert(0, (0, 'All'))
 
-        print(self.sorted_list)
         for congregation in congregations:
             self.combo_cong.addItem(congregation[1])
 
