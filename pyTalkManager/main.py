@@ -238,7 +238,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         # If the user saves a new congregation, run populate_table()
         saved = self.edit_bro_window.exec_()
         if saved:
-            self.populate_brothers()
+            self.clicked_button()
 
     def id_brother(self):
         """
