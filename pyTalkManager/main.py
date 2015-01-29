@@ -163,7 +163,6 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         elif self.radio_pub.isChecked():
             self.options_selected["Resp"] = '"Publisher"'
             self.options_selected["Coord"] = "NOT NULL"
-        print(self.options_selected)
         self.populate_brothers(self.options_selected)
 
 
