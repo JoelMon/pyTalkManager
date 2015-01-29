@@ -171,9 +171,12 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
         congregations = Congregation.get_list(None, 'ASC')
         self.sorted_list = congregations
-        print(congregations)
-        print(self.sorted_list)
+        # Adds 'All' to the top of the combo box with the index of 0 so that
+        # it can be used with a conditional to determine if sorting wants all
+        # congregation to be included.
+        self.sorted_list.insert(0, (0, 'All'))
 
+        print(self.sorted_list)
         for congregation in congregations:
             self.combo_cong.addItem(congregation[1])
 
