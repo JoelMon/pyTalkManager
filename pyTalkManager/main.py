@@ -114,6 +114,8 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         super(BrotherWindow, self).__init__(parent)
         self.setupUi(self)
         self.populate_brothers()
+        self.populate_cong()
+        self.sorted_list = None
 
         self.button_add.clicked.connect(self.show_add_brother_window)
         self.tableWidget.doubleClicked.connect(self.show_edit_brother_window)
@@ -159,6 +161,21 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         # Return all of the brother database ids in the correct order based
         # on the sort applied to BrotherWinow.brother_id_sorted.
         BrotherWindow.brother_id_sorted = brother_ids
+
+    def populate_cong(self):
+        """
+        Populate the congregation combo box with all the names from
+        congregations already entered into the database.
+
+        """
+
+        congregations = Congregation.get_list(None, 'ASC')
+        self.sorted_list = congregations
+        print(congregations)
+        print(self.sorted_list)
+
+        for congregation in congregations:
+            self.combo_cong.addItem(congregation[1])
 
     def show_add_brother_window(self):
         self.add_bro_window = AddBrotherWindow()
