@@ -116,7 +116,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.populate_cong()
         self.sorted_list = None
         self.options_selected = {"Name": "first_name", "Resp": "NOT NULL",
-                                 "Coord": "Not Null"}
+                                 "Coord": "NOT NULL", "Cong": "NOT NULL"}
         self.populate_brothers(self.options_selected)
 
         self.button_add.clicked.connect(self.show_add_brother_window)
@@ -131,7 +131,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.radio_elder.clicked.connect(self.clicked_button)
         self.radio_ms.clicked.connect(self.clicked_button)
         self.radio_pub.clicked.connect(self.clicked_button)
-
+        self.combo_cong.currentIndexChanged.connect(self.clicked_button)
 
     def clicked_button(self):
         """
@@ -143,6 +143,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
         :return: None
         """
+
         if self.radio_fname.isChecked():
             self.options_selected["Name"] = "first_name"
         else:
@@ -163,8 +164,13 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         elif self.radio_pub.isChecked():
             self.options_selected["Resp"] = '"Publisher"'
             self.options_selected["Coord"] = "NOT NULL"
-        self.populate_brothers(self.options_selected)
 
+        if self.combo_cong.currentText() == "All":
+            self.options_selected["Cong"] = "NOT NULL"
+        else:
+            self.options_selected["Cong"] = \
+                '"{}"'.format(self.combo_cong.currentText())
+        self.populate_brothers(self.options_selected)
 
     def populate_brothers(self, option_dic):
         """
@@ -176,9 +182,10 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         sort_name = option_dic["Name"]
         resp = option_dic["Resp"]
         coord = option_dic["Coord"]
+        cong = option_dic["Cong"]
         self.tableWidget.clearContents()
 
-        item_list = bro.populate_table(sort_name, resp, coord)
+        item_list = bro.populate_table(sort_name, resp, coord, cong)
         item_list = (list(enumerate(item_list)))
         self.tableWidget.setRowCount(len(item_list))
 
