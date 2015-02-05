@@ -193,10 +193,18 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         brother_ids = []  # IDs of the brothers entered in the DB.
         for item in item_list:
             brother_ids.append(item[1][0])
-            # First, middle, and last name.
-            name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
-                                                            item[1][2],
-                                                            item[1][3]))
+
+            # Format names based on sorting option.
+            if self.options_selected["Name"] == "first_name":
+                # First name , middle name , and last name.
+                name = QtGui.QTableWidgetItem("{} {} {}".format(item[1][1],
+                                                                item[1][2],
+                                                                item[1][3]))
+            else:
+                # Last name, first name, and middle name.
+                name = QtGui.QTableWidgetItem("{}, {} {}".format(item[1][3],
+                                                                 item[1][1],
+                                                                 item[1][2]))
 
             congregation = QtGui.QTableWidgetItem("{Cong}".format(Cong=item[1][
                 4]))
