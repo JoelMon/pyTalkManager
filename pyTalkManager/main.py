@@ -124,18 +124,18 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.button_edit.clicked.connect(self.show_edit_brother_window)
         self.tableWidget.resizeColumnsToContents()
         # Sorting of brothers
-        self.radio_fname.clicked.connect(self.clicked_button)
-        self.radio_l_name.clicked.connect(self.clicked_button)
-        self.radio_all.clicked.connect(self.clicked_button)
-        self.radio_coord.clicked.connect(self.clicked_button)
-        self.radio_elder.clicked.connect(self.clicked_button)
-        self.radio_ms.clicked.connect(self.clicked_button)
-        self.radio_pub.clicked.connect(self.clicked_button)
-        self.combo_cong.currentIndexChanged.connect(self.clicked_button)
+        self.radio_fname.clicked.connect(self.user_option_sorter)
+        self.radio_l_name.clicked.connect(self.user_option_sorter)
+        self.radio_all.clicked.connect(self.user_option_sorter)
+        self.radio_coord.clicked.connect(self.user_option_sorter)
+        self.radio_elder.clicked.connect(self.user_option_sorter)
+        self.radio_ms.clicked.connect(self.user_option_sorter)
+        self.radio_pub.clicked.connect(self.user_option_sorter)
+        self.combo_cong.currentIndexChanged.connect(self.user_option_sorter)
 
-    def clicked_button(self):
+    def user_option_sorter(self):
         """
-        Determins which radio buttons have been selected and adds the
+        Determines which radio buttons have been selected and adds the
         selected radio buttons to the dictionary 'options_selected'. Then it
         calls the populate_cong method and passes the options_selected dic so
         that the table can be sorted using the parameters included in
@@ -230,7 +230,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         # If the user saves a new congregation, run populate_table()
         saved = self.add_bro_window.exec_()
         if saved:
-            self.populate_brothers()
+            self.user_option_sorter()
 
     def show_edit_brother_window(self):
         self.id_brother()
@@ -238,7 +238,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         # If the user saves a new congregation, run populate_table()
         saved = self.edit_bro_window.exec_()
         if saved:
-            self.clicked_button()
+            self.user_option_sorter()
 
     def id_brother(self):
         """
