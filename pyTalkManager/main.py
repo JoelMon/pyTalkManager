@@ -15,6 +15,7 @@ import gui.BrotherWindow
 import gui.AddBrotherWindow
 import gui.CongregationWindow
 import gui.AddCongregationWindow
+import gui.TalkWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -35,6 +36,7 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.actionDatabase.triggered.connect(self.show_database_window)
         self.actionBrothers.triggered.connect(self.show_brother_window)
         self.actionCongregation.triggered.connect(self.show_congregation_window)
+        self.actionTalks.triggered.connect(self.show_talk_window)
 
     def center_on_screen(self):
         """
@@ -82,6 +84,12 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.congregation_window = CongregationWindow()
         self.congregation_window.show()
 
+    def show_talk_window(self):
+        """
+        Method that calls the List Window
+        """
+        self.talk_window = TalkWindow()
+        self.talk_window.show()
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
     """
@@ -701,6 +709,14 @@ class EditCongregationDialog(QtGui.QDialog,
 
         self.done(True)
 
+class TalkWindow(QtGui.QDialog, gui.TalkWindow.Ui_TalkWindow):
+    """
+    Window that shows all talks available.
+    """
+
+    def __init__(self, parent=None):
+        super(TalkWindow, self).__init__(parent)
+        self.setupUi(self)
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Fri Jan  2 17:37:47 2015
+# Created: Thu Feb  5 16:12:08 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(430, 289)
+        MainWindow.resize(479, 289)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -84,10 +84,16 @@ class Ui_MainWindow(object):
         icon6.addPixmap(QtGui.QPixmap(":/MainWindow/schedule.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSchedule.setIcon(icon6)
         self.actionSchedule.setObjectName("actionSchedule")
+        self.actionTalks = QtGui.QAction(MainWindow)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/MainWindow/text-x-generic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionTalks.setIcon(icon7)
+        self.actionTalks.setObjectName("actionTalks")
         self.toolBar.addAction(self.actionDatabase)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionBrothers)
         self.toolBar.addAction(self.actionCongregation)
+        self.toolBar.addAction(self.actionTalks)
         self.toolBar.addAction(self.actionSchedule)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionReports)
@@ -119,5 +125,7 @@ class Ui_MainWindow(object):
         self.actionExit.setText(QtGui.QApplication.translate("MainWindow", "Exit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSchedule.setText(QtGui.QApplication.translate("MainWindow", "Schedule", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSchedule.setToolTip(QtGui.QApplication.translate("MainWindow", "Set schedule", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionTalks.setText(QtGui.QApplication.translate("MainWindow", "talks", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionTalks.setToolTip(QtGui.QApplication.translate("MainWindow", "List of talk outlines", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
