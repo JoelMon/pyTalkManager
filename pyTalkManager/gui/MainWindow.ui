@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>479</width>
     <height>289</height>
    </rect>
   </property>
@@ -83,6 +83,7 @@
    <addaction name="separator"/>
    <addaction name="actionBrothers"/>
    <addaction name="actionCongregation"/>
+   <addaction name="actionTalks"/>
    <addaction name="actionSchedule"/>
    <addaction name="separator"/>
    <addaction name="actionReports"/>
@@ -169,6 +170,18 @@
    </property>
    <property name="toolTip">
     <string>Set schedule</string>
+   </property>
+  </action>
+  <action name="actionTalks">
+   <property name="icon">
+    <iconset resource="resource/icons.qrc">
+     <normaloff>:/MainWindow/text-x-generic.png</normaloff>:/MainWindow/text-x-generic.png</iconset>
+   </property>
+   <property name="text">
+    <string>talks</string>
+   </property>
+   <property name="toolTip">
+    <string>List of talk outlines</string>
    </property>
   </action>
  </widget>
