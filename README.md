@@ -12,9 +12,9 @@ information.
 
 **pyTalkManager** differentiates its self from other PTC software in a
 number of ways. For one, it is an open source project. Also,
-**pyTalkManager** will not be sold or have features that will only be
+**pyTalkManager** will not be sold or have features that can only be
 unlocked with *donations*. Since **pyTalkManager** is open source and
-uses a flexible license, other PTC software developers can create
+uses the GPL v.3 license, other PTC software developers can create
 programs that interact with **pyTalkManager**. 
 
 
@@ -35,6 +35,7 @@ in our wiki for installation instructions.
 ![Screenshot of the main window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2014-11-26.png)
 
 ![Screenshot of the Congregation Edit Window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2014-11-27.png)
+Note: The screenshots above are out of date.
 
 ##License
 
