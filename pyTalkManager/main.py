@@ -7,8 +7,8 @@ from congregation import Congregation
 from db import DB
 from brother import Brother
 
-
 # Importation of GUIs
+# The following imports are the GUI dialogs/windows.
 import gui.MainWindow
 import gui.DatabaseWindow
 import gui.BrotherWindow
@@ -20,10 +20,9 @@ import gui.TalkWindow
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
     """
-    The main window of pyTalkManager.
+    The main window of pyTalkManager when pyTalkManager starts.
 
     From MainWindow all functions of pyTalkManager is accessed by the end user.
-
     """
 
     def __init__(self, parent=None):
@@ -32,53 +31,46 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.center_on_screen()
         tm.first_run_check()
 
-        # Tool bar actions
-        self.actionDatabase.triggered.connect(self.show_database_window)
-        self.actionBrothers.triggered.connect(self.show_brother_window)
-        self.actionCongregation.triggered.connect(self.show_congregation_window)
-        self.actionTalks.triggered.connect(self.show_talk_window)
+        # TOOL BAR ACTIONS
+        # Connects the tool-bar buttons to functions that are responsible
+        # of opening the corresponding dialog.
+        self.actionDatabase.triggered.connect(self.show_database_window)         # Database Manager
+        self.actionBrothers.triggered.connect(self.show_brother_window)          # Brother Manager
+        self.actionCongregation.triggered.connect(self.show_congregation_window) # Congregation Manager
+        self.actionTalks.triggered.connect(self.show_talk_window)                # Talk-Outline Manager
 
     def center_on_screen(self):
         """
-        Center the window on the user's screen.
-
+        Center the window on the user's screen at boot-up.
         """
 
         screen_resolution = QtGui.QDesktopWidget().screenGeometry()
-
         center_horizontal = ((screen_resolution.width() / 2) -
                              (self.frameSize().width() / 2))
-
         center_vertical = ((screen_resolution.height() / 2) -
                            (self.frameSize().height() / 2))
 
         self.move(center_horizontal, center_vertical)
 
-
     def show_database_window(self):
         """
-        Method that calls the Database Window
-
+        Method that opens the Database manager.
         """
 
         self.db_window = DatabaseWindow()
         self.db_window.show()
 
-
     def show_brother_window(self):
         """
-        Method that calls the Brother Window
-
+        Method that opens the Brother manager.
         """
 
         self.bro_window = BrotherWindow()
         self.bro_window.show()
 
-
     def show_congregation_window(self):
         """
-        Method that calls the Congregation Window
-
+        Method that opens the Congregation manager.
         """
 
         self.congregation_window = CongregationWindow()
@@ -86,23 +78,23 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
 
     def show_talk_window(self):
         """
-        Method that calls the List Window
+        Method that opens the List manager.
         """
+
         self.talk_window = TalkWindow()
         self.talk_window.show()
 
+
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
     """
-    Window for end user to manage pyTalkManager's database.
+    Database manager to manage the database.
 
     Supported actions for the user:
-
       Create a new database
       Backup existing database to a new location
       Load an existing database
 
     At the moment non of the functionality are implemented.
-
     """
 
     def __init__(self, parent=None):
@@ -112,11 +104,22 @@ class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
 
 class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
-    Window for the end user to manage the list of brothers in the database.
-
+    Brother manager that allows the user to add, edit, and delete brothers from
+    the database.
+    Methods:
+       user_option_sorter: Determines which sorting the user wants to use.
+       populate_brothers: Populates the TableWidget with the names and
+       congregations of brothers.
+       populate_cong: Populates the combobox used when adding a new brother
+       to the database. Also used for the combobox when the user edits a
+       brother.
+       show_add_brother_window: Opens the add_brother_window
+       show_edit_brother_window: Opens the edit_brother_window
+       id_brother: Returns the database ID of the brother selected by the
+       user from the TableWidget.
     """
-    brother_id_sorted = []  # Brother ids in correct sorting order.
 
+    brother_id_sorted = []  # Brother IDs in correct sorting order.
 
     def __init__(self, parent=None):
         super(BrotherWindow, self).__init__(parent)
@@ -131,7 +134,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         self.tableWidget.doubleClicked.connect(self.show_edit_brother_window)
         self.button_edit.clicked.connect(self.show_edit_brother_window)
         self.tableWidget.resizeColumnsToContents()
-        # Sorting of brothers
+        # Sorting controls -- call user_option_sorter.
         self.radio_fname.clicked.connect(self.user_option_sorter)
         self.radio_l_name.clicked.connect(self.user_option_sorter)
         self.radio_all.clicked.connect(self.user_option_sorter)
@@ -143,11 +146,11 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
     def user_option_sorter(self):
         """
-        Determines which radio buttons have been selected and adds the
+        Determines which radio button(s) have been selected and adds the
         selected radio buttons to the dictionary 'options_selected'. Then it
-        calls the populate_cong method and passes the options_selected dic so
-        that the table can be sorted using the parameters included in
-        options_selected.
+        calls the populate_cong method and passes the options_selected
+        dictionary so that the table can be sorted using the parameters
+        included in options_selected.
 
         :return: None
         """
@@ -182,11 +185,18 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
     def populate_brothers(self, option_dic):
         """
-        Populates the brother item_list
+        Populate the brother item_list. item_list controls how many rows will be
+        drawn on the table and etc.
+
+        :param option_dic: A dictionary containing all of the user selected
+        sorting options.
         """
 
         self.tableWidget.setColumnCount(2)
         bro = Brother()
+
+        # Take option_dic and export values of each key to a variable to then be
+        # passed to the SQL command.
         sort_name = option_dic["Name"]
         resp = option_dic["Resp"]
         coord = option_dic["Coord"]
@@ -197,8 +207,11 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         item_list = (list(enumerate(item_list)))
         self.tableWidget.setRowCount(len(item_list))
 
-        # Set the list of brothers onto the table.
-        brother_ids = []  # IDs of the brothers entered in the DB.
+        # Add brothers from the database into TableWidget.
+        # The brother_ids keeps track of the brothers placed in TableWidget in
+        # the correct order. It's used to know which table ID to use when the
+        # user selects an item in TableWidget.
+        brother_ids = []
         for item in item_list:
             brother_ids.append(item[1][0])
 
@@ -220,7 +233,7 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
             self.tableWidget.setItem(int(item[0]), 0, name)
             self.tableWidget.setItem(int(item[0]), 1, congregation)
 
-        # Return all of the brother database ids in the correct order based
+        # Return all of the brother database IDs in the correct order based
         # on the sort applied to BrotherWinow.brother_id_sorted.
         BrotherWindow.brother_id_sorted = brother_ids
 
@@ -228,11 +241,11 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         """
         Populate the congregation combo box with all the names from
         congregations already entered into the database.
-
         """
 
         congregations = Congregation.get_list(None, 'ASC')
         self.sorted_list = congregations
+
         # Adds 'All' to the top of the combo box with the index of 0 so that
         # it can be used with a conditional to determine if sorting wants all
         # congregation to be included.
@@ -259,7 +272,6 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     def id_brother(self):
         """
         Return the id of the brother selected.
-
         :returns: The database id of the brother selected
         """
 
@@ -270,7 +282,6 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
 
 class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """
-
     Window for the end user to add brothers to the database.
 
     The window that opens when the user clicks on the 'Add'
@@ -279,7 +290,6 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     Methods:
       add_item() - Takes all widget information and stores it in a variable.
                    Currently the combo boxes and check boxes are not supported.
-
     """
 
     def __init__(self, parent=None):
@@ -291,18 +301,21 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     def populate_cong(self):
         """
-        Populate the congregation combo box with all the names from
-        congregations already entered into the database.
-
+        Populate the congregation combo box with all the congregation names from
+        database.
         """
 
         congregations = Congregation.get_list(None, 'ASC')
-        self.sorted_list = congregations
+        self.sorted_list = congregations # Don't remember why I did this line
 
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
 
     def add_brother(self):
+        """
+        Method that collects all the user entered data and then submits it to be
+        entered into the database.
+        """
 
         chairman = ''
         speaker = ''
@@ -318,7 +331,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         congregation = self.sorted_list[selection][0]
         responsibility = self.combo_publisher.itemText(
             self.combo_publisher.currentIndex())
-        # Capacity radio buttons
+        # Brother's capacity radio buttons
         if self.check_chairman.isChecked():
             chairman = 'True'
         if self.check_speaker.isChecked():
@@ -339,7 +352,6 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """
     Opens AddBrotherWindow and changes the GUI for editing.
-
     """
 
     def __init__(self, row_id, parent=None):
@@ -351,7 +363,7 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         self.button_add.setText("Save")
         self.check_batch.hide()
         self.populate_cong()
-        #Get the information from the selected brother
+        # Get the information from the selected brother
         sql = "SELECT * FROM Brother WHERE id={}".format(row_id)
         brother = DB.return_sql(self, sql)
 
@@ -404,7 +416,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         """
         Populate the congregation combo box with all the names from
         congregations already entered into the database.
-
         """
 
         congregations = Congregation.get_list(None, 'ASC')
@@ -423,7 +434,6 @@ class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow)
         that will cause the database to be modified.
 
         :param row: The row (id) in the database that is being modified.
-
         """
 
         first_name = self.line_f_name.displayText()
@@ -470,13 +480,10 @@ class CongregationWindow(QtGui.QDialog,
       returns only their names. Then it populates the list_congregation
       QListWidget with the retrieved names.
 
-      edit_congregation_window - Repurpose the AddCongregationWindow for
+      edit_congregation_window: Repurpose the AddCongregationWindow for
       editing congregation information.
-
-      load_congregation_data - Submits user edits back to the database
-
-      show_add_congregation_window - Opens the AddCongregationWindow
-
+      load_congregation_data: Submits user edits back to the database
+      show_add_congregation_window: Opens the AddCongregationWindow
     """
 
     def __init__(self, parent=None):
@@ -498,7 +505,6 @@ class CongregationWindow(QtGui.QDialog,
         """
         Populates the congregation table so the user may select a
         congregation already entered into the database.
-
         """
 
         self.list_congregation.clear()
@@ -508,11 +514,10 @@ class CongregationWindow(QtGui.QDialog,
         for item in list:
             self.list_congregation.addItem("{}".format(item[1]))
 
-
     def edit_congregation_window(self):
         """
-        Call EditCongregationDialog class which opens the AddCongregationWindow.
-
+        Call EditCongregationDialog class which opens the
+        AddCongregationWindow and changes the dialog for editing.
         """
 
         selection = self.list_congregation.currentRow()
@@ -528,9 +533,8 @@ class CongregationWindow(QtGui.QDialog,
 
     def show_add_congregation_window(self):
         """
-        Window that allows the user enter a new congregation into the
-        database
-
+        Window that allows the user to enter a new congregation into the
+        database.
         """
 
         self.add_cong_window = AddCongregationWindow()
@@ -540,14 +544,12 @@ class CongregationWindow(QtGui.QDialog,
         if saved:
             self.populate_table()
 
-
     def delete_congregation(self):
         """
         Switches the visibility to 'False' for a congregation to prevent it
         from being displayed in the congregation list.
 
         The DB.modify_item requires that the column and value to be a list.
-
         """
 
         selection = self.list_congregation.currentRow()
@@ -563,11 +565,10 @@ class AddCongregationWindow(QtGui.QDialog,
     Window to allow the user to enter a new congregation into the database.
 
     Methods:
-      new_congregation - Takes care of collecting user entered information
+      new_congregation: Takes care of collecting user entered information
       and submitting it to Congregation.add_congregation where it will be
       checked for various things before being sent to the db module for
       inserting into the database.
-
     """
 
     def __init__(self, parent=None):
@@ -580,7 +581,6 @@ class AddCongregationWindow(QtGui.QDialog,
         """
         Method to add information of a new congregation to
         the database.
-
         """
 
         name = self.line_name.displayText()
@@ -619,7 +619,6 @@ class AddCongregationWindow(QtGui.QDialog,
         What prevents this: as of December 10, 2014 there's a bug that doesn't
         allow PySide to compile button groups correctly.
         https://bugreports.qt-project.org/browse/PYSIDE-175#comment-267714
-
         """
 
         # NOTE: Consider moving this method to the congregation mod.
@@ -635,7 +634,6 @@ class EditCongregationDialog(QtGui.QDialog,
     """
     Opens the AddCongregationWindow for editing congregation entries from the
     database.
-
     """
 
     def __init__(self, row_id, parent=None):
@@ -652,7 +650,7 @@ class EditCongregationDialog(QtGui.QDialog,
         self.button_add.clicked.connect(
             lambda: self.submit_edit(congregation[0][0]))
 
-        # load information of selected congregation into the dialog
+        # Load information of selected congregation into the dialog.
         self.line_name.setText(str(congregation[0][1]))
         self.line_phone.setText(str(congregation[0][2]))
         self.line_email.setText(str(congregation[0][3]))
@@ -660,7 +658,7 @@ class EditCongregationDialog(QtGui.QDialog,
         self.line_city.setText(str(congregation[0][5]))
         self.line_state.setText(str(congregation[0][6]))
         self.line_zipcode.setText(str(congregation[0][7]))
-        # select the correct radio box
+        # Select the correct radio box when dialogs loads.
         if str(congregation[0][8]) == "Saturday":
             self.radioSaturday.setChecked(True)
         else:
@@ -683,7 +681,6 @@ class EditCongregationDialog(QtGui.QDialog,
         that will cause the database to be modified.
 
         :param row: The row (id) in the database that is being modified.
-
         """
 
         name = self.line_name.displayText()
