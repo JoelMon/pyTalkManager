@@ -1,13 +1,10 @@
 import sqlite3
 import pyTalkManager as TM
 
-
 class DB:
     """
     The DB module provides an interface to the project's SQLite3 database.
-
     """
-
 
     def get_path():
         """
@@ -17,7 +14,6 @@ class DB:
 
         return TM.config_get('DB', 'location')
 
-
     def db_init():
         """
         Initialize SQLite database
@@ -26,12 +22,10 @@ class DB:
         the first time or when the user wants to initialize a new
         database. The method crates a new SQLite database with all the
         needed tables and fields used by PyTalkManager.
-
         """
 
         conn = sqlite3.connect(DB.get_path())
         c = conn.cursor()
-
         c.execute('''CREATE TABLE Assignment (
                                               id INTEGER PRIMARY KEY NOT NULL
                                               UNIQUE,
@@ -52,7 +46,6 @@ class DB:
                                               FOREIGN KEY(hospitality)
                                               REFERENCES Hospitality(id)
                                               )''')
-
         c.execute('''CREATE TABLE Brother (
                                            id INTEGER PRIMARY KEY NOT NULL
                                            UNIQUE,
@@ -72,7 +65,6 @@ class DB:
                                            FOREIGN KEY(congregation)
                                            REFERENCES Congregation(id)
                                            )''')
-
         c.execute('''CREATE TABLE Congregation (
                                            id INTEGER PRIMARY KEY NOT NULL
                                            UNIQUE,
@@ -90,14 +82,12 @@ class DB:
                                            note BLOB,
                                            visibility BOOL NOT NULL DEFAULT True
                                            )''')
-
         c.execute('''CREATE TABLE Hospitality (
                                                id INTEGER PRIMARY KEY NOT
                                                NULL UNIQUE,
                                                name TEXT NOT NULL,
                                                note TEXT
                                                )''')
-
         c.execute('''CREATE TABLE SpeakerTalk (
                                                id INTEGER PRIMARY KEY NOT
                                                NULL UNIQUE,
@@ -108,15 +98,12 @@ class DB:
                                                FOREIGN KEY(speaker)
                                                REFERENCES Brother(id)
                                                )''')
-
         c.execute('''CREATE TABLE Talk (
                                         id INTEGER PRIMARY KEY NOT NULL UNIQUE,
                                         title TEXT NOT NULL,
                                         subject TEXT
                                         )''')
-
         conn.close()
-
 
     def add_item(self, table, column, value):
         """
@@ -132,8 +119,8 @@ class DB:
         table - a string with the table that will be written to
         column - a list with the the column(s) that will be written in
         value - a list with the value(s) that will be written.
-
         """
+
         value = (value,)
         list_column = ', '.join(column)
         # Convert each value into a string. Join requires strings.
@@ -152,14 +139,12 @@ class DB:
 
         :param table: The table that needs to be counted.
         :return: The total number of rows in the table as an int.
-
         """
 
         sql = "SELECT Count(*) FROM {Table}".format(Table=table)
         count = self.return_sql(sql)
 
         return int(count[0][0])
-
 
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database"""
@@ -184,7 +169,6 @@ class DB:
         Returns the item the user requested.
 
         WARNING: This method seems to be obsolete
-
         """
 
         command = "{}".format(sql)
@@ -192,11 +176,9 @@ class DB:
         data = DB.return_sql(None, command)
         return data
 
-
     def delete_data(self):
         """Deletes data from the database"""
         pass
-
 
     def commit_sql(self, sql):
         """
@@ -204,17 +186,14 @@ class DB:
 
         :param sql: the SQL command that needs to be passed
         to SQLite.
-
         """
 
         conn = sqlite3.connect(DB.get_path())
         c = conn.cursor()
-
         c.execute("PRAGMA foreign_keys = ON")
         c.execute(sql)
         conn.commit()
         conn.close()
-
 
     def return_sql(self, sql):
         """
@@ -222,12 +201,10 @@ class DB:
 
         :param sql: the SQL command to pass to SQLite
         :return data: returns a list with each row in a tuple.
-
         """
 
         comm = sqlite3.connect(DB.get_path())
         c = comm.cursor()
-
         c.execute("PRAGMA foreign_keys = ON")
         c.execute(sql)
         data = c.fetchall()

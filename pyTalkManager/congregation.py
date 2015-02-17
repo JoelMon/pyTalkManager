@@ -1,6 +1,5 @@
 from db import DB
 
-
 class Congregation:
     """
     Congregation class
@@ -22,10 +21,8 @@ class Congregation:
 
 
     # All of the columns in Congregation Window in correct order
-    columns = ('name', 'phone', 'email', 'street', 'city',
-               'state', 'zip', 'week', 'time', 'long', 'lat',
-               'note', 'visibility')
-
+    columns = ('name', 'phone', 'email', 'street', 'city', 'state', 'zip',
+               'week', 'time', 'long', 'lat', 'note', 'visibility')
 
     def set_attributes(self, name=None, phone=None, email=None, street=None,
                        city=None, state=None, zipcode=None, week=None,
@@ -48,7 +45,6 @@ class Congregation:
         :param note: Notes about the congregation
         :param visibility: The visibility state of the congregation. True =
         visible False = not visible/deleted.
-
         """
 
         self.name = name
@@ -65,19 +61,16 @@ class Congregation:
         self.note = note
         self.visibility = visibility
 
-
     def get_entries(self):
         """
         Retrieves all the entries for the Congregation table.
 
         :returns sql: A list containing every row of the
         Congregation table.
-
         """
 
         sql = "SELECT * FROM Congregation"
         return DB.return_pass_sql(None, sql)
-
 
     def get_list(self, sort=None):
         """
@@ -86,7 +79,6 @@ class Congregation:
 
         :return DB.return_pass_sql(None, sql): returns the output of
         the method DB.return_pass_sql(None, sql)
-
         """
 
         if sort == "ASC":
@@ -105,12 +97,10 @@ class Congregation:
             sql = "SELECT id, name FROM Congregation WHERE visibility IS 'True'"
             return DB.return_pass_sql(None, sql)
 
-
     def add_congregation(self):
         """
         Prepares user entered data for a new congregation before sending it to
         the db module for insertion into the database.
-
         """
 
         values = (self.name,
@@ -151,7 +141,6 @@ class Congregation:
         blank.
 
         :param row: The id within the table Congregation being edited.
-
         """
 
         values = (self.name,
@@ -178,7 +167,6 @@ class Congregation:
         else:
             print("A required field was missing: {}".format(missing_fields[1]))
 
-
     def __check_for_dup(self, name):
         """
         Checks to see if the congregation already exists in the database.
@@ -188,7 +176,6 @@ class Congregation:
         :argument name: The name of the congregation to check.
         :returns Passed: If no duplicates are found.
         :returns (Failed, 'item'): If a duplicate is found.
-
         """
 
         sql = "SELECT name FROM Congregation"
@@ -203,7 +190,6 @@ class Congregation:
                     return ("Failed", item)
             return "Passed"
 
-
     def __check_required_fields(self):
         """
         Checks to see if all required fields for Congregation has been
@@ -211,7 +197,6 @@ class Congregation:
 
         :returns 'Passed': If all required fields were entered.
         :returns ('Failed', [field, ...]: If required fields were not entered.
-
         """
 
         missing_fields = []
@@ -236,11 +221,9 @@ class Congregation:
         else:
             return ("Failed", missing_fields)
 
-
     def zero_out(self):
         """
         Returns all of the Congregation's attributes back to null.
-
         """
 
         self.name = None
