@@ -1,5 +1,3 @@
-__author__ = 'Joel Montes de Oca'
-
 import configparser
 from PySide import QtGui
 from db import DB
@@ -8,13 +6,11 @@ version = '0.1'
 name = 'pyTalkManager'
 configLocation = './config.ini'
 
-
 def config_get(section, key):
     """
     Takes arguments for the config.ini file and return the key.
 
     :return: key from config.ini
-
     """
 
     # Testing the file with exceptions rather than os.access() due to security risk.
@@ -44,7 +40,6 @@ def config_get(section, key):
 
     return config[section].get(key)
 
-
 def config_set(section, key, value):
     """
     Takes arguments for the config.ini file and writes to file.
@@ -52,7 +47,6 @@ def config_set(section, key, value):
     NOTE: The exceptions must be changed to print to avoid
     errors. This is code left behind from the time that pyTalkmanager
     was using the Tkinter framework.
-
     """
 
     # Testing the file with exceptions rather than os.access() due to security risk.
@@ -82,16 +76,13 @@ def config_set(section, key, value):
     file = open(configLocation, 'w')
     config.write(file)
 
-
 def buttonTest():
     """
     Test if a command works by printing a confirmation.
     :return: 'The command worked.'
-
     """
 
     return 'The command worked.'
-
 
 def first_run_check():
     """
@@ -99,7 +90,6 @@ def first_run_check():
 
     If it is pyTalkManager's first time running then initialize
     a SQLite database.
-
     """
 
     first_run = config_get('APP', 'first_time_running')

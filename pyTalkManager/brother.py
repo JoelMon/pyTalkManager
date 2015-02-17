@@ -1,10 +1,8 @@
 from db import DB
 
-
 class Brother:
     """
     Brother class
-
     """
 
     def __init__(self):
@@ -21,9 +19,9 @@ class Brother:
         self.note = None
         self.visibility = 'True'
 
-    columns = ('first_name', 'middle_name', 'last_name', 'email',
-               'phone', 'congregation', 'responsibility', 'speaker',
-               'chairman', 'coordinator', 'note', 'visibility')
+    columns = ('first_name', 'middle_name', 'last_name', 'email', 'phone',
+               'congregation', 'responsibility', 'speaker', 'chairman',
+               'coordinator', 'note', 'visibility')
 
     def set_attribute(self, first_name=None, middle_name=None,
                       last_name=None, email=None, phone=None,
@@ -63,7 +61,6 @@ class Brother:
         Adds a new brother to the database.
 
         :return:
-
         """
 
         values = (self.first_name,
@@ -85,8 +82,6 @@ class Brother:
             DB.add_item(None, 'Brother', Brother.columns, values)
         else:
             print("The following are missing: ", missing_fields)
-
-
 
     def populate_table(self, name="first_name", resp="NOT NULL",
                        coord="NOT NULL", cong="NOT NULL"):
@@ -120,7 +115,6 @@ class Brother:
         entered into the database.
 
         :return:
-
         """
 
         missing_fields = []
@@ -148,7 +142,6 @@ class Brother:
         blank.
 
         :param row: The id within the table Congregation being edited.
-
         """
 
         values = [self.first_name,
@@ -171,7 +164,5 @@ class Brother:
             DB.modify_item(None, 'Brother', Brother.columns, values, row)
         else:
             print("A required field was missing: {}".format(missing_fields))
-
-
 
     # TODO Add a check for duplicates
