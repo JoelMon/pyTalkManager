@@ -23,6 +23,7 @@ programs that interact with **pyTalkManager**.
 **pyTalkManager** is being actively developed and is still in its early
 stages. Check back every few weeks to keep an eye on the progress.
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TheoDevelopers/pyTalkManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ##Installation
 
