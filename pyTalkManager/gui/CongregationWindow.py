@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'CongregationWindow.ui'
 #
-# Created: Fri Dec 12 12:20:01 2014
+# Created: Tue Mar  3 11:58:42 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_CongregationWindow(object):
     def setupUi(self, CongregationWindow):
         CongregationWindow.setObjectName("CongregationWindow")
-        CongregationWindow.resize(354, 358)
+        CongregationWindow.resize(323, 363)
         CongregationWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         CongregationWindow.setSizeGripEnabled(True)
         CongregationWindow.setModal(False)
@@ -54,24 +54,14 @@ class Ui_CongregationWindow(object):
         self.button_close = QtGui.QPushButton(self.frame)
         self.button_close.setObjectName("button_close")
         self.gridLayout_3.addWidget(self.button_close, 0, 2, 1, 1)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem2, 0, 1, 1, 1)
         self.frame_3 = QtGui.QFrame(self.frame)
         self.frame_3.setFrameShape(QtGui.QFrame.Box)
         self.frame_3.setFrameShadow(QtGui.QFrame.Sunken)
         self.frame_3.setObjectName("frame_3")
         self.gridLayout_2 = QtGui.QGridLayout(self.frame_3)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.radioDistance = QtGui.QRadioButton(self.frame_3)
-        self.radioDistance.setEnabled(False)
-        self.radioDistance.setObjectName("radioDistance")
-        self.gridLayout_2.addWidget(self.radioDistance, 3, 1, 1, 1)
-        self.radioDate = QtGui.QRadioButton(self.frame_3)
-        self.radioDate.setToolTip("")
-        self.radioDate.setObjectName("radioDate")
-        self.gridLayout_2.addWidget(self.radioDate, 3, 0, 1, 1)
-        self.radioDesending = QtGui.QRadioButton(self.frame_3)
-        self.radioDesending.setToolTip("")
-        self.radioDesending.setObjectName("radioDesending")
-        self.gridLayout_2.addWidget(self.radioDesending, 2, 1, 1, 1)
         self.radioAscending = QtGui.QRadioButton(self.frame_3)
         self.radioAscending.setToolTip("")
         self.radioAscending.setChecked(True)
@@ -80,9 +70,15 @@ class Ui_CongregationWindow(object):
         self.label = QtGui.QLabel(self.frame_3)
         self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 1, 0, 1, 1)
+        self.radioDistance = QtGui.QRadioButton(self.frame_3)
+        self.radioDistance.setEnabled(False)
+        self.radioDistance.setObjectName("radioDistance")
+        self.gridLayout_2.addWidget(self.radioDistance, 4, 0, 1, 1)
+        self.radioDesending = QtGui.QRadioButton(self.frame_3)
+        self.radioDesending.setToolTip("")
+        self.radioDesending.setObjectName("radioDesending")
+        self.gridLayout_2.addWidget(self.radioDesending, 2, 1, 1, 1)
         self.gridLayout_3.addWidget(self.frame_3, 0, 0, 1, 1)
-        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem2, 0, 1, 1, 1)
         self.gridLayout.addWidget(self.frame, 2, 0, 1, 1)
 
         self.retranslateUi(CongregationWindow)
@@ -91,10 +87,7 @@ class Ui_CongregationWindow(object):
         CongregationWindow.setTabOrder(self.button_add, self.button_edit)
         CongregationWindow.setTabOrder(self.button_edit, self.button_delete)
         CongregationWindow.setTabOrder(self.button_delete, self.radioAscending)
-        CongregationWindow.setTabOrder(self.radioAscending, self.radioDesending)
-        CongregationWindow.setTabOrder(self.radioDesending, self.radioDate)
-        CongregationWindow.setTabOrder(self.radioDate, self.radioDistance)
-        CongregationWindow.setTabOrder(self.radioDistance, self.button_close)
+        CongregationWindow.setTabOrder(self.radioAscending, self.button_close)
         CongregationWindow.setTabOrder(self.button_close, self.list_congregation)
 
     def retranslateUi(self, CongregationWindow):
@@ -103,13 +96,11 @@ class Ui_CongregationWindow(object):
         self.button_add.setText(QtGui.QApplication.translate("CongregationWindow", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.button_edit.setText(QtGui.QApplication.translate("CongregationWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.button_close.setText(QtGui.QApplication.translate("CongregationWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDistance.setToolTip(QtGui.QApplication.translate("CongregationWindow", "Sort by distance has not been implemented yet.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDistance.setText(QtGui.QApplication.translate("CongregationWindow", "Distance", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDate.setWhatsThis(QtGui.QApplication.translate("CongregationWindow", " Sort congregations by order it was entered.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDate.setText(QtGui.QApplication.translate("CongregationWindow", "Date added", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDesending.setWhatsThis(QtGui.QApplication.translate("CongregationWindow", "Sort congregations by reverse alphabetical order.", None, QtGui.QApplication.UnicodeUTF8))
-        self.radioDesending.setText(QtGui.QApplication.translate("CongregationWindow", "Desending", None, QtGui.QApplication.UnicodeUTF8))
         self.radioAscending.setWhatsThis(QtGui.QApplication.translate("CongregationWindow", "Sort congregations by alphabetical order.", None, QtGui.QApplication.UnicodeUTF8))
         self.radioAscending.setText(QtGui.QApplication.translate("CongregationWindow", "Ascending", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("CongregationWindow", "Sort by:", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioDistance.setToolTip(QtGui.QApplication.translate("CongregationWindow", "Sort by distance has not been implemented yet.", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioDistance.setText(QtGui.QApplication.translate("CongregationWindow", "Distance", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioDesending.setWhatsThis(QtGui.QApplication.translate("CongregationWindow", "Sort congregations by reverse alphabetical order.", None, QtGui.QApplication.UnicodeUTF8))
+        self.radioDesending.setText(QtGui.QApplication.translate("CongregationWindow", "Desending", None, QtGui.QApplication.UnicodeUTF8))
 

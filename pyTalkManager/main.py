@@ -499,7 +499,6 @@ class CongregationWindow(QtGui.QDialog,
         # Sorting radio buttons.
         self.radioAscending.clicked.connect(lambda: self.populate_table('ASC'))
         self.radioDesending.clicked.connect(lambda: self.populate_table('DESC'))
-        self.radioDate.clicked.connect(lambda: self.populate_table('DATE'))
 
     def populate_table(self, sort='ASC'):
         """

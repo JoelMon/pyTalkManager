@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>354</width>
-    <height>358</height>
+    <width>323</width>
+    <height>363</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -119,6 +119,19 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item row="0" column="0">
        <widget class="QFrame" name="frame_3">
         <property name="frameShape">
@@ -128,45 +141,6 @@
          <enum>QFrame::Sunken</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="3" column="1">
-          <widget class="QRadioButton" name="radioDistance">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="toolTip">
-            <string>Sort by distance has not been implemented yet.</string>
-           </property>
-           <property name="text">
-            <string>Distance</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QRadioButton" name="radioDate">
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="whatsThis">
-            <string> Sort congregations by order it was entered.</string>
-           </property>
-           <property name="text">
-            <string>Date added</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QRadioButton" name="radioDesending">
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="whatsThis">
-            <string>Sort congregations by reverse alphabetical order.</string>
-           </property>
-           <property name="text">
-            <string>Desending</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="0">
           <widget class="QRadioButton" name="radioAscending">
            <property name="toolTip">
@@ -190,21 +164,34 @@
            </property>
           </widget>
          </item>
+         <item row="4" column="0">
+          <widget class="QRadioButton" name="radioDistance">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Sort by distance has not been implemented yet.</string>
+           </property>
+           <property name="text">
+            <string>Distance</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QRadioButton" name="radioDesending">
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="whatsThis">
+            <string>Sort congregations by reverse alphabetical order.</string>
+           </property>
+           <property name="text">
+            <string>Desending</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
-      </item>
-      <item row="0" column="1">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
@@ -216,9 +203,6 @@
   <tabstop>button_edit</tabstop>
   <tabstop>button_delete</tabstop>
   <tabstop>radioAscending</tabstop>
-  <tabstop>radioDesending</tabstop>
-  <tabstop>radioDate</tabstop>
-  <tabstop>radioDistance</tabstop>
   <tabstop>button_close</tabstop>
   <tabstop>list_congregation</tabstop>
  </tabstops>
