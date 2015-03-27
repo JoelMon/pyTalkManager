@@ -176,8 +176,8 @@
 176:Real Peace and Security - When?
 177:Where Can You Get Help in Times of Distress?
 178:Walk in the Way of Integrity
-179:Reject Wordly Fantasies, Pursue Kingdom Realities
-180:The Resurrection - Why That Hiope Should Be Real to You
+179:Reject Worldly Fantasies, Pursue Kingdom Realities
+180:The Resurrection - Why That Hope Should Be Real to You
 181:Is It Later Than You Think?
 182:What God's Kingdom Is Doing for Us Now
 183:Turn Your Eyes Away From Worthless Things!
@@ -186,54 +186,6 @@
 186:"Unite With God's Happy People"
 187:"Why Would a Loving God Permit Wickedness?"
 188:"Is Your Confidence In Jehovah?"
-S-10
-S-11
-S-12
-S-13
-S-14
-S-15
-S-16
-S-17
-S-18
-S-19
-S-20
-S-21
-S-22
-S-23
-S-24
-S-25
-S-26
-S-27
-S-28
-S-29
-S-30
-Observing the "Lord's Evening Meal"
-S-31
-Funeral Discourse
-S-32
-S-33
-S-34
-S-35
-S-36
-S-37
-S-38
-S-39
-S-40
-Honorable Marriage in God's Sight
-S-41
-S-42
-S-43
-S-44
-S-45
-S-46
-S-47
-S-48
-S-49
-S-50
-S-51
-S-52
-S-53
-S-54
-S-55
-S-56
-
+S-1:Observing the "Lord's Evening Meal"
+S-2:Funeral Discourse
+S-3:Honorable Marriage in God's Sight
