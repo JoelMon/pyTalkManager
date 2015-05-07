@@ -15,7 +15,7 @@ import gui.BrotherWindow
 import gui.AddBrotherWindow
 import gui.CongregationWindow
 import gui.AddCongregationWindow
-import gui.TalkWindow
+import gui.OutlineWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -34,10 +34,14 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         # TOOL BAR ACTIONS
         # Connects the tool-bar buttons to functions that are responsible
         # of opening the corresponding dialog.
-        self.actionDatabase.triggered.connect(self.show_database_window)         # Database Manager
-        self.actionBrothers.triggered.connect(self.show_brother_window)          # Brother Manager
-        self.actionCongregation.triggered.connect(self.show_congregation_window) # Congregation Manager
-        self.actionTalks.triggered.connect(self.show_talk_window)                # Talk-Outline Manager
+        self.actionDatabase.triggered.connect(
+            self.show_database_window)  # Database Manager
+        self.actionBrothers.triggered.connect(
+            self.show_brother_window)  # Brother Manager
+        self.actionCongregation.triggered.connect(
+            self.show_congregation_window)  # Congregation Manager
+        self.actionTalks.triggered.connect(
+            self.show_outline_window)  # Talk-Outline Manager
 
     def center_on_screen(self):
         """
@@ -76,13 +80,13 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.congregation_window = CongregationWindow()
         self.congregation_window.show()
 
-    def show_talk_window(self):
+    def show_outline_window(self):
         """
         Method that opens the List manager.
         """
 
-        self.talk_window = TalkWindow()
-        self.talk_window.show()
+        self.outline_window = OutlineWindow()
+        self.outline_window.show()
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
@@ -306,7 +310,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         """
 
         congregations = Congregation.get_list(None, 'ASC')
-        self.sorted_list = congregations # Don't remember why I did this line
+        self.sorted_list = congregations  # Don't remember why I did this line
 
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
@@ -349,7 +353,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         self.done(True)
 
 
-class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
+class EditBrotherWindow(QtGui.QDialog,
+                        gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """
     Opens AddBrotherWindow and changes the GUI for editing.
     """
@@ -529,7 +534,6 @@ class CongregationWindow(QtGui.QDialog,
         if saved:
             self.populate_table()
 
-
     def show_add_congregation_window(self):
         """
         Window that allows the user to enter a new congregation into the
@@ -669,7 +673,6 @@ class EditCongregationDialog(QtGui.QDialog,
         self.line_latitude.setText(str(congregation[0][11]))
         self.text_note.setText(str(congregation[0][12]))
 
-
     def submit_edit(self, row):
         """
         Method that submits user made edits to be committed to the database.
@@ -699,20 +702,82 @@ class EditCongregationDialog(QtGui.QDialog,
 
         edit = Congregation()
         edit.set_attributes(name, phone, email, address, city,
-                                         state, zipcode, week, time, longitude,
-                                         latitude, notes, visibility)
+                            state, zipcode, week, time, longitude,
+                            latitude, notes, visibility)
         edit.edit_congregation(row)
 
         self.done(True)
 
-class TalkWindow(QtGui.QDialog, gui.TalkWindow.Ui_TalkWindow):
+
+class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     """
-    Window that shows all talks available.
+    Window that shows all outlines available.
     """
 
     def __init__(self, parent=None):
-        super(TalkWindow, self).__init__(parent)
+        super(OutlineWindow, self).__init__(parent)
         self.setupUi(self)
+        self.button_import.clicked.connect(self.import_file)
+        self.button_delete.clicked.connect(self.delete_outline)
+        self.button_add.clicked.connect(self.add_outline)
+        self.sorted_list = []
+        database = DB()
+        global count_rows
+        count_rows = database.count_rows('Talk')
+
+        if count_rows > 0:
+            self.button_import.setEnabled(False)
+            self.populate_list()
+
+    def import_file(self):
+        import_file = QtGui.QFileDialog.getOpenFileName(None, "Open Outline "
+                                                              "", None,
+                                                        "Outline File (*.txt)")
+        outline = []
+        with open(import_file[0], 'r') as text:
+            for line in text:
+                outline.append(line[:-1])  # Removes the '\n' at EOL
+
+        database = DB()
+        for line in outline:
+            number = line.find(':')
+            database.add_item('Talk', ('number', 'title'), (line[:number],
+                                                            line[number + 1:]))
+        self.button_import.setEnabled(False)
+
+    def populate_list(self):
+        """Populates the talk_list widget with the outlines"""
+
+        sql = "SELECT * FROM TALK WHERE visibility='True'"
+        self.list_talks.clearContents()
+        outline_list = DB.return_sql(None, sql)
+        self.list_talks.setColumnCount(2)
+        self.list_talks.setRowCount(count_rows)
+        self.sorted_list = []
+
+        index = 0  # Index of list_talks widget
+        for item in outline_list:
+            number = QtGui.QTableWidgetItem(item[1])
+            title = QtGui.QTableWidgetItem(item[2])
+            self.list_talks.setItem(index, 0, number)
+            self.list_talks.setItem(index, 1, title)
+            self.sorted_list.append(item[0])
+            index += 1
+
+    def delete_outline(self):
+        """Delete a specific outline from the database."""
+
+        selection = self.list_talks.currentRow()
+        DB.modify_item(None, 'Talk', ['visibility'], ['False'],
+                       self.sorted_list[selection])
+        self.populate_list()
+
+    def edit_outline(self):
+        pass
+
+    def add_outline(self):
+        self.list_talks.clearContents()
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

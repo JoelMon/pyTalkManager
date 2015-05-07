@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TalkWindow</class>
- <widget class="QDialog" name="TalkWindow">
+ <class>OutlineWindow</class>
+ <widget class="QDialog" name="OutlineWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
+    <width>495</width>
     <height>358</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Talks</string>
+   <string>Outline Manager</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -62,6 +62,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_delete">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete the highlighted outline from the list.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Delete</string>
         </property>
@@ -69,6 +72,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_add">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adds a new outline to the list.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Add</string>
         </property>
@@ -76,6 +82,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="button_edit">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit the highlighted outline.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Edit</string>
         </property>
@@ -134,7 +143,7 @@
          <item row="1" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Sort by:</string>
+            <string>Sort by outline:</string>
            </property>
           </widget>
          </item>
@@ -147,10 +156,10 @@
             <string>Sort congregations by reverse alphabetical order.</string>
            </property>
            <property name="text">
-            <string>Desending</string>
+            <string>Title</string>
            </property>
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -163,10 +172,10 @@
             <string>Sort congregations by alphabetical order.</string>
            </property>
            <property name="text">
-            <string>Ascending</string>
+            <string>Number</string>
            </property>
            <property name="checked">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -175,8 +184,20 @@
       </item>
       <item row="1" column="2">
        <widget class="QPushButton" name="button_import">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Import a list of outlines to be used. The button becomes disabled after outlines have been imported.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Import</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -192,15 +213,47 @@
    </item>
    <item row="0" column="0">
     <widget class="QTableWidget" name="list_talks">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
      <property name="wordWrap">
       <bool>true</bool>
      </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <row>
+      <property name="text">
+       <string>New Row</string>
+      </property>
+     </row>
      <column>
       <property name="text">
        <string>Number</string>
@@ -229,7 +282,7 @@
   <connection>
    <sender>button_close</sender>
    <signal>clicked()</signal>
-   <receiver>TalkWindow</receiver>
+   <receiver>OutlineWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

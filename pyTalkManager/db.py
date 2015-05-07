@@ -100,8 +100,9 @@ class DB:
                                                )''')
         c.execute('''CREATE TABLE Talk (
                                         id INTEGER PRIMARY KEY NOT NULL UNIQUE,
-                                        title TEXT NOT NULL,
-                                        subject TEXT
+                                        number TEXT NOT NULL,
+                                        title TEXT,
+                                        visibility BOOL NOT NULL DEFAULT True
                                         )''')
         conn.close()
 
@@ -147,7 +148,13 @@ class DB:
         return int(count[0][0])
 
     def modify_item(self, table, column, value, row):
-        """Modifies an item in the database"""
+        """Modifies an item in the database
+        
+        :param table: The table being modified.
+        :param column: The column being modified. Needs to be a list.
+        :param value: The value being modified. Needs to be a list.
+        :param row: The row in the database being modified. Needs to be an int.
+        """
 
         # Adds =?, to each column so that values can then be unpacked.
         column_new = "=?, ".join(column)
