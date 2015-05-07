@@ -149,6 +149,9 @@
            <property name="text">
             <string>Desending</string>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item row="2" column="0">
@@ -163,7 +166,7 @@
             <string>Ascending</string>
            </property>
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
