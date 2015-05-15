@@ -4,7 +4,7 @@
 in the congregations of Jehovah's Witness. It is written in
 [Python3](https://www.python.org/) and uses the
 [Qt](http://qt-project.org/) GUI framework
-([PySide](http://qt-project.org/wiki/PySide)) and
+([PySide](http://qt-project.org/wiki/PySide)) * and
 [SQLite](https://www.sqlite.org/) for its database, all of which are
 open source and cross platform technologies. Visit the project's
 [wiki](https://github.com/TheoDevelopers/pyTalkManager/wiki) for more
@@ -17,6 +17,8 @@ unlocked with *donations*. Since **pyTalkManager** is open source and
 uses the GPL v.3 license, other PTC software developers can create
 programs that interact with **pyTalkManager**. 
 
+\* - Due to PySide not being developed any longer, the Qt Python binding
+will be migrated to PyQt4. 
 
 ##Development
 
