@@ -16,6 +16,7 @@ import gui.AddBrotherWindow
 import gui.CongregationWindow
 import gui.AddCongregationWindow
 import gui.OutlineWindow
+import gui.AddOutlineWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -720,6 +721,9 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         self.button_import.clicked.connect(self.import_file)
         self.button_delete.clicked.connect(self.delete_outline)
         self.button_add.clicked.connect(self.add_outline)
+        self.button_edit.clicked.connect(self.edit_outline)
+        self.radio_number.clicked.connect(self.populate_list)
+        self.radio_title.clicked.connect(self.populate_list)
         self.sorted_list = []
         database = DB()
         global count_rows
@@ -748,35 +752,74 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     def populate_list(self):
         """Populates the talk_list widget with the outlines"""
 
-        sql = "SELECT * FROM TALK WHERE visibility='True'"
-        self.list_talks.clearContents()
-        outline_list = DB.return_sql(None, sql)
-        self.list_talks.setColumnCount(2)
-        self.list_talks.setRowCount(count_rows)
-        self.sorted_list = []
+        self.table_outline.clearContents()
+        sql_number_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER " \
+                          "BY CAST (number AS INTERGER)"
+        sql_title_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER BY" \
+                         " title ASC"
 
-        index = 0  # Index of list_talks widget
+        if self.radio_number.isChecked():
+            outline_list = DB.return_sql(None, sql_number_sort)
+        else:
+            outline_list = DB.return_sql(None, sql_title_sort)
+
+        self.table_outline.setColumnCount(2)
+        self.table_outline.setRowCount(count_rows)
+        self.sorted_list = []  # Table IDs of items added to table_outline in order
+
+        index = 0  # Index of table_outline widget
         for item in outline_list:
             number = QtGui.QTableWidgetItem(item[1])
             title = QtGui.QTableWidgetItem(item[2])
-            self.list_talks.setItem(index, 0, number)
-            self.list_talks.setItem(index, 1, title)
+            self.table_outline.setItem(index, 0, number)
+            self.table_outline.setItem(index, 1, title)
             self.sorted_list.append(item[0])
             index += 1
 
     def delete_outline(self):
         """Delete a specific outline from the database."""
 
-        selection = self.list_talks.currentRow()
+        selection = self.table_outline.currentRow()
         DB.modify_item(None, 'Talk', ['visibility'], ['False'],
                        self.sorted_list[selection])
         self.populate_list()
 
+    def add_outline(self):
+        """Window for the user to add new outlines to the database."""
+
+        self.add_outline_window = AddOutlineWindow()
+        # If the user saves a new congregation, run populate_table()
+        saved = self.add_outline_window.exec_()
+#        if saved:
+#            self.user_option_sorter()
+
     def edit_outline(self):
+        """Window for the user to edit a selected outline"""
+
+        self.edit_outline_window = EditOutlineWindow()
+        saved = self.edit_outline_window.exec_()
+
+
+class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
+    """
+    Add Outline Window
+    """
+
+    def __init__(self, parent=None):
+        super(AddOutlineWindow, self).__init__(parent)
+        self.setupUi(self)
         pass
 
-    def add_outline(self):
-        self.list_talks.clearContents()
+
+class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
+    """
+    Edit Outline Window
+    """
+
+    def __init__(self, parent=None):
+        super(EditOutlineWindow, self).__init__(parent)
+        self.setupUi(self)
+        self.setWindowTitle('Edit Outline')
 
 
 if __name__ == '__main__':
