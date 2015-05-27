@@ -1,51 +1,32 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>pyTalkManager by TheoDevelopers</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/TheoDevelopers/pyTalkManager">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/TheoDevelopers/pyTalkManager/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/TheoDevelopers/pyTalkManager/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <section class="page-header">
+      <h1 class="project-name">pyTalkManager</h1>
+      <h2 class="project-tagline">Software to aid public talk coordinators in the congregations of Jehovah&#39;s Witnesses.</h2>
+      <a href="https://github.com/TheoDevelopers/pyTalkManager" class="btn">View on GitHub</a>
+      <a href="https://github.com/TheoDevelopers/pyTalkManager/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/TheoDevelopers/pyTalkManager/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>pyTalkManager</h1>
-          <p>Software to aid public talk coordinators in the congregations of Jehovah&#39;s Witnesses.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/TheoDevelopers">TheoDevelopers</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="pytalkmanager" class="anchor" href="#pytalkmanager" aria-hidden="true"><span class="octicon octicon-link"></span></a>pyTalkManager</h1>
 
 <p><strong>pyTalkManager</strong> is a program to aid public talk coordinators, PTC,
 in the congregations of Jehovah's Witness. It is written in
 <a href="https://www.python.org/">Python3</a> and uses the
 <a href="http://qt-project.org/">Qt</a> GUI framework
-(<a href="http://qt-project.org/wiki/PySide">PySide</a>) and
+(<a href="http://qt-project.org/wiki/PySide">PySide</a>) * and
 <a href="https://www.sqlite.org/">SQLite</a> for its database, all of which are
 open source and cross platform technologies. Visit the project's
 <a href="https://github.com/TheoDevelopers/pyTalkManager/wiki">wiki</a> for more
@@ -53,16 +34,21 @@ information.</p>
 
 <p><strong>pyTalkManager</strong> differentiates its self from other PTC software in a
 number of ways. For one, it is an open source project. Also,
-<strong>pyTalkManager</strong> will not be sold or have features that will only be
+<strong>pyTalkManager</strong> will not be sold or have features that can only be
 unlocked with <em>donations</em>. Since <strong>pyTalkManager</strong> is open source and
-uses a flexible license, other PTC software developers can create
+uses the GPL v.3 license, other PTC software developers can create
 programs that interact with <strong>pyTalkManager</strong>. </p>
+
+<p>* - Due to PySide not being developed any longer, the Qt Python binding
+will be migrated to PyQt4. </p>
 
 <h2>
 <a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
 
 <p><strong>pyTalkManager</strong> is being actively developed and is still in its early
 stages. Check back every few weeks to keep an eye on the progress.</p>
+
+<p><a href="https://gitter.im/TheoDevelopers/pyTalkManager?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -76,7 +62,8 @@ in our wiki for installation instructions.</p>
 
 <p><img src="https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2014-11-26.png" alt="Screenshot of the main window"></p>
 
-<p><img src="https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2014-11-27.png" alt="Screenshot of the Congregation Edit Window"></p>
+<p><img src="https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2014-11-27.png" alt="Screenshot of the Congregation Edit Window">
+Note: The screenshots above are out of date.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
@@ -89,10 +76,16 @@ in our wiki for installation instructions.</p>
 
 <p><strong>pyTalkManager</strong> is not affiliated with the
 <a href="http://www.JW.org">Watch Tower Bible and Tract Society of Pennsylvania</a>.</p>
-      </section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/TheoDevelopers/pyTalkManager">pyTalkManager</a> is maintained by <a href="https://github.com/TheoDevelopers">TheoDevelopers</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
+
