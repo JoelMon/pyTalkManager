@@ -6,6 +6,7 @@ import pyTalkManager as tm
 from congregation import Congregation
 from db import DB
 from brother import Brother
+from outline import Outline
 
 # Importation of GUIs
 # The following imports are the GUI dialogs/windows.
@@ -294,7 +295,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     Methods:
       add_item() - Takes all widget information and stores it in a variable.
-                   Currently the combo boxes and check boxes are not supported.
+      Currently the combo boxes and check boxes are not supported.
     """
 
     def __init__(self, parent=None):
@@ -306,8 +307,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     def populate_cong(self):
         """
-        Populate the congregation combo box with all the congregation names from
-        database.
+        Populate the congregation combo box with all the congregation names 
+        from database.
         """
 
         congregations = Congregation.get_list(None, 'ASC')
@@ -317,9 +318,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
             self.combo_congregation.addItem(congregation[1])
 
     def add_brother(self):
-        """
-        Method that collects all the user entered data and then submits it to be
-        entered into the database.
+        """ Method that collects all the user entered data and then submits it
+        to be entered into the database.
         """
 
         chairman = ''
@@ -712,7 +712,8 @@ class EditCongregationDialog(QtGui.QDialog,
 
 class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     """
-    Window that shows all outlines available.
+    Window that shows all outlines available for the user to chose, add, edit,
+    or delete.  
     """
 
     def __init__(self, parent=None):
@@ -765,7 +766,7 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
 
         self.table_outline.setColumnCount(2)
         self.table_outline.setRowCount(count_rows)
-        self.sorted_list = []  # Table IDs of items added to table_outline in order
+        self.sorted_list = [] # Table IDs of items added in order to the table
 
         index = 0  # Index of table_outline widget
         for item in outline_list:
@@ -790,8 +791,8 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         self.add_outline_window = AddOutlineWindow()
         # If the user saves a new congregation, run populate_table()
         saved = self.add_outline_window.exec_()
-#        if saved:
-#            self.user_option_sorter()
+        if saved:
+            self.populate_list()
 
     def edit_outline(self):
         """Window for the user to edit a selected outline"""
@@ -808,8 +809,18 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
     def __init__(self, parent=None):
         super(AddOutlineWindow, self).__init__(parent)
         self.setupUi(self)
-        pass
+        self.button_save.clicked.connect(self.add_outline)
 
+    def add_outline():
+        """
+        Adds the contents of the AddOtlineWindow to the database.
+        """
+
+        title = self.line_title.displayText()
+        number = self.line_number.displayText()
+
+        # Insert call to check sanity. 
+        # If sanity checks, call function to insert into DB
 
 class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
     """
