@@ -811,7 +811,7 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         self.setupUi(self)
         self.button_save.clicked.connect(self.add_outline)
 
-    def add_outline():
+    def add_outline(self):
         """
         Adds the contents of the AddOtlineWindow to the database.
         """
@@ -819,8 +819,12 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         title = self.line_title.displayText()
         number = self.line_number.displayText()
 
-        # Insert call to check sanity. 
-        # If sanity checks, call function to insert into DB
+        outline = Outline()
+
+        outline.set_attributes(number, title)
+        check = outline.add_outline()
+
+    
 
 class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
     """
