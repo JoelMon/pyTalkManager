@@ -35,11 +35,13 @@ in our wiki for installation instructions.
 
 
 ##Screenshots
-![Screenshot of the main window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2014-11-26.png)
+![Screenshot of the Main Window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2015-11-06.png)
 
-![Screenshot of the Congregation Edit Window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2014-11-27.png)
-Note: The screenshots above are out of date.
+![Screenshot of the Congregation Manager](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2015-11-06.png)
 
+![Screenshot of the Brother Manager](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/BrotherWindow_2015-11-06.png)
+
+![Screenshot of the Outline Manager](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/OutlineWindow_2015-11-06.png)
 ##License
 
 **pyTalkManager** is released under the
