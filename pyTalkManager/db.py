@@ -134,22 +134,28 @@ class DB:
 
         DB.commit_sql(None, command)
 
-    def count_rows(self, table):
+    def count_rows(self, table, visible=True):
         """
         Count the total amount of rows in a table.
 
         :param table: The table that needs to be counted.
+        :param visible: Determines if visible items are conted only.
         :return: The total number of rows in the table as an int.
         """
 
-        sql = "SELECT Count(*) FROM {Table}".format(Table=table)
-        count = self.return_sql(sql)
-
-        return int(count[0][0])
+        if visible:
+            sql = """SELECT Count(*) FROM {Table} WHERE visibility="True"
+            """.format(Table=table)
+            count = self.return_sql(sql)
+            return int(count[0][0])
+        else:
+            sql = "SELECT Count(*) FROM {Table}".format(Table=table)
+            count = self.return_sql(sql)
+            return int(count[0][0])
 
     def modify_item(self, table, column, value, row):
         """Modifies an item in the database
-        
+
         :param table: The table being modified.
         :param column: The column being modified. Needs to be a list.
         :param value: The value being modified. Needs to be a list.

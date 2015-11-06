@@ -112,16 +112,17 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
     Brother manager that allows the user to add, edit, and delete brothers from
     the database.
+
     Methods:
-       user_option_sorter: Determines which sorting the user wants to use.
-       populate_brothers: Populates the TableWidget with the names and
+       - user_option_sorter: Determines which sorting the user wants to use.
+       - populate_brothers: Populates the TableWidget with the names and
        congregations of brothers.
-       populate_cong: Populates the combobox used when adding a new brother
+       - populate_cong: Populates the combobox used when adding a new brother
        to the database. Also used for the combobox when the user edits a
        brother.
-       show_add_brother_window: Opens the add_brother_window
+       - show_add_brother_window: Opens the add_brother_window
        show_edit_brother_window: Opens the edit_brother_window
-       id_brother: Returns the database ID of the brother selected by the
+       - id_brother: Returns the database ID of the brother selected by the
        user from the TableWidget.
     """
 
@@ -187,6 +188,9 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         else:
             self.options_selected["Cong"] = \
                 '"{}"'.format(self.combo_cong.currentText())
+
+        # call method to populate the tables with the options
+        # selected by the user.
         self.populate_brothers(self.options_selected)
 
     def populate_brothers(self, option_dic):
@@ -307,7 +311,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     def populate_cong(self):
         """
-        Populate the congregation combo box with all the congregation names 
+        Populate the congregation combo box with all the congregation names
         from database.
         """
 
@@ -713,7 +717,7 @@ class EditCongregationDialog(QtGui.QDialog,
 class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     """
     Window that shows all outlines available for the user to chose, add, edit,
-    or delete.  
+    or delete.
     """
 
     def __init__(self, parent=None):
@@ -726,15 +730,20 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         self.radio_number.clicked.connect(self.populate_list)
         self.radio_title.clicked.connect(self.populate_list)
         self.sorted_list = []
-        database = DB()
-        global count_rows
-        count_rows = database.count_rows('Talk')
+        db = DB()
 
-        if count_rows > 0:
+        # If there's no outlines in the DB then enable the import button
+        # for the user, otherwise disable the import button.
+        if db.count_rows('Talk', True) > 0:
             self.button_import.setEnabled(False)
             self.populate_list()
 
     def import_file(self):
+        """
+        Method that allows the user to import outlines from a file.
+        :return: None
+        """
+
         import_file = QtGui.QFileDialog.getOpenFileName(None, "Open Outline "
                                                               "", None,
                                                         "Outline File (*.txt)")
@@ -744,18 +753,21 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
                 outline.append(line[:-1])  # Removes the '\n' at EOL
 
         database = DB()
-        for line in outline:
+        for line in outline:  # Adds the outlines to the DB
             number = line.find(':')
             database.add_item('Talk', ('number', 'title'), (line[:number],
                                                             line[number + 1:]))
         self.button_import.setEnabled(False)
 
     def populate_list(self):
-        """Populates the talk_list widget with the outlines"""
+        """Populates the talk_list widget with the outlines
 
+        Format of outline_list: [(DB ID, number, title, visibility), ...]
+        """
+        db = DB()
         self.table_outline.clearContents()
         sql_number_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER " \
-                          "BY CAST (number AS INTERGER)"
+                          "BY CAST (number AS INTEGER)"
         sql_title_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER BY" \
                          " title ASC"
 
@@ -765,8 +777,8 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
             outline_list = DB.return_sql(None, sql_title_sort)
 
         self.table_outline.setColumnCount(2)
-        self.table_outline.setRowCount(count_rows)
-        self.sorted_list = [] # Table IDs of items added in order to the table
+        self.table_outline.setRowCount(db.count_rows('Talk', True))
+        self.sorted_list = []  # Table IDs of items added sorted to the table
 
         index = 0  # Index of table_outline widget
         for item in outline_list:
@@ -789,7 +801,7 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         """Window for the user to add new outlines to the database."""
 
         self.add_outline_window = AddOutlineWindow()
-        # If the user saves a new congregation, run populate_table()
+        # If the user saves a new outline, run populate_table()
         saved = self.add_outline_window.exec_()
         if saved:
             self.populate_list()
@@ -824,7 +836,6 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         outline.set_attributes(number, title)
         check = outline.add_outline()
 
-    
 
 class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
     """
