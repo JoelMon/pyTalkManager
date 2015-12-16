@@ -827,14 +827,18 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         """
         Adds the contents of the AddOtlineWindow to the database.
         """
-
-        title = self.line_title.displayText()
-        number = self.line_number.displayText()
-
+        
         outline = Outline()
 
-        outline.set_attributes(number, title)
-        check = outline.add_outline()
+        outline_number = self.line_number.displayText()
+        outline_title = self.line_title.displayText()
+
+        submission = outline.add_outline(outline_number, outline_title)
+
+        if submission[0] == "True":
+           self.done(True) 
+        else:
+            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])     
 
 
 class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):

@@ -118,7 +118,7 @@ class DB:
 
         :arguments
         table - a string with the table that will be written to
-        column - a list with the the column(s) that will be written in
+        column - a list with the column(s) that will be written in
         value - a list with the value(s) that will be written.
         """
 
