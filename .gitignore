@@ -69,6 +69,7 @@ pyTalkManager/.idea/
 # ini file
 *.ini
 /*.ini
+config.ini
 
 # VIM swap file
 *.swp
