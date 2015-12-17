@@ -177,6 +177,16 @@ class DB:
         conn.commit()
         conn.close()
 
+    def return_item(self, table, id):
+        """
+        Returns a specific item from the database.
+        :param table: The table the data resides in.
+        :param id: The ID of the item being retrieved.
+        """
+
+        sql = "SELECT * FROM {TABLE} WHERE id={ID}".format(TABLE=table, ID=id)
+        return self.return_sql(sql)
+
     def return_pass_sql(self, sql):
         """
         Returns the item the user requested.

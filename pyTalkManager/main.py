@@ -809,8 +809,12 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     def edit_outline(self):
         """Window for the user to edit a selected outline"""
 
-        self.edit_outline_window = EditOutlineWindow()
+        selection = self.table_outline.currentRow()
+        outline_id = self.sorted_list[selection]
+        self.edit_outline_window = EditOutlineWindow(None, outline_id)
         saved = self.edit_outline_window.exec_()
+        if saved:
+            self.populate_list()
 
 
 class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
@@ -846,10 +850,34 @@ class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow)
     Edit Outline Window
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, outline_id=0):
         super(EditOutlineWindow, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle('Edit Outline')
+        self.button_save.clicked.connect(self.save_edit)
+        self.outline_id = outline_id
+
+        db = DB()
+        self.edited_item =  db.return_item("Talk", self.outline_id)
+        self.line_number.setText(self.edited_item[0][1])
+        self.line_title.setText(self.edited_item[0][2])
+
+
+    def save_edit(self):
+        """
+        Save edits made by the user to the selected outline.
+        """
+
+        number = self.line_number.displayText()
+        title = self.line_title.displayText()
+
+        outline = Outline()
+        submission = outline.edit_outline(self.edited_item[0][1], self.edited_item[0][2], number, title, self.edited_item[0][0])
+
+        if submission[0] == 'True':
+            self.done(True)
+        else:
+            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])
 
 
 if __name__ == '__main__':
