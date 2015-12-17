@@ -1,6 +1,7 @@
 import sqlite3
 import pyTalkManager as TM
 
+
 class DB:
     """
     The DB module provides an interface to the project's SQLite3 database.
@@ -9,7 +10,6 @@ class DB:
     def get_path():
         """
         Returns the path of the database located in config.ini
-
         """
 
         return TM.config_get('DB', 'location')
@@ -110,16 +110,17 @@ class DB:
         """
         Takes an item and adds it to the database.
 
+        The column and value strings must be placed in a tuple.
+        Example: add_item(self, 'Table_name', ('col1', 'col2'), ('val1', 'val2')
+
         Known Problems:
+        The value list that is passed into the method is automatically
+        converted into a string regardless if it's another data type such as
+        an int, float, or bool.
 
-        The value list that is passed into the method is
-        automatically converted into a string regardless if it's
-        another data type such as an int, float, or bool.
-
-        :arguments
-        table - a string with the table that will be written to
-        column - a list with the column(s) that will be written in
-        value - a list with the value(s) that will be written.
+        :param table: The table that will be written to.
+        :param column: The column(s) that will be passed to the database.
+        :param value: The value(s) that will be passed to the database.
         """
 
         value = (value,)
@@ -127,25 +128,25 @@ class DB:
         # Convert each value into a string. Join requires strings.
         list_value = "', '".join(str(v) for v in value)
 
-        command = "INSERT INTO {table}({column}) VALUES{values}".format(
+        sql = "INSERT INTO {table}({column}) VALUES{values}".format(
             table=table,  # adds ' ' to values.
             column=list_column,
             values=list_value)
 
-        DB.commit_sql(None, command)
+        DB.commit_sql(None, sql)
 
     def count_rows(self, table, visible=True):
         """
         Count the total amount of rows in a table.
 
         :param table: The table that needs to be counted.
-        :param visible: Determines if visible items are conted only.
+        :param visible: Determines if visible items are counted only.
         :return: The total number of rows in the table as an int.
         """
 
         if visible:
             sql = """SELECT Count(*) FROM {Table} WHERE visibility="True"
-            """.format(Table=table)
+                  """.format(Table=table)
             count = self.return_sql(sql)
             return int(count[0][0])
         else:
@@ -153,13 +154,14 @@ class DB:
             count = self.return_sql(sql)
             return int(count[0][0])
 
-    def modify_item(self, table, column, value, row):
+    def modify_item(self, table, column, value, row_id):
         """Modifies an item in the database
 
         :param table: The table being modified.
         :param column: The column being modified. Needs to be a list.
         :param value: The value being modified. Needs to be a list.
-        :param row: The row in the database being modified. Needs to be an int.
+        :param row_id: The row in the database being modified. Needs to be an
+        int.
         """
 
         # Adds =?, to each column so that values can then be unpacked.
@@ -173,25 +175,28 @@ class DB:
         col_len = len(column)
         for x in range(col_len):
             c.execute("UPDATE {} SET {} WHERE id = {}".format(
-                table, column_new, row), value)
+                table, column_new, row_id), value)
         conn.commit()
         conn.close()
 
-    def return_item(self, table, id):
+    def return_item(self, table, row_id):
         """
         Returns a specific item from the database.
+        :type row_id: int
         :param table: The table the data resides in.
-        :param id: The ID of the item being retrieved.
+        :param row_id: The ID of the item being retrieved.
         """
 
-        sql = "SELECT * FROM {TABLE} WHERE id={ID}".format(TABLE=table, ID=id)
+        sql = "SELECT * FROM {TABLE} WHERE id={ID}".format(TABLE=table,
+                                                           ID=row_id)
         return self.return_sql(sql)
 
     def return_pass_sql(self, sql):
         """
         Returns the item the user requested.
 
-        WARNING: This method seems to be obsolete
+        WARNING: This method will be replaced with return_sql()
+        :param sql: the SQL code that is passed to return_sql()
         """
 
         command = "{}".format(sql)
