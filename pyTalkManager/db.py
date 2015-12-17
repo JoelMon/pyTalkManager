@@ -100,8 +100,9 @@ class DB:
                                                )''')
         c.execute('''CREATE TABLE Talk (
                                         id INTEGER PRIMARY KEY NOT NULL UNIQUE,
-                                        title TEXT NOT NULL,
-                                        subject TEXT
+                                        number TEXT NOT NULL,
+                                        title TEXT,
+                                        visibility BOOL NOT NULL DEFAULT True
                                         )''')
         conn.close()
 
@@ -117,7 +118,7 @@ class DB:
 
         :arguments
         table - a string with the table that will be written to
-        column - a list with the the column(s) that will be written in
+        column - a list with the column(s) that will be written in
         value - a list with the value(s) that will be written.
         """
 
@@ -133,21 +134,33 @@ class DB:
 
         DB.commit_sql(None, command)
 
-    def count_rows(self, table):
+    def count_rows(self, table, visible=True):
         """
         Count the total amount of rows in a table.
 
         :param table: The table that needs to be counted.
+        :param visible: Determines if visible items are conted only.
         :return: The total number of rows in the table as an int.
         """
 
-        sql = "SELECT Count(*) FROM {Table}".format(Table=table)
-        count = self.return_sql(sql)
-
-        return int(count[0][0])
+        if visible:
+            sql = """SELECT Count(*) FROM {Table} WHERE visibility="True"
+            """.format(Table=table)
+            count = self.return_sql(sql)
+            return int(count[0][0])
+        else:
+            sql = "SELECT Count(*) FROM {Table}".format(Table=table)
+            count = self.return_sql(sql)
+            return int(count[0][0])
 
     def modify_item(self, table, column, value, row):
-        """Modifies an item in the database"""
+        """Modifies an item in the database
+
+        :param table: The table being modified.
+        :param column: The column being modified. Needs to be a list.
+        :param value: The value being modified. Needs to be a list.
+        :param row: The row in the database being modified. Needs to be an int.
+        """
 
         # Adds =?, to each column so that values can then be unpacked.
         column_new = "=?, ".join(column)
@@ -163,6 +176,16 @@ class DB:
                 table, column_new, row), value)
         conn.commit()
         conn.close()
+
+    def return_item(self, table, id):
+        """
+        Returns a specific item from the database.
+        :param table: The table the data resides in.
+        :param id: The ID of the item being retrieved.
+        """
+
+        sql = "SELECT * FROM {TABLE} WHERE id={ID}".format(TABLE=table, ID=id)
+        return self.return_sql(sql)
 
     def return_pass_sql(self, sql):
         """

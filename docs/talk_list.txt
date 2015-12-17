@@ -38,13 +38,13 @@
 38:Act Wisely as the End Draws Near
 39:Be Confident of Divine Victory!
 40:What the Near Future Holds!
-41:"Stand Still and See the Salvation of Jehovah"
+41:Stand Still and See the Salvation of Jehovah
 42:How the Kingdom of God Affects You
 43:Are You Doing What God Requires of You?
 44:Keep Seeking God's Kingdom
 45:Follow the Way to Life
 46:Maintain Your Confidence Firm to the End
-47:"Have Faith in the Good News"
+47:Have Faith in the Good News
 48:Meeting the Test of Christian Loyalty
 49:A Cleansed Earth - Will You Live to See It?
 50:Decisions You Face - How Will You Make Them?
@@ -181,11 +181,11 @@
 181:Is It Later Than You Think?
 182:What God's Kingdom Is Doing for Us Now
 183:Turn Your Eyes Away From Worthless Things!
-184:"Does Death End It All?"
-185:"Does The Truth Affect Your Life?"
-186:"Unite With God's Happy People"
-187:"Why Would a Loving God Permit Wickedness?"
-188:"Is Your Confidence In Jehovah?"
-S-1:Observing the "Lord's Evening Meal"
+184:Does Death End It All?
+185:Does The Truth Affect Your Life?
+186:Unite With God's Happy People
+187:Why Would a Loving God Permit Wickedness?
+188:Is Your Confidence In Jehovah?
+S-1:Observing the Lord's Evening Meal
 S-2:Funeral Discourse
 S-3:Honorable Marriage in God's Sight

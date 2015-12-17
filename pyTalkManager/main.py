@@ -6,6 +6,7 @@ import pyTalkManager as tm
 from congregation import Congregation
 from db import DB
 from brother import Brother
+from outline import Outline
 
 # Importation of GUIs
 # The following imports are the GUI dialogs/windows.
@@ -15,7 +16,8 @@ import gui.BrotherWindow
 import gui.AddBrotherWindow
 import gui.CongregationWindow
 import gui.AddCongregationWindow
-import gui.TalkWindow
+import gui.OutlineWindow
+import gui.AddOutlineWindow
 
 
 class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
@@ -34,10 +36,14 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         # TOOL BAR ACTIONS
         # Connects the tool-bar buttons to functions that are responsible
         # of opening the corresponding dialog.
-        self.actionDatabase.triggered.connect(self.show_database_window)         # Database Manager
-        self.actionBrothers.triggered.connect(self.show_brother_window)          # Brother Manager
-        self.actionCongregation.triggered.connect(self.show_congregation_window) # Congregation Manager
-        self.actionTalks.triggered.connect(self.show_talk_window)                # Talk-Outline Manager
+        self.actionDatabase.triggered.connect(
+            self.show_database_window)  # Database Manager
+        self.actionBrothers.triggered.connect(
+            self.show_brother_window)  # Brother Manager
+        self.actionCongregation.triggered.connect(
+            self.show_congregation_window)  # Congregation Manager
+        self.actionTalks.triggered.connect(
+            self.show_outline_window)  # Talk-Outline Manager
 
     def center_on_screen(self):
         """
@@ -76,13 +82,13 @@ class MainWindow(QtGui.QMainWindow, gui.MainWindow.Ui_MainWindow):
         self.congregation_window = CongregationWindow()
         self.congregation_window.show()
 
-    def show_talk_window(self):
+    def show_outline_window(self):
         """
         Method that opens the List manager.
         """
 
-        self.talk_window = TalkWindow()
-        self.talk_window.show()
+        self.outline_window = OutlineWindow()
+        self.outline_window.show()
 
 
 class DatabaseWindow(QtGui.QDialog, gui.DatabaseWindow.Ui_DatabaseWindow):
@@ -106,16 +112,17 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
     """
     Brother manager that allows the user to add, edit, and delete brothers from
     the database.
+
     Methods:
-       user_option_sorter: Determines which sorting the user wants to use.
-       populate_brothers: Populates the TableWidget with the names and
+       - user_option_sorter: Determines which sorting the user wants to use.
+       - populate_brothers: Populates the TableWidget with the names and
        congregations of brothers.
-       populate_cong: Populates the combobox used when adding a new brother
+       - populate_cong: Populates the combobox used when adding a new brother
        to the database. Also used for the combobox when the user edits a
        brother.
-       show_add_brother_window: Opens the add_brother_window
+       - show_add_brother_window: Opens the add_brother_window
        show_edit_brother_window: Opens the edit_brother_window
-       id_brother: Returns the database ID of the brother selected by the
+       - id_brother: Returns the database ID of the brother selected by the
        user from the TableWidget.
     """
 
@@ -181,6 +188,9 @@ class BrotherWindow(QtGui.QDialog, gui.BrotherWindow.Ui_BrotherWindow):
         else:
             self.options_selected["Cong"] = \
                 '"{}"'.format(self.combo_cong.currentText())
+
+        # call method to populate the tables with the options
+        # selected by the user.
         self.populate_brothers(self.options_selected)
 
     def populate_brothers(self, option_dic):
@@ -289,7 +299,7 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     Methods:
       add_item() - Takes all widget information and stores it in a variable.
-                   Currently the combo boxes and check boxes are not supported.
+      Currently the combo boxes and check boxes are not supported.
     """
 
     def __init__(self, parent=None):
@@ -301,20 +311,19 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
 
     def populate_cong(self):
         """
-        Populate the congregation combo box with all the congregation names from
-        database.
+        Populate the congregation combo box with all the congregation names
+        from database.
         """
 
         congregations = Congregation.get_list(None, 'ASC')
-        self.sorted_list = congregations # Don't remember why I did this line
+        self.sorted_list = congregations  # Don't remember why I did this line
 
         for congregation in congregations:
             self.combo_congregation.addItem(congregation[1])
 
     def add_brother(self):
-        """
-        Method that collects all the user entered data and then submits it to be
-        entered into the database.
+        """ Method that collects all the user entered data and then submits it
+        to be entered into the database.
         """
 
         chairman = ''
@@ -349,7 +358,8 @@ class AddBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
         self.done(True)
 
 
-class EditBrotherWindow(QtGui.QDialog, gui.AddBrotherWindow.Ui_AddBrotherWindow):
+class EditBrotherWindow(QtGui.QDialog,
+                        gui.AddBrotherWindow.Ui_AddBrotherWindow):
     """
     Opens AddBrotherWindow and changes the GUI for editing.
     """
@@ -529,7 +539,6 @@ class CongregationWindow(QtGui.QDialog,
         if saved:
             self.populate_table()
 
-
     def show_add_congregation_window(self):
         """
         Window that allows the user to enter a new congregation into the
@@ -669,7 +678,6 @@ class EditCongregationDialog(QtGui.QDialog,
         self.line_latitude.setText(str(congregation[0][11]))
         self.text_note.setText(str(congregation[0][12]))
 
-
     def submit_edit(self, row):
         """
         Method that submits user made edits to be committed to the database.
@@ -699,20 +707,178 @@ class EditCongregationDialog(QtGui.QDialog,
 
         edit = Congregation()
         edit.set_attributes(name, phone, email, address, city,
-                                         state, zipcode, week, time, longitude,
-                                         latitude, notes, visibility)
+                            state, zipcode, week, time, longitude,
+                            latitude, notes, visibility)
         edit.edit_congregation(row)
 
         self.done(True)
 
-class TalkWindow(QtGui.QDialog, gui.TalkWindow.Ui_TalkWindow):
+
+class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     """
-    Window that shows all talks available.
+    Window that shows all outlines available for the user to chose, add, edit,
+    or delete.
     """
 
     def __init__(self, parent=None):
-        super(TalkWindow, self).__init__(parent)
+        super(OutlineWindow, self).__init__(parent)
         self.setupUi(self)
+        self.button_import.clicked.connect(self.import_file)
+        self.button_delete.clicked.connect(self.delete_outline)
+        self.button_add.clicked.connect(self.add_outline)
+        self.button_edit.clicked.connect(self.edit_outline)
+        self.radio_number.clicked.connect(self.populate_list)
+        self.radio_title.clicked.connect(self.populate_list)
+        self.sorted_list = []
+        db = DB()
+
+        # If there's no outlines in the DB then enable the import button
+        # for the user, otherwise disable the import button.
+        if db.count_rows('Talk', True) > 0:
+            self.button_import.setEnabled(False)
+            self.populate_list()
+
+    def import_file(self):
+        """
+        Method that allows the user to import outlines from a file.
+        :return: None
+        """
+
+        import_file = QtGui.QFileDialog.getOpenFileName(None, "Open Outline "
+                                                              "", None,
+                                                        "Outline File (*.txt)")
+        outline = []
+        with open(import_file[0], 'r') as text:
+            for line in text:
+                outline.append(line[:-1])  # Removes the '\n' at EOL
+
+        database = DB()
+        for line in outline:  # Adds the outlines to the DB
+            number = line.find(':')
+            database.add_item('Talk', ('number', 'title'), (line[:number],
+                                                            line[number + 1:]))
+        self.button_import.setEnabled(False)
+
+    def populate_list(self):
+        """Populates the talk_list widget with the outlines
+
+        Format of outline_list: [(DB ID, number, title, visibility), ...]
+        """
+        db = DB()
+        self.table_outline.clearContents()
+        sql_number_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER " \
+                          "BY CAST (number AS INTEGER)"
+        sql_title_sort = "SELECT * FROM Talk WHERE visibility='True' ORDER BY" \
+                         " title ASC"
+
+        if self.radio_number.isChecked():
+            outline_list = DB.return_sql(None, sql_number_sort)
+        else:
+            outline_list = DB.return_sql(None, sql_title_sort)
+
+        self.table_outline.setColumnCount(2)
+        self.table_outline.setRowCount(db.count_rows('Talk', True))
+        self.sorted_list = []  # Table IDs of items added sorted to the table
+
+        index = 0  # Index of table_outline widget
+        for item in outline_list:
+            number = QtGui.QTableWidgetItem(item[1])
+            title = QtGui.QTableWidgetItem(item[2])
+            self.table_outline.setItem(index, 0, number)
+            self.table_outline.setItem(index, 1, title)
+            self.sorted_list.append(item[0])
+            index += 1
+
+    def delete_outline(self):
+        """Delete a specific outline from the database."""
+
+        selection = self.table_outline.currentRow()
+        DB.modify_item(None, 'Talk', ['visibility'], ['False'],
+                       self.sorted_list[selection])
+        self.populate_list()
+
+    def add_outline(self):
+        """Window for the user to add new outlines to the database."""
+
+        self.add_outline_window = AddOutlineWindow()
+        # If the user saves a new outline, run populate_table()
+        saved = self.add_outline_window.exec_()
+        if saved:
+            self.populate_list()
+
+    def edit_outline(self):
+        """Window for the user to edit a selected outline"""
+
+        selection = self.table_outline.currentRow()
+        outline_id = self.sorted_list[selection]
+        self.edit_outline_window = EditOutlineWindow(None, outline_id)
+        saved = self.edit_outline_window.exec_()
+        if saved:
+            self.populate_list()
+
+
+class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
+    """
+    Add Outline Window
+    """
+
+    def __init__(self, parent=None):
+        super(AddOutlineWindow, self).__init__(parent)
+        self.setupUi(self)
+        self.button_save.clicked.connect(self.add_outline)
+
+    def add_outline(self):
+        """
+        Adds the contents of the AddOtlineWindow to the database.
+        """
+        
+        outline = Outline()
+
+        outline_number = self.line_number.displayText()
+        outline_title = self.line_title.displayText()
+
+        submission = outline.add_outline(outline_number, outline_title)
+
+        if submission[0] == "True":
+           self.done(True) 
+        else:
+            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])     
+
+
+class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
+    """
+    Edit Outline Window
+    """
+
+    def __init__(self, parent=None, outline_id=0):
+        super(EditOutlineWindow, self).__init__(parent)
+        self.setupUi(self)
+        self.setWindowTitle('Edit Outline')
+        self.button_save.clicked.connect(self.save_edit)
+        self.outline_id = outline_id
+
+        db = DB()
+        self.edited_item =  db.return_item("Talk", self.outline_id)
+        self.line_number.setText(self.edited_item[0][1])
+        self.line_title.setText(self.edited_item[0][2])
+
+
+    def save_edit(self):
+        """
+        Save edits made by the user to the selected outline.
+        """
+
+        number = self.line_number.displayText()
+        title = self.line_title.displayText()
+
+        outline = Outline()
+        submission = outline.edit_outline(self.edited_item[0][1], self.edited_item[0][2], number, title, self.edited_item[0][0])
+
+        if submission[0] == 'True':
+            self.done(True)
+        else:
+            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])
+
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
