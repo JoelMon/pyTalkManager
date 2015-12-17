@@ -741,6 +741,7 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
     def import_file(self):
         """
         Method that allows the user to import outlines from a file.
+
         :return: None
         """
 
@@ -831,7 +832,7 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         """
         Adds the contents of the AddOtlineWindow to the database.
         """
-        
+
         outline = Outline()
 
         outline_number = self.line_number.displayText()
@@ -840,9 +841,9 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         submission = outline.add_outline(outline_number, outline_title)
 
         if submission[0] == "True":
-           self.done(True) 
+           self.done(True)
         else:
-            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])     
+            error = QtGui.QMessageBox.critical(self, 'Error', submission[1])
 
 
 class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
