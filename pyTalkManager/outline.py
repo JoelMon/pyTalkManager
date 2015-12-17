@@ -46,18 +46,18 @@ class Outline:
 
         for outline in database_titles:
             outline_number_list.append(outline[1])
-            outline_title_list.append(outline[2])
+            outline_title_list.append(outline[2].lower())
 
         # If edit is true, remove the original item to not cause false duplicate warnings.
         if edit:  
             outline_number_list.remove(self.number)
-            outline_title_list.remove(self.title)
+            outline_title_list.remove(self.title.lower())
             self.number = self.new_number
             self.title = self.new_title
 
         if str(self.number) in outline_number_list:
             return ('False', "duplicate outline number")
-        if self.title in outline_title_list:
+        if self.title.lower() in outline_title_list:
             return ('False', "duplicate outline title")
 
         return ('True',)
