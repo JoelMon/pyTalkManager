@@ -7,7 +7,6 @@ from congregation import Congregation
 from db import DB
 from brother import Brother
 from outline import Outline
-
 # Importation of GUIs
 # The following imports are the GUI dialogs/windows.
 import gui.MainWindow
@@ -794,9 +793,23 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         """Delete a specific outline from the database."""
 
         selection = self.table_outline.currentRow()
-        DB.modify_item(None, 'Talk', ['visibility'], ['False'],
-                       self.sorted_list[selection])
-        self.populate_list()
+        db = DB()
+        item = db.return_item('Talk', self.sorted_list[selection])
+
+        # Make sure the user intended to delete the outline
+        msg = QtGui.QMessageBox()
+        msg.setText('Delete outline {NUM} - "{TITLE}"?'.format(NUM=item[0][1],
+                                                            TITLE=item[0][2]))
+        msg.setStandardButtons(msg.No | msg.Yes)
+        msg.setDefaultButton(msg.No)
+        go_ahead = msg.exec_()
+
+        if go_ahead == msg.Yes:
+            DB.modify_item(None, 'Talk', ['visibility'], ['False'],
+                           self.sorted_list[selection])
+            self.populate_list()
+        else:
+            pass
 
     def add_outline(self):
         """Window for the user to add new outlines to the database."""
@@ -841,12 +854,13 @@ class AddOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
         submission = outline.add_outline(outline_number, outline_title)
 
         if submission[0] == "True":
-           self.done(True)
+            self.done(True)
         else:
             error = QtGui.QMessageBox.critical(self, 'Error', submission[1])
 
 
-class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow):
+class EditOutlineWindow(QtGui.QDialog,
+                        gui.AddOutlineWindow.Ui_AddOutlineWindow):
     """
     Edit Outline Window
     """
@@ -859,10 +873,9 @@ class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow)
         self.outline_id = outline_id
 
         db = DB()
-        self.edited_item =  db.return_item("Talk", self.outline_id)
+        self.edited_item = db.return_item("Talk", self.outline_id)
         self.line_number.setText(self.edited_item[0][1])
         self.line_title.setText(self.edited_item[0][2])
-
 
     def save_edit(self):
         """
@@ -873,7 +886,9 @@ class EditOutlineWindow(QtGui.QDialog, gui.AddOutlineWindow.Ui_AddOutlineWindow)
         title = self.line_title.displayText()
 
         outline = Outline()
-        submission = outline.edit_outline(self.edited_item[0][1], self.edited_item[0][2], number, title, self.edited_item[0][0])
+        submission = outline.edit_outline(self.edited_item[0][1],
+                                          self.edited_item[0][2], number, title,
+                                          self.edited_item[0][0])
 
         if submission[0] == 'True':
             self.done(True)
