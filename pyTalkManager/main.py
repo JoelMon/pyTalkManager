@@ -747,17 +747,33 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         import_file = QtGui.QFileDialog.getOpenFileName(None, "Open Outline "
                                                               "", None,
                                                         "Outline File (*.txt)")
-        outline = []
+
+        self.outline_number = []
+        self.outline_title = []
+
         with open(import_file[0], 'r') as text:
             for line in text:
-                outline.append(line[:-1])  # Removes the '\n' at EOL
+                split = line.find(':')
+                self.outline_number.append(line[:split])
 
-        database = DB()
-        for line in outline:  # Adds the outlines to the DB
-            number = line.find(':')
-            database.add_item('Talk', ('number', 'title'), (line[:number],
-                                                            line[number + 1:]))
-        self.button_import.setEnabled(False)
+                # Replace single quotes (') with double single ('') quotes so
+                # that single quotes can be passed as a quarry to SQLite.
+                # For example: "We''ll know John''s ..."
+                self.outline_title.append(line[split + 1:-1].replace("'", "''"))
+
+        list_size = len(self.outline_title)
+        values = ""
+        for i in range(len(self.outline_title)):  # Create the SQL quarry
+            values = "{VALUES}, ('{NUMBER}' , '{TITLE}', 'True')".format(
+                                                  VALUES=values,
+                                                  NUMBER=self.outline_number[i],
+                                                  TITLE=self.outline_title[i])
+
+        db = DB()
+        columns = ('number', 'title', 'visibility')
+        values = values[2:]  # Remove the first ',' from values
+        db.add_item('Talk', columns, values)
+        self.populate_list()
 
     def populate_list(self):
         """Populates the talk_list widget with the outlines
@@ -799,7 +815,8 @@ class OutlineWindow(QtGui.QDialog, gui.OutlineWindow.Ui_OutlineWindow):
         # Make sure the user intended to delete the outline
         msg = QtGui.QMessageBox()
         msg.setText('Delete outline {NUM} - "{TITLE}"?'.format(NUM=item[0][1],
-                                                            TITLE=item[0][2]))
+                                                               TITLE=item[0][
+                                                                   2]))
         msg.setStandardButtons(msg.No | msg.Yes)
         msg.setDefaultButton(msg.No)
         go_ahead = msg.exec_()

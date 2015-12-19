@@ -128,7 +128,7 @@ class DB:
         # Convert each value into a string. Join requires strings.
         list_value = "', '".join(str(v) for v in value)
 
-        sql = "INSERT INTO {table}({column}) VALUES{values}".format(
+        sql = """INSERT INTO {table} ({column}) VALUES {values}""".format(
             table=table,  # adds ' ' to values.
             column=list_column,
             values=list_value)
@@ -215,11 +215,11 @@ class DB:
         :param sql: the SQL command that needs to be passed
         to SQLite.
         """
-
+        print("Commit_sql(): {}".format(sql))
         conn = sqlite3.connect(DB.get_path())
         c = conn.cursor()
         c.execute("PRAGMA foreign_keys = ON")
-        c.execute(sql)
+        c.execute("""{}""".format(sql))
         conn.commit()
         conn.close()
 
