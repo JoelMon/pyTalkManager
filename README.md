@@ -17,21 +17,21 @@ unlocked with *donations*. Since **pyTalkManager** is open source and
 uses the GPL v.3 license, other PTC software developers can create
 programs that interact with **pyTalkManager**. 
 
-##Development
+## Development
 
 **pyTalkManager** is being actively developed and is still in its early
 stages. Check back every few weeks to keep an eye on the progress.
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TheoDevelopers/pyTalkManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-##Installation
+## Installation
 
 Visit the
 [installation section](https://github.com/TheoDevelopers/pyTalkManager/wiki/installation)
 in our wiki for installation instructions.
 
 
-##Screenshots
+##  Screenshots
 ![Screenshot of the Main Window](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/MainWindow_2015-11-06.png)
 
 ![Screenshot of the Congregation Manager](https://raw.githubusercontent.com/wiki/TheoDevelopers/pyTalkManager/images/sreenshots/EditCongregation_2015-11-06.png)
@@ -45,7 +45,7 @@ in our wiki for installation instructions.
 [GPL v.3 license](https://www.gnu.org/copyleft/gpl.html).
 
 
-##Note
+## Note
 
 **pyTalkManager** is not affiliated with the
 [Watch Tower Bible and Tract Society of Pennsylvania](http://www.JW.org).
